@@ -71,12 +71,12 @@ public class trangChuAdmin extends JFrame {
 				closeMenuBar();
 			}
 		});
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\cancel_close_delete_exit_logout_remove_x_icon_123217.png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\hung\\eclipse-workspace\\baitap_java\\src\\main\\resources\\images\\cancel_close_delete_exit_logout_remove_x_icon_123217.png"));
 		lblNewLabel.setBounds(116, 10, 32, 23);
 		panel_1.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\student_work_office_desk_work_space_computer_working_support_icon_191191.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\hung\\eclipse-workspace\\baitap_java\\src\\main\\resources\\images\\student_work_office_desk_work_space_computer_working_support_icon_191191.png"));
 		lblNewLabel_1.setBounds(20, 10, 96, 78);
 		panel_1.add(lblNewLabel_1);
 		
@@ -103,6 +103,13 @@ public class trangChuAdmin extends JFrame {
 		panel_1.add(btnNewButton);
 		
 		JButton btnHngHa = new JButton("Hàng hóa");
+		btnHngHa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				HangHoaAdminView hangHoaView = new HangHoaAdminView();
+				hangHoaView.setVisible(true);
+			}
+		});
 		btnHngHa.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnHngHa.setBounds(0, 164, 158, 55);
 		panel_1.add(btnHngHa);

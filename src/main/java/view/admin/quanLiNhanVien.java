@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.nhanVienModel;
+import repository.AdminReposity;
 import repository.NhanVienReposity;
 
 import javax.swing.border.TitledBorder;
@@ -151,6 +152,7 @@ public class quanLiNhanVien extends JFrame {
 					nhanVienRepository.insertUser(nhanVienModel);
 					if (nhanVienModel != null) {
 						JOptionPane.showMessageDialog(null, "Thêm thành công");
+						 loadtabel();
 					}
 				}
         	}
@@ -171,8 +173,9 @@ public class quanLiNhanVien extends JFrame {
         JButton btnXa = new JButton("Xóa");
         btnXa.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		deleteAdmin delete= new deleteAdmin();
+        		deleteAdmin delete = new deleteAdmin();
         		delete.setVisible(true);
+        		
         	}
         });
         btnXa.setBounds(106, 108, 85, 21);
@@ -238,4 +241,6 @@ public class quanLiNhanVien extends JFrame {
 			table.getTableHeader().setReorderingAllowed(false);	
 		}
 	}
+
+
 }

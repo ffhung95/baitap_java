@@ -1,9 +1,9 @@
 package test;
 
-import view.Home;
+import view.trangChu.tableView;
 
 public class test {
 public static void main(String[] args) {
-	Home hom = new Home();
+	tableView table = new tableView();
 }
 }

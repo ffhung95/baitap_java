@@ -216,6 +216,7 @@ public class capnhatAdmin extends JFrame {
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+					loadtabel();
 				}
 			}
 		});
@@ -236,7 +237,7 @@ public class capnhatAdmin extends JFrame {
 		nhanVien_jtbale = new JTable();
 		nhanVien_jtbale.setBounds(10, 10, 603, 156);
 		panel_2.add(nhanVien_jtbale);
-		loadtabel();
+		
 	}
 
 	private void loadtabel() {

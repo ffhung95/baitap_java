@@ -170,6 +170,7 @@ import javax.swing.JLabel;
 							adminreposity.insertUser(adminmodel);
 							if(adminmodel!=null) {
 								JOptionPane.showMessageDialog(null, "Thêm thành công");
+								loadTable();
 							}
 							
 							
@@ -224,7 +225,7 @@ import javax.swing.JLabel;
 				}
 			));
 			scrollPane.setViewportView(thongtinadmin_table);
-			loadTable();
+		
 		}
 
 		private void loadTable() {

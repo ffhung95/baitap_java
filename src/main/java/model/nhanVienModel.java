@@ -122,4 +122,5 @@ public String toString() {
 			+ ", sdt=" + sdt + ", ngayvaolam=" + sdf.format(ngayvaolam) + ", chucvu=" + chucvu + ", luong=" + luong + ", avatar="
 			 + "]";
 }
+
 }

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -54,7 +55,28 @@ public class NhanVienReposity {
 		}
 		return list;
 	}
-
+	
+	  public nhanVienModel get(int id) throws SQLException {
+		  	connection = MySQLConnecttion.getConnection();
+	        String query = "SELECT * FROM nhanvien WHERE manv= " + id;
+	        ResultSet rs = statement.executeQuery(query);
+	        if (rs.next()) {
+	        	nhanVienModel nhanienrepository = new  nhanVienModel();
+	        	nhanienrepository.setManv(rs.getInt("manv"));
+				nhanienrepository.setHoten(rs.getString("hotennv"));
+				nhanienrepository.setTaikhoan(rs.getString("taikhoan"));
+				nhanienrepository.setMatkhau(rs.getString("matkhau"));
+				nhanienrepository.setSdt(rs.getString("sdt"));
+				java.sql.Date nagyvaolam = rs.getDate("ngayvaolam");
+				if (nagyvaolam != null) {
+					nhanienrepository.setNgayvaolam(new Date(nagyvaolam.getTime()));
+				}
+				nhanienrepository.setChucvu(rs.getString("chucvu"));
+				nhanienrepository.setLuong(rs.getInt("luong"));
+	            return nhanienrepository;
+	        }
+	        return null;
+	    }
 	public nhanVienModel selectById(nhanVienModel t) {
 		try {
 			connection = MySQLConnecttion.getConnection();
@@ -245,6 +267,29 @@ public class NhanVienReposity {
 		return ketQua;
 	}
 
+	public int delete(int maMon) {
+		int ketQua = 0;
+		try {
+			connection = MySQLConnecttion.getConnection();
+			String sql = "DELETE from btl_qlcf.nhanvien " + " WHERE manv=?";
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, maMon);
+			ketQua = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+				statement.close();
+			} catch (SQLException e) {
+				System.out.println("Lỗi đóng kết nối");
+				e.printStackTrace();
+			}
+		}
+		return ketQua;
+      
+    }
 	public int delete(nhanVienModel t) {
 		int ketQua = 0;
 		try {

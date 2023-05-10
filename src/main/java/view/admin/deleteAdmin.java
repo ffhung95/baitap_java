@@ -89,6 +89,7 @@ public class deleteAdmin extends JFrame {
 				nvR.delete(nhanvien);
 				if(nhanvien!= null) {
 					JOptionPane.showMessageDialog(null, "Xóa thành công");
+					loadtabel();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Xóa thất bại");
@@ -110,7 +111,7 @@ public class deleteAdmin extends JFrame {
 		});
 		xoa_JButton_1.setBounds(243, 10, 102, 32);
 		panel.add(xoa_JButton_1);
-		loadtabel();
+		
 	}
 	public void hienThiThongTinNhanVien() {
 		DefaultTableModel model_table = (DefaultTableModel) table.getModel();

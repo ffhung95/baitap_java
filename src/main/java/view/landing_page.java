@@ -60,7 +60,7 @@ public class landing_page extends JFrame {
 	        getContentPane().add(progressBar);
 	        
 	        JLabel lblNewLabel_1 = new JLabel("");
-	        lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\higl.jfif"));
+	        lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\hung\\eclipse-workspace\\baitap_java\\src\\main\\resources\\images\\higl.jfif"));
 	        lblNewLabel_1.setBounds(199, 71, 225, 200);
 	        getContentPane().add(lblNewLabel_1);
 		
