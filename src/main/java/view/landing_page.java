@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class landing_page extends JFrame {
 
@@ -25,7 +26,7 @@ public class landing_page extends JFrame {
 		lblNewLabel = new JLabel();
 		MyprogressBar = new JProgressBar();
 		getContentPane().setForeground(new Color(230, 230, 250));
-		getContentPane().setBackground(new Color(255, 255, 255));
+		getContentPane().setBackground(new Color(236, 255, 255));
 		this.initComponents();
         this.setVisible(true);
 	}
@@ -40,28 +41,30 @@ public class landing_page extends JFrame {
 	        this.setResizable(false);
 	        getContentPane().setLayout(null);
 	        
-	        lblNewLabel = new JLabel("Highlands Coffee");
-	        lblNewLabel.setBackground(new Color(0, 0, 0));
-	        lblNewLabel.setForeground(new Color(0, 0, 0));
-	        lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-	        lblNewLabel.setBounds(226, 24, 198, 37);
-	        getContentPane().add(lblNewLabel);
-	        
-	        loading = new JLabel("Loading.....");
-	        loading.setForeground(new Color(0, 0, 0));
-	        loading.setFont(new Font("Tahoma", Font.PLAIN, 20));
-	        loading.setBounds(283, 276, 119, 37);
-	        getContentPane().add(loading);
-	        
 	        JProgressBar progressBar = new JProgressBar();
-	        progressBar.setForeground(new Color(255, 51, 0));
+	        progressBar.setMinimum(0);
+	        progressBar.setMaximum(100);
+	        progressBar.setForeground(new Color(51, 153, 204));
 	        progressBar.setBackground(new Color(224, 255, 255));
-	        progressBar.setBounds(0, 315, 687, 20);
+	        progressBar.setBounds(0, 315, 687, 16);
 	        getContentPane().add(progressBar);
+	        Thread progressThread = new Thread(() -> {
+	            try {
+	                for (int i = 0; i <= 100; i++) {
+	                    final int progressValue = i;
+	                    javax.swing.SwingUtilities.invokeLater(() -> progressBar.setValue(progressValue));
+	                    Thread.sleep(40);
+	                }
+	            } catch (InterruptedException e) {
+	                e.printStackTrace();
+	            }
+	        });
+
+	        progressThread.start();
 	        
 	        JLabel lblNewLabel_1 = new JLabel("");
-	        lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\hung\\eclipse-workspace\\baitap_java\\src\\main\\resources\\images\\higl.jfif"));
-	        lblNewLabel_1.setBounds(199, 71, 225, 200);
+	        lblNewLabel_1.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\logo.png"));
+	        lblNewLabel_1.setBounds(135, 0, 373, 265);
 	        getContentPane().add(lblNewLabel_1);
 		
 	}
