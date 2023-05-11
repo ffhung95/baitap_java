@@ -17,6 +17,10 @@ public hangHoa() {
 }
 
 
+
+
+
+
 public hangHoa(int maHangHoa, int idmaloaihang, int idNV, String tenHangHoa, double giaHangHoa, int soLuong,
 		loaiHang maLoaiHang, nhanVienModel maNhanVien, String anhHangHoa) {
 	super();
@@ -31,16 +35,12 @@ public hangHoa(int maHangHoa, int idmaloaihang, int idNV, String tenHangHoa, dou
 	this.anhHangHoa = anhHangHoa;
 }
 
-
 public String getAnhHangHoa() {
 	return anhHangHoa;
 }
-
-
 public void setAnhHangHoa(String anhHangHoa) {
 	this.anhHangHoa = anhHangHoa;
 }
-
 
 public int getIdmaloaihang() {
 	return idmaloaihang;
@@ -116,7 +116,6 @@ public static hangHoa getFromResultSet(ResultSet rs) throws SQLException {
     f.setGiaHangHoa(rs.getInt("giahanghoa"));
     f.setSoLuong(rs.getInt("soluong"));
     f.setIdmaloaihang(rs.getInt("maloaihang"));
-    f.setIdNV(rs.getInt("manv"));
     f.setAnhHangHoa(rs.getString("anhhanghoa"));
     return f;
 }

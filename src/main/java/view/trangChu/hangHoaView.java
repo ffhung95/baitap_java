@@ -2,9 +2,11 @@ package view.trangChu;
 
 import java.awt.EventQueue;
 
+import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -12,17 +14,25 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import model.hangHoa;
 import model.loaiHang;
 import models.FoodCategory;
+import repository.loaiHangHoaRepository;
 import utils.ErrorPopup;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
 
 public class hangHoaView extends JFrame {
 
 	DefaultComboBoxModel<loaiHang> foodCategoryComboBoxModel = new DefaultComboBoxModel<>();
-
+	loaiHangHoaRepository LoaiHangRepo = new loaiHangHoaRepository();
+	
     public hangHoaView() {
+    	LoaiHangRepo= new loaiHangHoaRepository();
         initComponents();
         setLocationRelativeTo(null);
         cboCategory.setModel(foodCategoryComboBoxModel);
@@ -118,13 +128,37 @@ public class hangHoaView extends JFrame {
     public JLabel getLbPreviewImage() {
         return lbPreviewImage;
     }
+   
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
-
         jPanel1 = new javax.swing.JPanel();
         lbTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnOK = new javax.swing.JButton();
+//        btnOK.addActionListener(new ActionListener() {
+//        	public void actionPerformed(ActionEvent e) {
+//        		hangHoa foodItem = new hangHoa();
+//        			try {
+//						for (loaiHang loaihang : LoaiHangRepo.getAll()) {
+//							foodCategoryComboBoxModel.addElement(loaihang);
+//						}
+//					} catch (SQLException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}
+//        		
+//        		loaiHang selectCategory = (loaiHang) cboCategory.getSelectedItem();
+//        		String name = txtName.getText(), unitPrice = txtUnitPrice.getText(),
+//        				urlImage = txtUrlImage.getText();
+//        		if (name.isEmpty() || unitPrice.isEmpty() || selectCategory == null) {
+//        			JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin");
+//        		}
+//        		foodItem.setTenHangHoa(name);
+//        		foodItem.setGiaHangHoa(Integer.parseInt(unitPrice));
+//        		foodItem.setAnhHangHoa(urlImage);
+//        		foodItem.setIdmaloaihang(selectCategory.getMaLoaiang());
+//        	}
+//        });
         btnCancel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -133,6 +167,15 @@ public class hangHoaView extends JFrame {
         txtName = new javax.swing.JTextField();
         txtUrlImage = new javax.swing.JTextField();
         btnChooseImage = new javax.swing.JButton();
+        btnChooseImage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser jfilechoooser = new JFileChooser();
+				jfilechoooser.setMultiSelectionEnabled(false);
+				if (jfilechoooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+					file = jfilechoooser.getSelectedFile();
+				}
+			}
+		});
         txtUnitPrice = new javax.swing.JTextField();
         cboCategory = new javax.swing.JComboBox<>();
         lbPreviewImage = new javax.swing.JLabel();
@@ -263,6 +306,7 @@ public class hangHoaView extends JFrame {
 
         pack();
     }
+    public File file;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnChooseImage;
     private javax.swing.JButton btnOK;

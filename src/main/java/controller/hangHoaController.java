@@ -7,6 +7,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import model.hangHoa;
 import model.loaiHang;
 import repository.hangHoaRepository;
@@ -80,7 +82,7 @@ public class hangHoaController {
 			try {
 				addFoodItem(view);
 				view.dispose();
-				view.showMessage("Thêm món ăn thành công!");
+				JOptionPane.showMessageDialog(view, "Thêm món thành công");
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
@@ -155,7 +157,7 @@ public class hangHoaController {
 		foodItem.setGiaHangHoa(Integer.parseInt(unitPrice));
 		foodItem.setAnhHangHoa(urlImage);
 		foodItem.setIdmaloaihang(selectCategory.getMaLoaiang());
-
+		HangHoaRepo.save(foodItem);
 		return true;
 	}
 

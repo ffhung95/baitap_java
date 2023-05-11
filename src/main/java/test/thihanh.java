@@ -6,7 +6,6 @@ import view.loginView;
 public class thihanh  {
 	public static void main(String[] args) {
 		landing_page page = new landing_page();
-		page.setVisible(true);
 		for (int i = 0; i <= 100; i++) {
 			try {
 				Thread.sleep(40);
