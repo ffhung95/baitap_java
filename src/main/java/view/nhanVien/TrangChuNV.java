@@ -39,6 +39,7 @@ public class TrangChuNV extends JFrame {
         JButton btnNewButton = new JButton("MENU");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		
         	}
         });
         btnNewButton.setBounds(10, 10, 182, 67);

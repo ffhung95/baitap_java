@@ -38,7 +38,7 @@ public class Menu extends javax.swing.JFrame {
     private List<JSpinner> mySpinners = new ArrayList<>();
     Map<Integer, Float > menuMap = new HashMap<>(); //Khai báo một map để lưu các món trong bill
     
-    private List<MenuModel> drinks;
+//    private List<MenuModel> drinks;
     /**
      * Creates new form Menu
      */
@@ -50,8 +50,8 @@ public class Menu extends javax.swing.JFrame {
             initComponents();
             pnlProduct.setLayout(new BorderLayout());
             productPanel = new JPanel(new GridLayout(0,4,10,10));
-            MenuDao dao = new MenuDao();
-            drinks = dao.findAll();        
+//            MenuDao dao = new MenuDao();
+//            drinks = dao.findAll();        
             for (MenuModel drink : drinks) {
                 boxDrink = new JPanel();
                 boxDrink.setLayout(new BoxLayout(boxDrink, BoxLayout.Y_AXIS));

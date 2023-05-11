@@ -25,10 +25,10 @@ public class OrderItemEmployeeView extends JFrame {
 	private JTable table;
 	
 	public OrderItemEmployeeView() {
-		this.odercontroller = new oderController();
-		
-		this.suadonhangview= new suaDonHangView();
-		this.themdonhangview = new themDonHangView();
+//		this.odercontroller = new oderController();
+//		
+//		this.suadonhangview= new suaDonHangView();
+//		this.themdonhangview = new themDonHangView();
 		this.init();
 		this.setVisible(true);
 	}

@@ -19,7 +19,7 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	public ArrayList<hangHoa> getAll() throws SQLException {
 		ArrayList<hangHoa> foodItems = new ArrayList<>();
 		Statement statement = conn.createStatement();
-		String query = "SELECT * FROM hanghoa ORDER BY maloaihang ASC , tenhanghoa ASC";
+		String query = "SELECT * FROM hanghoa ORDER BY tenloaihang ASC ";
 		ResultSet rs = statement.executeQuery(query);
 		while (rs.next()) {
 			hangHoa foodItem = hangHoa.getFromResultSet(rs);
@@ -28,10 +28,10 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		return foodItems;
 	}
 
-	public ArrayList<hangHoa> getByIdCategory(int id) throws SQLException {
+	public ArrayList<hangHoa> getByIdCategory(String tenCategory) throws SQLException {
 		ArrayList<hangHoa> foodItems = new ArrayList<>();
 		Statement statement = conn.createStatement();
-		String query = "SELECT * FROM hanghoa WHERE maloaihang = " + id;
+		String query = "SELECT * FROM hanghoa WHERE tenloaihang = " + tenCategory;
 		ResultSet rs = statement.executeQuery(query);
 		while (rs.next()) {
 			hangHoa foodItem = hangHoa.getFromResultSet(rs);
@@ -43,7 +43,7 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	@Override
 	public hangHoa get(int id) throws SQLException {
 		Statement statement = conn.createStatement();
-		String query = "SELECT * FROM food_item WHERE mahanghoa = " + id;
+		String query = "SELECT * FROM food_item WHERE manhanghoa = " + id;
 		ResultSet rs = statement.executeQuery(query);
 		if (rs.next()) {
 			hangHoa foodItem = hangHoa.getFromResultSet(rs);
@@ -52,6 +52,16 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		return null;
 	}
 
+//	public hangHoa get(String ten) throws SQLException {
+//		Statement statement = conn.createStatement();
+//		String query = "SELECT * FROM food_item WHERE mahanghoa = " + ten;
+//		ResultSet rs = statement.executeQuery(query);
+//		if (rs.next()) {
+//			hangHoa foodItem = hangHoa.getFromResultSet(rs);
+//			return foodItem;
+//		}
+//		return null;
+//	}
 	@Override
 	public void deleteById(int id) throws SQLException {
 		PreparedStatement stmt = conn.prepareStatement("DELETE FROM hanghoa WHERE mahanghoa = ?");
@@ -91,13 +101,13 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		}
 		try {
 			connection = MySQLConnecttion.getConnection();
-			String query = "INSERT INTO hanghoa (tenhanghoa, giahanghoa, soluong, maloaihang, anhhanghoa) VALUES ( ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO hanghoa (tenhanghoa, giahanghoa, soluong, tenloaihang, anhhanghoa) VALUES ( ?, ?, ?, ?, ?)";
 			statement = connection.prepareStatement(query);
 			statement.setNString(1, t.getTenHangHoa());
 			statement.setDouble(2, t.getGiaHangHoa());
 			statement.setInt(3, t.getSoLuong());
-			statement.setInt(4, t.getIdmaloaihang());
-			statement.setString(5, t.getAnhHangHoa());
+			statement.setString(4, t.getTenLoaiHang());
+			statement.setBytes(5, t.getAnhHangHoa());
 			int row = statement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
@@ -118,15 +128,14 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		if (t == null) {
 			throw new SQLException("Food item rỗng");
 		}
-		String query = "UPDATE hanghoa SET tenhanghoa = ?, giahanghoa = ?, soluong = ?, maloaihang = ?, manv = ?, anhhanghoa = ? WHERE mahanghoa = ?";
+		String query = "UPDATE hanghoa SET tenhanghoa = ?, giahanghoa = ?, soluong = ?, tenloaihang = ?, anhhanghoa = ? WHERE mahanghoa = ?";
 		PreparedStatement stmt = conn.prepareStatement(query);
 		stmt.setNString(1, t.getTenHangHoa());
 		stmt.setDouble(2, t.getGiaHangHoa());
 		stmt.setInt(3, t.getSoLuong());
-		stmt.setInt(4, t.getIdmaloaihang());
-		stmt.setInt(5, t.getIdNV());
-		stmt.setString(6, t.getAnhHangHoa());
-		stmt.setInt(7, t.getMaHangHoa());
+		stmt.setString(4, t.getTenLoaiHang());
+		stmt.setBytes(5, t.getAnhHangHoa());
+		stmt.setInt(6, t.getMaHangHoa());
 		int row = stmt.executeUpdate();
 
 	}

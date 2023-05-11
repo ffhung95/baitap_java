@@ -22,10 +22,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import Dao.MenuDao;
-import Model.MenuModel;
-import Windows.themmon_panel;
-import Windows.themmon_panel.ImageRender;
+//import Dao.MenuDao;
+//import Model.MenuModel;
+//import Windows.themmon_panel;
+//import Windows.themmon_panel.ImageRender;
 
 public class themmon_panel extends javax.swing.JFrame {
     JLabel td;
@@ -41,7 +41,7 @@ public class themmon_panel extends javax.swing.JFrame {
     public themmon_panel() {
         initComponents();
         initTabletd();
-        loadDataToTabletd();
+//        loadDataToTabletd();
     }
 
     private void initTabletd() {
@@ -115,28 +115,28 @@ public class themmon_panel extends javax.swing.JFrame {
         themMon.setText("Thêm");
         themMon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                themMonActionPerformed(evt);
+//                themMonActionPerformed(evt);
             }
         });
 
         xoaMon.setText("Xóa");
         xoaMon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                xoaMonActionPerformed(evt);
+//                xoaMonActionPerformed(evt);
             }
         });
 
         capnhatMon.setText("Cập nhật");
         capnhatMon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                capnhatMonActionPerformed(evt);
+//                capnhatMonActionPerformed(evt);
             }
         });
 
         lammoiMon.setText("Làm mới");
         lammoiMon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lammoiMonActionPerformed(evt);
+//                lammoiMonActionPerformed(evt);
             }
         });
 
@@ -147,7 +147,7 @@ public class themmon_panel extends javax.swing.JFrame {
         Chonloai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Cà phê", "Trà sữa", "Sinh tố", "Nước ép", " " }));
         Chonloai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChonloaiActionPerformed(evt);
+//                ChonloaiActionPerformed(evt);
             }
         });
 
@@ -159,7 +159,7 @@ public class themmon_panel extends javax.swing.JFrame {
         Nhapanh.setText("Chọn ảnh");
         Nhapanh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                NhapanhMouseClicked(evt);
+//                NhapanhMouseClicked(evt);
             }
         });
 
@@ -168,7 +168,7 @@ public class themmon_panel extends javax.swing.JFrame {
         Timkiem_btn.setText("Tìm kiếm");
         Timkiem_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Timkiem_btnActionPerformed(evt);
+//                Timkiem_btnActionPerformed(evt);
             }
         });
 
@@ -182,7 +182,7 @@ public class themmon_panel extends javax.swing.JFrame {
         ));
         BangMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BangMenuMouseClicked(evt);
+//                BangMenuMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(BangMenu);
@@ -300,21 +300,21 @@ public class themmon_panel extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void loadDataToTabletd() {    
-        try {
-            MenuDao menu= new MenuDao();
-            List<MenuModel> list = menu.findAll();
-            tblModel.setRowCount(0); //Xóa dữ liệu hiễn thị trên bảng và cho phép hiển thị lại dữ liệu
-            for (MenuModel tdn : list) {
-                tblModel.addRow(new Object[]{
-                    tdn.getMaMon(), tdn.getTenMon(),tdn.getLoai(), tdn.getDonGia(),tdn.getAnhMon()
-                });
-            }
-            tblModel.fireTableDataChanged();//Cập nhật hiển thị dữ liệu trong bảng
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private void loadDataToTabletd() {    
+//        try {
+//            MenuDao menu= new MenuDao();
+//            List<MenuModel> list = menu.findAll();
+//            tblModel.setRowCount(0); //Xóa dữ liệu hiễn thị trên bảng và cho phép hiển thị lại dữ liệu
+//            for (MenuModel tdn : list) {
+//                tblModel.addRow(new Object[]{
+//                    tdn.getMaMon(), tdn.getTenMon(),tdn.getLoai(), tdn.getDonGia(),tdn.getAnhMon()
+//                });
+//            }
+//            tblModel.fireTableDataChanged();//Cập nhật hiển thị dữ liệu trong bảng
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     private class ImageRender extends DefaultTableCellRenderer{
         @Override
         public Component getTableCellRendererComponent(JTable table,Object value, boolean isSelected, boolean hasFocus, int row, int colum){
@@ -325,255 +325,255 @@ public class themmon_panel extends javax.swing.JFrame {
             return this;
         }
     }
-    private void Reset(){
-        Nhapma.setText("");
-        Nhapten.setText("");
-        Chonloai.setSelectedItem("Tất cả");
-        Nhapgia.setText("");
-        Nhapanh.setText("Chọn ảnh");
-        Nhapanh.setIcon(null);
-        NhapTimKiem.setText("");
-        loadDataToTabletd();
-        
-    }
-    private void themMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themMonActionPerformed
-        try {
-            MenuDao dao = new MenuDao();
-            MenuModel menuModel = new MenuModel();
-            StringBuilder sb = new StringBuilder(); 
-            String gia = Nhapgia.getText();
-            loai = (String) Chonloai.getSelectedItem();
-            if (Nhapten.getText().equals("")) {
-            sb.append("Bạn chưa nhập tên món!!!");
-            } else if (loai.equals("Tất cả")) {
-                sb.append("Vui lòng chọn loại món!!!");
-            } else if (Nhapgia.getText().equals("")) {
-                sb.append("Bạn chưa nhập giá món!!!");
-            } 
-            else if (Nhapanh.getIcon() == null ) {
-                
-                sb.append("Bạn chưa nhập ảnh món!!!");
-            } else {
-                Pattern pattern = Pattern.compile("[0-9_-]$");
-                Matcher matchegia = pattern.matcher(gia);
-                if (matchegia.find()) {
-                    if (dao.findByMaMon(Nhapma.getText()) != null) {
-                        JOptionPane.showMessageDialog(null, "Món ăn đã tồn tại");
-                    } else {
-                        menuModel.setTenMon(Nhapten.getText());
-                        menuModel.setLoai(loai);
-                        menuModel.setDonGia(Float.valueOf(gia));
-                        menuModel.setAnhMon(Files.readAllBytes(file.toPath()));
-                        if (dao.insert(menuModel)) {
-                            JOptionPane.showMessageDialog(null, "Thêm món thành công");
-                            
-                            Reset();
-                        }
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Vui lòng nhập số");
-                }
-            }
-            if (sb.length() > 0) {
-                JOptionPane.showMessageDialog(null, sb);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-    private void ChonloaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChonloaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChonloaiActionPerformed
-
-    private void capnhatMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capnhatMonActionPerformed
-        try {
-            MenuDao dao = new MenuDao();
-            MenuModel menuModel = new MenuModel();
-            StringBuilder sb = new StringBuilder(); 
-            String gia = Nhapgia.getText();
-            loai = (String) Chonloai.getSelectedItem();         
-            if (Nhapten.getText().equals("")) {
-            sb.append("Bạn chưa nhập tên món!!!");
-            } else if (loai.equals("Tất cả")) {
-                sb.append("Vui lòng chọn loại món!!!");
-            } else if (Nhapgia.getText().equals("")) {
-                sb.append("Bạn chưa nhập giá món!!!");
-            } 
-            else if (Nhapanh.getIcon() == null) {
-                sb.append("Bạn chưa nhập ảnh món!!!");
-            } else {
-                menuModel.setMaMon(Integer.parseInt(Nhapma.getText()));
-                menuModel.setTenMon(Nhapten.getText());
-                menuModel.setLoai(loai);
-                menuModel.setDonGia(Float.valueOf(gia));
-                if(file == null){
-                   menuModel.setAnhMon(byteimage);
-                } else{
-                     menuModel.setAnhMon(Files.readAllBytes(file.toPath()));
-                }
-
-                Pattern pattern = Pattern.compile("[0-9_-]$");
-                Matcher matchegia = pattern.matcher(gia);
-                if (matchegia.find()) {
-                    if(id.equals(Nhapma.getText()) && tenmon.equals(Nhapten.getText()) && loai.equals(loai)&& dgia.equals(gia)&& anh.equals(Nhapanh.getText())){
-                        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
-                        
-                        Reset();
-                    } else {
-                        if(dao.update(menuModel)){
-                            JOptionPane.showMessageDialog(null, "Cập nhật món thành công");
-                            
-                            Reset();
-                            if(id.equals(Nhapma.getText()) && tenmon.equals(Nhapten.getText()) && loai.equals(loai)&& dgia.equals(gia)&& anh.equals(Nhapanh.getText())){
-                                JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
-                               
-                                Reset();
-                            }
-                        } else if(dao.insert(menuModel)){
-                            JOptionPane.showMessageDialog(null, "Thêm món thành công");
-                            
-                            Reset();
-                        }
-                    }
-                    
-                } else {
-                    JOptionPane.showMessageDialog(null, "Vui lòng nhập số");
-                }
-            }
-            if (sb.length() > 0) {
-                JOptionPane.showMessageDialog(null, sb);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_capnhatMonActionPerformed
-
-    private void xoaMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaMonActionPerformed
-        try {
-            MenuDao menu = new MenuDao();
-            if (menu.delete(id)) {
-                JOptionPane.showMessageDialog(null, "Xóa thành công");
-                
-                Reset();
-            } else {
-                JOptionPane.showMessageDialog(null, "Vui lòng chọn hàng để xóa");
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_xoaMonActionPerformed
-
-    private void lammoiMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lammoiMonActionPerformed
-        Reset();
-    }//GEN-LAST:event_lammoiMonActionPerformed
-
-    private void Timkiem_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Timkiem_btnActionPerformed
-        try {
-            MenuModel menu = new MenuModel();
-            MenuDao dao = new MenuDao();
-            menu.setTenMon(NhapTimKiem.getText());
-            if (dao.findtableTenmon(NhapTimKiem.getText()) != null) {
-                List<MenuModel> list = dao.findtableTenmon(NhapTimKiem.getText());
-                tblModel.setRowCount(0); //Xóa dữ liệu hiễn thị trên bảng và cho phép hiển thị lại dữ liệu
-                for (MenuModel tdn : list) {
-                    tblModel.addRow(new Object[]{
-                        tdn.getMaMon(), tdn.getTenMon(),tdn.getLoai(), tdn.getDonGia(),tdn.getAnhMon()
-                    });
-                }
-                tblModel.fireTableDataChanged();//Cập nhật hiển thị dữ liệu trong bảng
-            } else {
-                JOptionPane.showMessageDialog(null, "Không tìm thấy!!!");
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_Timkiem_btnActionPerformed
-
-    private void BangMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangMenuMouseClicked
-        int row = BangMenu.getSelectedRow();
-        try {
-            if (row >= 0) {
-                id = BangMenu.getValueAt(row, 0).toString(); //Tại cột đầu tiên
-                tenmon = BangMenu.getValueAt(row, 1).toString(); //Tại cột đầu tiên
-                loai = BangMenu.getValueAt(row, 2).toString(); //Tại cột đầu tiên
-                dgia = (Float) BangMenu.getValueAt(row, 3); //Tại cột đầu tiên
-                //anh = BangMenu.getValueAt(row, 4).toString();
-                MenuDao dao = new MenuDao();
-                MenuModel menu = dao.findByMaMon(id);
-                if (menu != null) {
-                    Nhapma.setText(Integer.toString(menu.getMaMon()));
-                    Nhapten.setText(menu.getTenMon());
-                    Chonloai.setSelectedItem(menu.getLoai());
-                    Nhapgia.setText(String.valueOf(menu.getDonGia()));
-                    Nhapanh.getText();
-                    byteimage = (byte[])menu.getAnhMon();
-                    ImageIcon imageIcon = new ImageIcon(byteimage);
-                   
-                    int width = Nhapanh.getWidth();
-                    int height = Nhapanh.getHeight();
-                    Image img = imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
-                    Nhapanh.setIcon(new ImageIcon(img));
-                }
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_BangMenuMouseClicked
-
-    private void NhapanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NhapanhMouseClicked
-        try {
-        JFileChooser fileChooser = new JFileChooser();
-        // Chỉ cho phép chọn các file ảnh
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif");
-        fileChooser.setFileFilter(filter);
-        fileChooser.showOpenDialog(null);
-        file = fileChooser.getSelectedFile();
-        if (file != null) {
-            Image img = ImageIO.read(file);
-            Nhapanh.setText("");
-            int width = Nhapanh.getWidth();
-            int height = Nhapanh.getHeight();
-            Nhapanh.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
-        } 
-//        else {
-//            JOptionPane.showMessageDialog(null, "Bạn chưa chọn tập tin hình ảnh!!!");
+//    private void Reset(){
+//        Nhapma.setText("");
+//        Nhapten.setText("");
+//        Chonloai.setSelectedItem("Tất cả");
+//        Nhapgia.setText("");
+//        Nhapanh.setText("Chọn ảnh");
+//        Nhapanh.setIcon(null);
+//        NhapTimKiem.setText("");
+//        loadDataToTabletd();
+//        
+//    }
+//    private void themMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themMonActionPerformed
+//        try {
+//            MenuDao dao = new MenuDao();
+//            MenuModel menuModel = new MenuModel();
+//            StringBuilder sb = new StringBuilder(); 
+//            String gia = Nhapgia.getText();
+//            loai = (String) Chonloai.getSelectedItem();
+//            if (Nhapten.getText().equals("")) {
+//            sb.append("Bạn chưa nhập tên món!!!");
+//            } else if (loai.equals("Tất cả")) {
+//                sb.append("Vui lòng chọn loại món!!!");
+//            } else if (Nhapgia.getText().equals("")) {
+//                sb.append("Bạn chưa nhập giá món!!!");
+//            } 
+//            else if (Nhapanh.getIcon() == null ) {
+//                
+//                sb.append("Bạn chưa nhập ảnh món!!!");
+//            } else {
+//                Pattern pattern = Pattern.compile("[0-9_-]$");
+//                Matcher matchegia = pattern.matcher(gia);
+//                if (matchegia.find()) {
+//                    if (dao.findByMaMon(Nhapma.getText()) != null) {
+//                        JOptionPane.showMessageDialog(null, "Món ăn đã tồn tại");
+//                    } else {
+//                        menuModel.setTenMon(Nhapten.getText());
+//                        menuModel.setLoai(loai);
+//                        menuModel.setDonGia(Float.valueOf(gia));
+//                        menuModel.setAnhMon(Files.readAllBytes(file.toPath()));
+//                        if (dao.insert(menuModel)) {
+//                            JOptionPane.showMessageDialog(null, "Thêm món thành công");
+//                            
+//                            Reset();
+//                        }
+//                    }
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Vui lòng nhập số");
+//                }
+//            }
+//            if (sb.length() > 0) {
+//                JOptionPane.showMessageDialog(null, sb);
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
 //        }
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-    }//GEN-LAST:event_NhapanhMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(themmon_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(themmon_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(themmon_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(themmon_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new themmon_panel().setVisible(true);
-            }
-        });
-    }
+//    }
+//    private void ChonloaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChonloaiActionPerformed
+//        // TODO add your handling code here:
+//    }//GEN-LAST:event_ChonloaiActionPerformed
+//
+//    private void capnhatMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_capnhatMonActionPerformed
+//        try {
+//            MenuDao dao = new MenuDao();
+//            MenuModel menuModel = new MenuModel();
+//            StringBuilder sb = new StringBuilder(); 
+//            String gia = Nhapgia.getText();
+//            loai = (String) Chonloai.getSelectedItem();         
+//            if (Nhapten.getText().equals("")) {
+//            sb.append("Bạn chưa nhập tên món!!!");
+//            } else if (loai.equals("Tất cả")) {
+//                sb.append("Vui lòng chọn loại món!!!");
+//            } else if (Nhapgia.getText().equals("")) {
+//                sb.append("Bạn chưa nhập giá món!!!");
+//            } 
+//            else if (Nhapanh.getIcon() == null) {
+//                sb.append("Bạn chưa nhập ảnh món!!!");
+//            } else {
+//                menuModel.setMaMon(Integer.parseInt(Nhapma.getText()));
+//                menuModel.setTenMon(Nhapten.getText());
+//                menuModel.setLoai(loai);
+//                menuModel.setDonGia(Float.valueOf(gia));
+//                if(file == null){
+//                   menuModel.setAnhMon(byteimage);
+//                } else{
+//                     menuModel.setAnhMon(Files.readAllBytes(file.toPath()));
+//                }
+//
+//                Pattern pattern = Pattern.compile("[0-9_-]$");
+//                Matcher matchegia = pattern.matcher(gia);
+//                if (matchegia.find()) {
+//                    if(id.equals(Nhapma.getText()) && tenmon.equals(Nhapten.getText()) && loai.equals(loai)&& dgia.equals(gia)&& anh.equals(Nhapanh.getText())){
+//                        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+//                        
+//                        Reset();
+//                    } else {
+//                        if(dao.update(menuModel)){
+//                            JOptionPane.showMessageDialog(null, "Cập nhật món thành công");
+//                            
+//                            Reset();
+//                            if(id.equals(Nhapma.getText()) && tenmon.equals(Nhapten.getText()) && loai.equals(loai)&& dgia.equals(gia)&& anh.equals(Nhapanh.getText())){
+//                                JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
+//                               
+//                                Reset();
+//                            }
+//                        } else if(dao.insert(menuModel)){
+//                            JOptionPane.showMessageDialog(null, "Thêm món thành công");
+//                            
+//                            Reset();
+//                        }
+//                    }
+//                    
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Vui lòng nhập số");
+//                }
+//            }
+//            if (sb.length() > 0) {
+//                JOptionPane.showMessageDialog(null, sb);
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }//GEN-LAST:event_capnhatMonActionPerformed
+//
+//    private void xoaMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaMonActionPerformed
+//        try {
+//            MenuDao menu = new MenuDao();
+//            if (menu.delete(id)) {
+//                JOptionPane.showMessageDialog(null, "Xóa thành công");
+//                
+//                Reset();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Vui lòng chọn hàng để xóa");
+//            }
+//        } catch (Exception e) {
+//        }
+//    }//GEN-LAST:event_xoaMonActionPerformed
+//
+//    private void lammoiMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lammoiMonActionPerformed
+//        Reset();
+//    }//GEN-LAST:event_lammoiMonActionPerformed
+//
+//    private void Timkiem_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Timkiem_btnActionPerformed
+//        try {
+//            MenuModel menu = new MenuModel();
+//            MenuDao dao = new MenuDao();
+//            menu.setTenMon(NhapTimKiem.getText());
+//            if (dao.findtableTenmon(NhapTimKiem.getText()) != null) {
+//                List<MenuModel> list = dao.findtableTenmon(NhapTimKiem.getText());
+//                tblModel.setRowCount(0); //Xóa dữ liệu hiễn thị trên bảng và cho phép hiển thị lại dữ liệu
+//                for (MenuModel tdn : list) {
+//                    tblModel.addRow(new Object[]{
+//                        tdn.getMaMon(), tdn.getTenMon(),tdn.getLoai(), tdn.getDonGia(),tdn.getAnhMon()
+//                    });
+//                }
+//                tblModel.fireTableDataChanged();//Cập nhật hiển thị dữ liệu trong bảng
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Không tìm thấy!!!");
+//            }
+//        } catch (Exception e) {
+//        }
+//    }//GEN-LAST:event_Timkiem_btnActionPerformed
+//
+//    private void BangMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangMenuMouseClicked
+//        int row = BangMenu.getSelectedRow();
+//        try {
+//            if (row >= 0) {
+//                id = BangMenu.getValueAt(row, 0).toString(); //Tại cột đầu tiên
+//                tenmon = BangMenu.getValueAt(row, 1).toString(); //Tại cột đầu tiên
+//                loai = BangMenu.getValueAt(row, 2).toString(); //Tại cột đầu tiên
+//                dgia = (Float) BangMenu.getValueAt(row, 3); //Tại cột đầu tiên
+//                //anh = BangMenu.getValueAt(row, 4).toString();
+//                MenuDao dao = new MenuDao();
+//                MenuModel menu = dao.findByMaMon(id);
+//                if (menu != null) {
+//                    Nhapma.setText(Integer.toString(menu.getMaMon()));
+//                    Nhapten.setText(menu.getTenMon());
+//                    Chonloai.setSelectedItem(menu.getLoai());
+//                    Nhapgia.setText(String.valueOf(menu.getDonGia()));
+//                    Nhapanh.getText();
+//                    byteimage = (byte[])menu.getAnhMon();
+//                    ImageIcon imageIcon = new ImageIcon(byteimage);
+//                   
+//                    int width = Nhapanh.getWidth();
+//                    int height = Nhapanh.getHeight();
+//                    Image img = imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
+//                    Nhapanh.setIcon(new ImageIcon(img));
+//                }
+//            }
+//        } catch (Exception e) {
+//        }
+//    }//GEN-LAST:event_BangMenuMouseClicked
+//
+//    private void NhapanhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NhapanhMouseClicked
+//        try {
+//        JFileChooser fileChooser = new JFileChooser();
+//        // Chỉ cho phép chọn các file ảnh
+//        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image files", "jpg", "jpeg", "png", "gif");
+//        fileChooser.setFileFilter(filter);
+//        fileChooser.showOpenDialog(null);
+//        file = fileChooser.getSelectedFile();
+//        if (file != null) {
+//            Image img = ImageIO.read(file);
+//            Nhapanh.setText("");
+//            int width = Nhapanh.getWidth();
+//            int height = Nhapanh.getHeight();
+//            Nhapanh.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
+//        } 
+////        else {
+////            JOptionPane.showMessageDialog(null, "Bạn chưa chọn tập tin hình ảnh!!!");
+////        }
+//    } catch (Exception e) {
+//        e.printStackTrace();
+//    }
+//    }//GEN-LAST:event_NhapanhMouseClicked
+//
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(themmon_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(themmon_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(themmon_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(themmon_panel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new themmon_panel().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable BangMenu;

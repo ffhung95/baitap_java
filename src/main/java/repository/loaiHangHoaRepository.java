@@ -106,7 +106,7 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 	        String query = "UPDATE loaihang SET tenloaihang = ? WHERE maloaihang = ?";
 	        statement = connection.prepareStatement(query);
 	        statement.setNString(1, t.getTenLoaiHang());
-	        statement.setInt(3, t.getMaLoaiang());
+//	        statement.setInt(3, t.getMaLoaiang());
 	     int ketQua = statement.executeUpdate();
 	     } catch (SQLException e) {
 				System.out.println("Không thể kết nối đến cơ sở dữ liệu");
@@ -129,7 +129,7 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 			connection = MySQLConnecttion.getConnection();
 			String query = "DELETE from btl_qlcf.loaihang " + " WHERE maloaihang=?";
 			statement = connection.prepareStatement(query);
-			statement.setInt(1, t.getMaLoaiang());
+//			statement.setInt(1, t.getMaLoaiang());
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Không thể kết nối đến cơ sở dữ liệu");

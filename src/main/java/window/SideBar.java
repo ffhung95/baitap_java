@@ -10,10 +10,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import LoginCf.Login;
-import Windows.Menu;
-import Windows.SideBar;
-import Windows.themmon_panel;
+//import LoginCf.Login;
+//import Windows.Menu;
+//import Windows.SideBar;
+//import Windows.themmon_panel;
 
 public class SideBar extends javax.swing.JFrame {
     private CardLayout card;
@@ -249,8 +249,8 @@ public class SideBar extends javax.swing.JFrame {
     private void dangXuat_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangXuat_btnActionPerformed
         int click = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất không?", "Thông báo", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (click == JOptionPane.YES_OPTION) {
-                    Login login = new Login();
-                    login.setVisible(true);
+//                    Login login = new Login();
+//                    login.setVisible(true);
                     dispose();
                 }
     }//GEN-LAST:event_dangXuat_btnActionPerformed

@@ -43,7 +43,7 @@ public class loaiHangController {
          throw new Exception("Điền tên loại món");
      }
      loaiHang temp = LoaiHangRepo.findByName(foodCategoryName);
-     if (temp != null && temp.getMaLoaiang() != fc.getMaLoaiang()) {
+     if (temp != null && temp.getTenLoaiHang() != fc.getTenLoaiHang()) {
          throw new Exception("Tên loại món đã được sử dụng");
      }
      fc.setTenLoaiHang(foodCategoryName);

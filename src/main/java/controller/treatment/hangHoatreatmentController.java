@@ -50,7 +50,7 @@ public class hangHoatreatmentController {
 	                public void mousePressed(MouseEvent e) {
 	                    loaiHang foodCategory = pnl.getFoodCategory();
 	                    try {
-	                        renderFoodItem(foodCategory.getMaLoaiang(), evt);
+	                        renderFoodItem(foodCategory.getTenLoaiHang(), evt);
 	                    } catch (Exception ex) {
 	                        ex.printStackTrace();
 	                    }
@@ -61,9 +61,9 @@ public class hangHoatreatmentController {
 	        panelFoodCategory.updateUI();
 	    }
 
-	    public void renderFoodItem(int idCategory, Event event) throws Exception {
+	    public void renderFoodItem(String tenCategory, Event event) throws Exception {
 	        panelFoodItem.removeAll();
-	        for (hangHoa foodItem : foodItemDao.getByIdCategory(idCategory)) {
+	        for (hangHoa foodItem : foodItemDao.getByIdCategory(tenCategory)) {
 	            hangHoaPanel pnl = new hangHoaPanel(foodItem);
 	            panelFoodItem.add(pnl);
 	            pnl.addMouseListener(new MouseAdapter() {
