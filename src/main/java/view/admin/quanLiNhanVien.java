@@ -173,9 +173,12 @@ public class quanLiNhanVien extends JFrame {
         JButton btnXa = new JButton("Xóa");
         btnXa.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		deleteAdmin delete = new deleteAdmin();
-        		delete.setVisible(true);
-        		
+        		NhanVienReposity nhanvienrepository= new NhanVienReposity();
+        		nhanVienModel nhanvien = new nhanVienModel();
+        		nhanvien.setManv(getMaNV());
+        		nhanvienrepository.delete(nhanvien);
+        		JOptionPane.showMessageDialog(null, "Xóa thành công");
+        		loadtabel();
         	}
         });
         btnXa.setBounds(106, 108, 85, 21);
@@ -240,6 +243,12 @@ public class quanLiNhanVien extends JFrame {
 			table.setModel(defaultTableModel);
 			table.getTableHeader().setReorderingAllowed(false);	
 		}
+	}
+	public int getMaNV() {
+		DefaultTableModel model_table = (DefaultTableModel) table.getModel();
+		int i_row = table.getSelectedRow();
+		int mannv = Integer.valueOf(model_table.getValueAt(i_row, 0) + "");
+		return mannv;
 	}
 
 

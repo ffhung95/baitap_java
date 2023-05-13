@@ -178,6 +178,7 @@ public class HangHoaAdminView extends JFrame {
 	}
 
 	private void loadtable() {
+		
 		hangHoaRepository HangHoaRepository = new hangHoaRepository();
 		defaultTableModel = new DefaultTableModel();
 		defaultTableModel.addColumn("ID");
@@ -188,11 +189,14 @@ public class HangHoaAdminView extends JFrame {
 		defaultTableModel.addColumn("Ảnh sản phẩm");
 		try {
 			for (hangHoa HangHoa : HangHoaRepository.getAll()) {
-				defaultTableModel
-						.addRow(new Object[] { HangHoa.getMaHangHoa(), HangHoa.getTenHangHoa(), HangHoa.getGiaHangHoa(),
-								HangHoa.getSoLuong(), HangHoa.getTenLoaiHang(), HangHoa.getAnhHangHoa() });
-				table.setModel(defaultTableModel);
-				table.getTableHeader().setReorderingAllowed(false);
+				if(HangHoa.getSoLuong()>0) {
+					defaultTableModel
+					.addRow(new Object[] { HangHoa.getMaHangHoa(), HangHoa.getTenHangHoa(), HangHoa.getGiaHangHoa(),
+							HangHoa.getSoLuong(), HangHoa.getTenLoaiHang(), HangHoa.getAnhHangHoa() });
+			table.setModel(defaultTableModel);
+			table.getTableHeader().setReorderingAllowed(false);
+				}
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -62,60 +62,63 @@ public class MenuView extends JFrame {
 	            hangHoaRepository dao = new hangHoaRepository();
 	            drinks = dao.getAll();        
 	            for (hangHoa drink : drinks) {
-	                boxDrink = new JPanel();
-	                boxDrink.setLayout(new BoxLayout(boxDrink, BoxLayout.Y_AXIS));
-	                JLabel nameLbl = new JLabel("Tên: " + drink.getTenHangHoa());
-	                JLabel priceLbl = new JLabel("Giá: " + drink.getGiaHangHoa() + " VNĐ");
-	                //Hình ảnh
-	                JLabel imageLbl = new JLabel();
-	                byte [] bytes = (byte[])drink.getAnhHangHoa();
-	                ImageIcon icon = new ImageIcon(bytes);
-	                Image img = icon.getImage().getScaledInstance(200, 100, Image.SCALE_SMOOTH);
-	                imageLbl.setIcon(new ImageIcon(img));
-	                //Số lượng
-	                JPanel quantityPnl = new JPanel();
-	                quantityPnl.setLayout(new BoxLayout(quantityPnl, BoxLayout.X_AXIS));
-	                JLabel quantityLbl = new JLabel("Số lượng: ");
-	                int soluong = drink.getSoLuong();
-	                SpinnerNumberModel model = new SpinnerNumberModel(0, 0, soluong, 1);
-	                spQuantity = new JSpinner(model);
-	                spQuantity.setMaximumSize(new Dimension(100, spQuantity.getPreferredSize().height));
-	                mySpinners.add(spQuantity);
-	                JLabel lblNewLabel = new JLabel("Chọn");
-	        		lblNewLabel.addMouseListener(new MouseAdapter() {
-	        			@Override
-	        			public void mouseClicked(MouseEvent e) {
-	        				 handleQuantity(menuMap, drink.getMaHangHoa(), drink.getTenHangHoa(), valuess, drink.getGiaHangHoa());
-	        				 drink.setSoLuong(drink.getSoLuong()-valuess);
-	     	                try {
-								dao.capNhatSoLuong(drink);
-							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-	        			}
-	        		});       		
-	                quantityPnl.add(quantityLbl);
-	                quantityPnl.add(spQuantity);
-	                quantityPnl.setAlignmentX(LEFT_ALIGNMENT);
-	                //Mua
-	                JPanel selectPnl = new JPanel(); //Panel
-	                selectPnl.setLayout(new BoxLayout(selectPnl, BoxLayout.X_AXIS));
+	            	if(drink.getSoLuong()>0) {
+	            		  boxDrink = new JPanel();
+	  	                boxDrink.setLayout(new BoxLayout(boxDrink, BoxLayout.Y_AXIS));
+	  	                JLabel nameLbl = new JLabel("Tên: " + drink.getTenHangHoa());
+	  	                JLabel priceLbl = new JLabel("Giá: " + drink.getGiaHangHoa() + " VNĐ");
+	  	                //Hình ảnh
+	  	                JLabel imageLbl = new JLabel();
+	  	                byte [] bytes = (byte[])drink.getAnhHangHoa();
+	  	                ImageIcon icon = new ImageIcon(bytes);
+	  	                Image img = icon.getImage().getScaledInstance(200, 100, Image.SCALE_SMOOTH);
+	  	                imageLbl.setIcon(new ImageIcon(img));
+	  	                //Số lượng
+	  	                JPanel quantityPnl = new JPanel();
+	  	                quantityPnl.setLayout(new BoxLayout(quantityPnl, BoxLayout.X_AXIS));
+	  	                JLabel quantityLbl = new JLabel("Số lượng: ");
+	  	                int soluong = drink.getSoLuong();
+	  	                SpinnerNumberModel model = new SpinnerNumberModel(0, 0, soluong, 1);
+	  	                spQuantity = new JSpinner(model);
+	  	                spQuantity.setMaximumSize(new Dimension(100, spQuantity.getPreferredSize().height));
+	  	                mySpinners.add(spQuantity);
+	  	                JLabel lblNewLabel = new JLabel("Chọn");
+	  	        		lblNewLabel.addMouseListener(new MouseAdapter() {
+	  	        			@Override
+	  	        			public void mouseClicked(MouseEvent e) {
+	  	        				 handleQuantity(menuMap, drink.getMaHangHoa(), drink.getTenHangHoa(), valuess, drink.getGiaHangHoa());
+	  	        				 drink.setSoLuong(drink.getSoLuong()-valuess);
+	  	     	                try {
+	  								dao.capNhatSoLuong(drink);
+	  							} catch (SQLException e1) {
+	  								// TODO Auto-generated catch block
+	  								e1.printStackTrace();
+	  							}
+	  	        			}
+	  	        		});       		
+	  	                quantityPnl.add(quantityLbl);
+	  	                quantityPnl.add(spQuantity);
+	  	                quantityPnl.setAlignmentX(LEFT_ALIGNMENT);
+	  	                //Mua
+	  	                JPanel selectPnl = new JPanel(); //Panel
+	  	                selectPnl.setLayout(new BoxLayout(selectPnl, BoxLayout.X_AXIS));
 
-	                boxDrink.add(imageLbl);
-	                boxDrink.add(nameLbl);
-	                boxDrink.add(priceLbl);
-	                boxDrink.add(quantityPnl);
-	                boxDrink.add(lblNewLabel);
+	  	                boxDrink.add(imageLbl);
+	  	                boxDrink.add(nameLbl);
+	  	                boxDrink.add(priceLbl);
+	  	                boxDrink.add(quantityPnl);
+	  	                boxDrink.add(lblNewLabel);
 
-	                productPanel.add(boxDrink);
-	                spQuantity.addChangeListener(new ChangeListener() {
-	                @Override
-	                public void stateChanged(ChangeEvent e) {
-	                    JSpinner source = (JSpinner) e.getSource();
-	                     valuess = (Integer) source.getModel().getValue();
-	                }
-	                });
+	  	                productPanel.add(boxDrink);
+	  	                spQuantity.addChangeListener(new ChangeListener() {
+	  	                @Override
+	  	                public void stateChanged(ChangeEvent e) {
+	  	                    JSpinner source = (JSpinner) e.getSource();
+	  	                     valuess = (Integer) source.getModel().getValue();
+	  	                }
+	  	                });
+	            	}
+	              
 	               
 	               
 	            }

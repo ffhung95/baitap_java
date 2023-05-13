@@ -16,13 +16,16 @@ import javax.swing.border.EmptyBorder;
 
 import model.hangHoa;
 import model.loaiHang;
-
+import repository.hangHoaRepository;
 import repository.loaiHangHoaRepository;
+import view.admin.HangHoaAdminView;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
@@ -130,6 +133,44 @@ public class hangHoaView extends JFrame {
 		lbTitle = new javax.swing.JLabel();
 		jPanel2 = new javax.swing.JPanel();
 		btnOK = new javax.swing.JButton();
+		btnOK.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				hangHoa foodItem = new hangHoa();
+				hangHoaRepository hanghoarepository= new hangHoaRepository();
+				int soluong=Integer.valueOf(textField_soluong.getText());
+				loaiHang selectCategory = (loaiHang) foodCategoryComboBoxModel.getSelectedItem();
+				String name = txtName.getText(), unitPrice = txtUnitPrice.getText();	
+				if (name.isEmpty() || unitPrice.isEmpty() || selectCategory == null) {
+				
+					JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin");
+				}
+				if(soluong>=0) {
+					foodItem.setTenHangHoa(name);
+					foodItem.setSoLuong(soluong);
+					foodItem.setGiaHangHoa(Integer.parseInt(unitPrice));
+					try {
+						foodItem.setAnhHangHoa(Files.readAllBytes(file.toPath()));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					foodItem.setTenLoaiHang(selectCategory.getTenLoaiHang());
+					try {
+						hanghoarepository.save(foodItem);
+						JOptionPane.showMessageDialog(null, "Thêm thành công");
+						dispose();
+						HangHoaAdminView view = new HangHoaAdminView();
+						view.setVisible(true);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Kiểm tra số lượng");
+				}
+			}
+		});
 //        btnOK.addActionListener(new ActionListener() {
 //        	public void actionPerformed(ActionEvent e) {
 //        		hangHoa foodItem = new hangHoa();
@@ -155,6 +196,13 @@ public class hangHoaView extends JFrame {
 //        	}
 //        });
 		btnCancel = new javax.swing.JButton();
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				HangHoaAdminView view = new HangHoaAdminView();
+				view.setVisible(true);
+			}
+		});
 		jPanel3 = new javax.swing.JPanel();
 		jLabel2 = new javax.swing.JLabel();
 		jLabel6 = new javax.swing.JLabel();

@@ -171,12 +171,18 @@ public class hangHoaController {
 		if (name.isEmpty() || unitPrice.isEmpty() || selectCategory == null) {
 			throw new Exception("Vui lòng điền đầy đủ thông tin");
 		}
-		foodItem.setTenHangHoa(name);
-		foodItem.setSoLuong(soluong);
-		foodItem.setGiaHangHoa(Integer.parseInt(unitPrice));
-		foodItem.setAnhHangHoa(Files.readAllBytes(file.toPath()));
-		foodItem.setTenLoaiHang(selectCategory.getTenLoaiHang());
-		HangHoaRepo.save(foodItem);
+		if(soluong>=0) {
+			foodItem.setTenHangHoa(name);
+			foodItem.setSoLuong(soluong);
+			foodItem.setGiaHangHoa(Integer.parseInt(unitPrice));
+			foodItem.setAnhHangHoa(Files.readAllBytes(file.toPath()));
+			foodItem.setTenLoaiHang(selectCategory.getTenLoaiHang());
+			HangHoaRepo.save(foodItem);
+		}
+		else {
+			view.showMessage("Kiểm tra số lượng sản phẩm");
+		}
+		
 		return true;
 	}
 

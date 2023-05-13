@@ -294,9 +294,9 @@ public class NhanVienReposity {
 		int ketQua = 0;
 		try {
 			connection = MySQLConnecttion.getConnection();
-			String sql = "DELETE from btl_qlcf.nhanvien " + " WHERE hotennv=?";
+			String sql = "DELETE from btl_qlcf.nhanvien " + " WHERE manv=?";
 			statement = connection.prepareStatement(sql);
-			statement.setString(1, t.getHoten());
+			statement.setInt(1, t.getManv());
 			ketQua = statement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
