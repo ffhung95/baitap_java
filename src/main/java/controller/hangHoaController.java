@@ -18,7 +18,6 @@ import model.hangHoa;
 import model.loaiHang;
 import repository.hangHoaRepository;
 import repository.loaiHangHoaRepository;
-import utils.ImageManager;
 
 import view.ChooseImageView;
 import view.trangChu.hangHoaView;
@@ -28,7 +27,7 @@ public class hangHoaController {
 	hangHoaRepository HangHoaRepo = new hangHoaRepository();
 	loaiHangHoaRepository LoaiHangRepo = new loaiHangHoaRepository();
 	ChooseImageView chooseImageView = new ChooseImageView();
-	ImageManager imageManager = new ImageManager();
+
 	String resourcesPath = getClass().getResource("/images/").getPath();
 	JFrame previousView;
 

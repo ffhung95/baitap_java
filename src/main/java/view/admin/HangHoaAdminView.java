@@ -1,4 +1,4 @@
-package view.admin;
+    package view.admin;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;

@@ -16,9 +16,9 @@ import javax.swing.border.EmptyBorder;
 
 import model.hangHoa;
 import model.loaiHang;
-import models.FoodCategory;
+
 import repository.loaiHangHoaRepository;
-import utils.ErrorPopup;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
@@ -39,13 +39,7 @@ public class hangHoaView extends JFrame {
 		cboCategory.setModel(foodCategoryComboBoxModel);
 	}
 
-	public void showError(String message) {
-		ErrorPopup.show(new Exception(message));
-	}
-
-	public void showError(Exception e) {
-		ErrorPopup.show(e);
-	}
+	
 
 	public void showMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);

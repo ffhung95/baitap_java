@@ -27,11 +27,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import model.hangHoa;
 import repository.hangHoaRepository;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MenuView extends JFrame {
 	 private JPanel productPanel;
@@ -39,7 +46,7 @@ public class MenuView extends JFrame {
 	    private JSpinner spQuantity;
 	    private List<JSpinner> mySpinners = new ArrayList<>();
 	    Map<Integer, Float > menuMap = new HashMap<>(); //Khai báo một map để lưu các món trong bill
-	    
+	    private int valuess=0;
 	    private List<hangHoa> drinks;
 	    /**
 	     * Creates new form Menu
@@ -69,11 +76,25 @@ public class MenuView extends JFrame {
 	                JPanel quantityPnl = new JPanel();
 	                quantityPnl.setLayout(new BoxLayout(quantityPnl, BoxLayout.X_AXIS));
 	                JLabel quantityLbl = new JLabel("Số lượng: ");
-	                SpinnerNumberModel model = new SpinnerNumberModel(0, 0, 100, 1);
+	                int soluong = drink.getSoLuong();
+	                SpinnerNumberModel model = new SpinnerNumberModel(0, 0, soluong, 1);
 	                spQuantity = new JSpinner(model);
 	                spQuantity.setMaximumSize(new Dimension(100, spQuantity.getPreferredSize().height));
 	                mySpinners.add(spQuantity);
-	                //defaultValues.add(i);
+	                JLabel lblNewLabel = new JLabel("Chọn");
+	        		lblNewLabel.addMouseListener(new MouseAdapter() {
+	        			@Override
+	        			public void mouseClicked(MouseEvent e) {
+	        				 handleQuantity(menuMap, drink.getMaHangHoa(), drink.getTenHangHoa(), valuess, drink.getGiaHangHoa());
+	        				 drink.setSoLuong(drink.getSoLuong()-valuess);
+	     	                try {
+								dao.capNhatSoLuong(drink);
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+	        			}
+	        		});       		
 	                quantityPnl.add(quantityLbl);
 	                quantityPnl.add(spQuantity);
 	                quantityPnl.setAlignmentX(LEFT_ALIGNMENT);
@@ -85,19 +106,22 @@ public class MenuView extends JFrame {
 	                boxDrink.add(nameLbl);
 	                boxDrink.add(priceLbl);
 	                boxDrink.add(quantityPnl);
+	                boxDrink.add(lblNewLabel);
 
 	                productPanel.add(boxDrink);
 	                spQuantity.addChangeListener(new ChangeListener() {
 	                @Override
 	                public void stateChanged(ChangeEvent e) {
 	                    JSpinner source = (JSpinner) e.getSource();
-	                    int value = (Integer) source.getModel().getValue();
-	                    handleQuantity(menuMap, drink.getMaHangHoa(), drink.getTenHangHoa(), value, drink.getGiaHangHoa());
+	                     valuess = (Integer) source.getModel().getValue();
 	                }
 	                });
+	               
+	               
 	            }
 	            JScrollPane scrollPane = new JScrollPane(productPanel);
 	            pnlProduct.add(scrollPane, BorderLayout.CENTER);// thieets kees layout 
+	            
 	            setTime();
 	            Sunshine();
 	        } catch (Exception e) {
@@ -105,29 +129,29 @@ public class MenuView extends JFrame {
 	        }
 	    }
 
-	    public void Reset(){
-	        total = (float) 0.0;
-	        x = 0;
-	        tax = 0;
-	        btnTotal.setEnabled(true);
-	        for (int i = 0; i < mySpinners.size(); i++){
-	            JSpinner spinner = mySpinners.get(i);
-	            SpinnerNumberModel model = (SpinnerNumberModel) spinner.getModel();
-	            model.setValue(0);
-	        }
-	        jtfTax.setText("0.0");
-	        jTextFieldSubTotal.setText("0.0");
-	        jTextFieldTotal.setText("0.0");
-	        textBill.setText("");
-	        Sunshine();
-
-	    }
-	    public void dudate(){
-	        jtfTax.setText(String.valueOf(tax));
-	        jTextFieldSubTotal.setText(String.valueOf(total));
-	        jTextFieldTotal.setText(String.valueOf(total+tax));
-
-	    }
+//	    public void Reset(){
+//	        total = (float) 0.0;
+//	        x = 0;
+//	        tax = 0;
+//	        btnTotal.setEnabled(true);
+//	        for (int i = 0; i < mySpinners.size(); i++){
+//	            JSpinner spinner = mySpinners.get(i);
+//	            SpinnerNumberModel model = (SpinnerNumberModel) spinner.getModel();
+//	            model.setValue(0);
+//	        }
+//	        jtfTax.setText("0.0");
+//	        jTextFieldSubTotal.setText("0.0");
+//	        jTextFieldTotal.setText("0.0");
+//	        textBill.setText("");
+//	        Sunshine();
+//
+//	    }
+//	    public void dudate(){
+//	        jtfTax.setText(String.valueOf(tax));
+//	        jTextFieldSubTotal.setText(String.valueOf(total));
+//	        jTextFieldTotal.setText(String.valueOf(total+tax));
+//
+//	    }
 	    public boolean qtyIsZero(int qty){
 	        if(qty == 0) {
 	            JOptionPane.showMessageDialog(null, "Please increase the item quantity");
@@ -144,19 +168,9 @@ public class MenuView extends JFrame {
 	        jLabel1 = new javax.swing.JLabel();
 	        jTxTime = new javax.swing.JLabel();
 	        jLabel2 = new javax.swing.JLabel();
-	        jtfTax = new javax.swing.JTextField();
-	        jTextFieldSubTotal = new javax.swing.JTextField();
-	        jTextFieldTotal = new javax.swing.JTextField();
-	        jLabel63 = new javax.swing.JLabel();
-	        jLabel64 = new javax.swing.JLabel();
-	        jLabel65 = new javax.swing.JLabel();
 	        jScrollPane1 = new javax.swing.JScrollPane();
 	        textBill = new javax.swing.JTextArea();
 	        jPanel21 = new javax.swing.JPanel();
-	        btnTotal = new javax.swing.JButton();
-	        btn_Inhoadon = new javax.swing.JButton();
-	        btnExit = new javax.swing.JButton();
-	        btnReset = new javax.swing.JButton();
 	        pnlProduct = new javax.swing.JPanel();
 	        jTxtDate = new javax.swing.JLabel();
 
@@ -168,13 +182,12 @@ public class MenuView extends JFrame {
 	        jPanel2.setPreferredSize(new java.awt.Dimension(1360, 45));
 
 	        jLabel1.setFont(new java.awt.Font("Bradley Hand ITC", 1, 36)); // NOI18N
-	        jLabel1.setText("Cafe Sunshine ");
+	        jLabel1.setText("Menu");
 
 	        jTxTime.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
 	        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 	        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-	        jLabel2.setText("Menu ");
 
 	        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
 	        jPanel2.setLayout(jPanel2Layout);
@@ -199,89 +212,20 @@ public class MenuView extends JFrame {
 	                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 	        );
 
-	        jtfTax.setEditable(false);
-	        jtfTax.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-	        jtfTax.setText("0.0");
-
-	        jTextFieldSubTotal.setEditable(false);
-	        jTextFieldSubTotal.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-	        jTextFieldSubTotal.setText("0.0");
-
-	        jTextFieldTotal.setEditable(false);
-	        jTextFieldTotal.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-	        jTextFieldTotal.setText("0.0");
-
-	        jLabel63.setText("FAX");
-
-	        jLabel64.setText("SUB TOTAL");
-
-	        jLabel65.setText("TOTAL");
-
 	        textBill.setColumns(20);
 	        textBill.setRows(5);
 	        jScrollPane1.setViewportView(textBill);
 
-	        btnTotal.setBackground(new java.awt.Color(0, 153, 0));
-	        btnTotal.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-	        btnTotal.setText("Total");
-	        btnTotal.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                btnTotalActionPerformed(evt);
-	            }
-	        });
-
-	        btn_Inhoadon.setBackground(new java.awt.Color(51, 255, 204));
-	        btn_Inhoadon.setText("In hóa đơn");
-	        btn_Inhoadon.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                btn_InhoadonActionPerformed(evt);
-	            }
-	        });
-
-	        btnExit.setBackground(new java.awt.Color(255, 51, 51));
-	        btnExit.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-	        btnExit.setText("Exit");
-	        btnExit.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                btnExitActionPerformed(evt);
-	            }
-	        });
-
-	        btnReset.setBackground(new java.awt.Color(0, 102, 255));
-	        btnReset.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-	        btnReset.setText("Reset");
-	        btnReset.addActionListener(new java.awt.event.ActionListener() {
-	            public void actionPerformed(java.awt.event.ActionEvent evt) {
-	                btnResetActionPerformed(evt);
-	            }
-	        });
-
 	        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
-	        jPanel21.setLayout(jPanel21Layout);
 	        jPanel21Layout.setHorizontalGroup(
-	            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(jPanel21Layout.createSequentialGroup()
-	                .addGap(63, 63, 63)
-	                .addComponent(btnTotal)
-	                .addGap(115, 115, 115)
-	                .addComponent(btn_Inhoadon)
-	                .addGap(99, 99, 99)
-	                .addComponent(btnReset)
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-	                .addComponent(btnExit)
-	                .addGap(54, 54, 54))
+	        	jPanel21Layout.createParallelGroup(Alignment.LEADING)
+	        		.addGap(0, 795, Short.MAX_VALUE)
 	        );
 	        jPanel21Layout.setVerticalGroup(
-	            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(jPanel21Layout.createSequentialGroup()
-	                .addGap(18, 18, 18)
-	                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                    .addComponent(btnTotal)
-	                    .addComponent(btn_Inhoadon, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addContainerGap(23, Short.MAX_VALUE))
+	        	jPanel21Layout.createParallelGroup(Alignment.LEADING)
+	        		.addGap(0, 72, Short.MAX_VALUE)
 	        );
+	        jPanel21.setLayout(jPanel21Layout);
 
 	        javax.swing.GroupLayout pnlProductLayout = new javax.swing.GroupLayout(pnlProduct);
 	        pnlProduct.setLayout(pnlProductLayout);
@@ -295,65 +239,34 @@ public class MenuView extends JFrame {
 	        );
 
 	        javax.swing.GroupLayout jpn_MenuLayout = new javax.swing.GroupLayout(jpn_Menu);
-	        jpn_Menu.setLayout(jpn_MenuLayout);
 	        jpn_MenuLayout.setHorizontalGroup(
-	            jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(jpn_MenuLayout.createSequentialGroup()
-	                .addGroup(jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addComponent(pnlProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                .addGroup(jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(jpn_MenuLayout.createSequentialGroup()
-	                        .addGap(5, 5, 5)
-	                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addContainerGap())
-	                    .addGroup(jpn_MenuLayout.createSequentialGroup()
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                        .addGroup(jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                            .addComponent(jLabel63, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                        .addGroup(jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpn_MenuLayout.createSequentialGroup()
-	                                .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                .addGap(105, 105, 105))
-	                            .addGroup(jpn_MenuLayout.createSequentialGroup()
-	                                .addGroup(jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                                    .addComponent(jTextFieldSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                                    .addComponent(jtfTax, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-	                                .addContainerGap())))))
-	            .addGroup(jpn_MenuLayout.createSequentialGroup()
-	                .addContainerGap()
-	                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1241, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+	        	jpn_MenuLayout.createParallelGroup(Alignment.LEADING)
+	        		.addGroup(jpn_MenuLayout.createSequentialGroup()
+	        			.addGroup(jpn_MenuLayout.createParallelGroup(Alignment.LEADING)
+	        				.addComponent(pnlProduct, GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
+	        				.addComponent(jPanel21, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+	        			.addGap(5)
+	        			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 367, GroupLayout.PREFERRED_SIZE)
+	        			.addContainerGap())
+	        		.addGroup(jpn_MenuLayout.createSequentialGroup()
+	        			.addContainerGap()
+	        			.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, 1241, GroupLayout.PREFERRED_SIZE)
+	        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 	        );
 	        jpn_MenuLayout.setVerticalGroup(
-	            jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	            .addGroup(jpn_MenuLayout.createSequentialGroup()
-	                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                .addGroup(jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-	                    .addGroup(jpn_MenuLayout.createSequentialGroup()
-	                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                        .addGroup(jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                            .addComponent(jtfTax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(jLabel63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-	                        .addGap(36, 36, 36)
-	                        .addGroup(jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                            .addComponent(jTextFieldSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(jLabel64, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-	                        .addGap(34, 34, 34)
-	                        .addGroup(jpn_MenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-	                            .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                            .addComponent(jTextFieldTotal)))
-	                    .addGroup(jpn_MenuLayout.createSequentialGroup()
-	                        .addComponent(pnlProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-	                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-	                        .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-	                        .addContainerGap())))
+	        	jpn_MenuLayout.createParallelGroup(Alignment.LEADING)
+	        		.addGroup(jpn_MenuLayout.createSequentialGroup()
+	        			.addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+	        			.addPreferredGap(ComponentPlacement.RELATED)
+	        			.addGroup(jpn_MenuLayout.createParallelGroup(Alignment.LEADING)
+	        				.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 486, GroupLayout.PREFERRED_SIZE)
+	        				.addGroup(jpn_MenuLayout.createSequentialGroup()
+	        					.addComponent(pnlProduct, GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+	        					.addPreferredGap(ComponentPlacement.RELATED)
+	        					.addComponent(jPanel21, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+	        					.addContainerGap())))
 	        );
+	        jpn_Menu.setLayout(jpn_MenuLayout);
 
 	        jTxtDate.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
@@ -406,52 +319,6 @@ public class MenuView extends JFrame {
 	            menuMap.put(id, prices);
 	        }
 	}
-	    
-
-	    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-	        Reset();
-	    }//GEN-LAST:event_btnResetActionPerformed
-
-	    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-	        // TODO add your handling code here:
-	        System.exit(0);// cái này cho thoát về giao diện của nhân viên nhể
-	    }//GEN-LAST:event_btnExitActionPerformed
-
-	    private void btnTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalActionPerformed
-	        for(Map.Entry<Integer, Float > entry : menuMap.entrySet()){
-	            float prices = entry.getValue();
-	            total += prices;
-	        }
-	        if(total == 0.0){
-	            JOptionPane.showMessageDialog(null, "You haven't selectsed any item");
-
-	        } else {
-	            textBill.setText(textBill.getText()+"\n**********************************************\n"
-	                + "Tax: \t\t\t"+tax+"\n"
-	                + "Sub Total \t\t\t"+total+"\n"
-	                + "Total \t\t\t"+(total + tax)+"\n\n"
-	                +"***************************Thank you*******************\n"
-	            );
-	            btnTotal.setEnabled(false);
-	        }
-	    }//GEN-LAST:event_btnTotalActionPerformed
-
-	    private void btn_InhoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InhoadonActionPerformed
-	        System.out.println(menuMap);
-	        if(!menuMap.isEmpty()){
-	            if(!btnTotal.isEnabled()){
-	                try {
-	                    textBill.print();
-	                } catch (PrinterException ex) {
-	                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE,null,ex);
-	                }
-	            } else {
-	                JOptionPane.showMessageDialog(null, "Bạn chưa thanh toán");
-	            }
-	        } else {
-	            JOptionPane.showMessageDialog(null, "Bạn chưa mua sản phẩm nào");
-	        }
-	    }//GEN-LAST:event_btn_InhoadonActionPerformed
 	    public void Sunshine(){
 	         LocalDateTime currentDateTime = LocalDateTime.now();
 	    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
@@ -507,26 +374,14 @@ public class MenuView extends JFrame {
 	        });
 	        
 	    }
-
-	    // Variables declaration - do not modify//GEN-BEGIN:variables
-	    private javax.swing.JButton btnExit;
-	    private javax.swing.JButton btnReset;
-	    private javax.swing.JButton btnTotal;
-	    private javax.swing.JButton btn_Inhoadon;
 	    private javax.swing.JLabel jLabel1;
 	    private javax.swing.JLabel jLabel2;
-	    private javax.swing.JLabel jLabel63;
-	    private javax.swing.JLabel jLabel64;
-	    private javax.swing.JLabel jLabel65;
 	    private javax.swing.JPanel jPanel2;
 	    private javax.swing.JPanel jPanel21;
 	    private javax.swing.JScrollPane jScrollPane1;
-	    private javax.swing.JTextField jTextFieldSubTotal;
-	    private javax.swing.JTextField jTextFieldTotal;
 	    private javax.swing.JLabel jTxTime;
 	    private javax.swing.JLabel jTxtDate;
 	    public javax.swing.JPanel jpn_Menu;
-	    private javax.swing.JTextField jtfTax;
 	    private javax.swing.JPanel pnlProduct;
 	    private javax.swing.JTextArea textBill;
 }

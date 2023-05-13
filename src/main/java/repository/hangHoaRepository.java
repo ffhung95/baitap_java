@@ -51,17 +51,6 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		}
 		return null;
 	}
-
-//	public hangHoa get(String ten) throws SQLException {
-//		Statement statement = conn.createStatement();
-//		String query = "SELECT * FROM food_item WHERE mahanghoa = " + ten;
-//		ResultSet rs = statement.executeQuery(query);
-//		if (rs.next()) {
-//			hangHoa foodItem = hangHoa.getFromResultSet(rs);
-//			return foodItem;
-//		}
-//		return null;
-//	}
 	@Override
 	public void deleteById(int id) throws SQLException {
 		PreparedStatement stmt = conn.prepareStatement("DELETE FROM hanghoa WHERE mahanghoa = ?");
@@ -70,30 +59,6 @@ public class hangHoaRepository extends DAO<hangHoa> {
 
 	}
 
-//	int ketqua = 0;
-//	try {
-//		connection = MySQLConnecttion.getConnection();
-//		String query = " INSERT INTO btl_qlcf.admin (taikhoan,matkhau,hoten,sdt,avatar ) " + " VALUES (?,?,?,?,?)";
-//		statement = connection.prepareStatement(query);
-//		statement.setString(1, kh.getTaikhoan());
-//		statement.setString(2, kh.getMatkhau());
-//		statement.setString(3, kh.getHoten());
-//		statement.setString(4, kh.getSdt());
-//		statement.setBytes(5, kh.getAvatar());
-//		ketqua = statement.executeUpdate();
-//	} catch (SQLException e) {
-//		System.out.println("Không thể kết nối đến cơ sở dữ liệu");
-//		e.printStackTrace();
-//	} finally {
-//		try {
-//			connection.close();
-//			statement.close();
-//		} catch (SQLException e) {
-//			System.out.println("Lỗi đóng kết nối");
-//			e.printStackTrace();
-//		}
-//	}
-//	return ketqua;
 	@Override
 	public void save(hangHoa t) throws SQLException {
 		if (t == null) {
@@ -137,6 +102,31 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		stmt.setBytes(5, t.getAnhHangHoa());
 		stmt.setInt(6, t.getMaHangHoa());
 		int row = stmt.executeUpdate();
+
+	}
+	public void capNhatSoLuong(hangHoa t) throws SQLException {
+		if (t == null) {
+			throw new SQLException("Food item rỗng");
+		}
+		try {
+		connection = MySQLConnecttion.getConnection();
+		String query = "UPDATE hanghoa SET  soluong = ? WHERE mahanghoa = ?";
+		statement = connection.prepareStatement(query);
+		statement.setInt(1, t.getSoLuong());
+		statement.setInt(2, t.getMaHangHoa());
+		int row = statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+				statement.close();
+			} catch (SQLException e) {
+				System.out.println("Lỗi đóng kết nối");
+				e.printStackTrace();
+			}
+		}
 
 	}
 
