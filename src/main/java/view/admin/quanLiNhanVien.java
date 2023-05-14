@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import model.nhanVienModel;
 import repository.AdminReposity;
 import repository.NhanVienReposity;
+import utils.MaHoa;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
@@ -128,6 +129,7 @@ public class quanLiNhanVien extends JFrame {
 				String taikhoan = taikhoan_jtfiel.getText();
 				nhanVienModel.setTaikhoan(taikhoan);
 				String matkhau = new String(matkhau_jpwfiel.getPassword());
+				matkhau=MaHoa.toSHA1(matkhau);
 				nhanVienModel.setMatkhau(matkhau);
 				String sdt = sdt_jtfiel.getText();
 				nhanVienModel.setSdt(sdt);
