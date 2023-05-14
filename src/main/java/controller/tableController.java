@@ -73,7 +73,6 @@ public void edit(tableView view, table Table) {
                 editTable(view, Table);
                 view.dispose();
                 view.showMessage("Sửa bàn thành công!");
-            
             } catch (Exception ex) {
             }
         }

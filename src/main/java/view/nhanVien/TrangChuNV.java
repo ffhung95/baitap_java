@@ -15,7 +15,6 @@ import javax.swing.JTable;
 
 
 public class TrangChuNV extends JFrame {
-
 	public TrangChuNV() {
 
 		this.initComponents();
@@ -39,6 +38,9 @@ public class TrangChuNV extends JFrame {
         JButton btnNewButton = new JButton("MENU");
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		MenuView view = new MenuView();
+        		view.setVisible(true);
         	}
         });
         btnNewButton.setBounds(10, 10, 182, 67);
@@ -48,8 +50,7 @@ public class TrangChuNV extends JFrame {
         btnnHng.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
-        		OrderItemEmployeeView view = new OrderItemEmployeeView();
-        		view.setVisible(true);
+        		
         	}
         });
         btnnHng.setBounds(10, 73, 182, 82);

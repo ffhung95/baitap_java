@@ -38,6 +38,8 @@ import javax.swing.JSpinner;
 import javax.swing.JEditorPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class capnhatAdmin extends JFrame {
 
@@ -228,7 +230,7 @@ public class capnhatAdmin extends JFrame {
 		nhanvien_comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Quản lí", "Nhân viên"}));
 		nhanvien_comboBox.setBounds(451, 34, 112, 30);
 		panel_1.add(nhanvien_comboBox);
-
+		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBounds(31, 10, 623, 176);
 		panel.add(panel_2);

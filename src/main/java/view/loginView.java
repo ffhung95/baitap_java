@@ -11,6 +11,7 @@ import model.admin;
 import model.nhanVienModel;
 import repository.AdminReposity;
 import repository.NhanVienReposity;
+import utils.MaHoa;
 import view.admin.registerAdmin;
 import view.admin.trangChuAdmin;
 import view.nhanVien.TrangChuNV;
@@ -96,6 +97,7 @@ public class loginView extends JFrame {
             		AdminReposity adminRepository = new AdminReposity();
         			String taikhoan =username_jtfiel.getText();
         			String matkhau = new String(password_pwfiel.getPassword());
+        			matkhau= MaHoa.toSHA1(matkhau);
         			adminModel.setTaikhoan(taikhoan);
         			adminModel.setMatkhau(matkhau);
         			adminModel=adminRepository.seclectByTenDangNhapVaMatKhau(adminModel);
@@ -117,6 +119,7 @@ public class loginView extends JFrame {
             		AdminReposity adminRepository = new AdminReposity();
         			String taikhoan =username_jtfiel.getText();
         			String matkhau = new String(password_pwfiel.getPassword());
+        			matkhau =MaHoa.toSHA1(matkhau);
         			nhanVienModel.setTaikhoan(taikhoan);
         			nhanVienModel.setMatkhau(matkhau);
         			nhanVienModel=nhanVienRepository.seclectByTenDangNhapVaMatKhau(nhanVienModel);

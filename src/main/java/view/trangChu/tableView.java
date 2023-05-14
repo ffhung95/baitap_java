@@ -1,19 +1,24 @@
 package view.trangChu;
-
-import java.awt.EventQueue;
+import java.awt.HeadlessException;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+import model.table;
+import repository.tableRepository;
+import utils.TableStatus;
+import view.nhanVien.TableEmployessWiew;
+
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
 
 
 public class tableView extends javax.swing.JFrame implements cuaSoView {
-
+	private tableRepository tablerepository;
     public tableView() {
+    	tablerepository = new tableRepository();
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -55,7 +60,44 @@ public class tableView extends javax.swing.JFrame implements cuaSoView {
         lbTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnOK = new javax.swing.JButton();
+        btnOK.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String name = txtName.getText();
+        		if (name.isEmpty()) {
+        			JOptionPane.showMessageDialog(null, "Vui lòng điền đủ thông tin");
+                }
+        		try {
+					if (tablerepository.findByName(name) != null) {
+						JOptionPane.showMessageDialog(null, "Tên bàn đã được sử dụng");
+					  
+					}
+				} catch (HeadlessException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                table t = new table();
+                t.setName(name);
+                t.setTrangthai(TableStatus.FREE);
+                try {
+					tablerepository.save(t);
+					JOptionPane.showMessageDialog(null, "Thêm thành công");
+					dispose();
+					TableEmployessWiew view = new TableEmployessWiew();
+	        		view.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	}
+        });
         btnCancel = new javax.swing.JButton();
+        btnCancel.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		TableEmployessWiew view = new TableEmployessWiew();
+        		view.setVisible(true);
+        	}
+        });
         jPanel3 = new javax.swing.JPanel();
         txtName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -118,6 +160,8 @@ public class tableView extends javax.swing.JFrame implements cuaSoView {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOK;

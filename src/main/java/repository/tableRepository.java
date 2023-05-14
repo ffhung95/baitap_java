@@ -81,6 +81,7 @@ public class tableRepository extends DAO<table> {
 	        stmt.executeUpdate();
 		
 	}
+	
 
 	@Override
 	public void deleteById(int id) throws SQLException {
