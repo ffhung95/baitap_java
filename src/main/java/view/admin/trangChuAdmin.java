@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
+import javax.swing.SwingConstants;
 
 public class trangChuAdmin extends JFrame {
 	private JPanel panel_1;
@@ -52,7 +53,7 @@ public class trangChuAdmin extends JFrame {
 		panel.setAlignmentY(Component.TOP_ALIGNMENT);
 		panel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel.setBackground(new Color(255, 255, 255));
+		panel.setBackground(new Color(236, 255, 255));
 		panel.setBounds(0, 10, 686, 354);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -131,47 +132,29 @@ public class trangChuAdmin extends JFrame {
 		btnngXut.setBounds(0, 294, 158, 55);
 		panel_1.add(btnngXut);
 		
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				openMenuBar();			}
-
-			
-		});
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\bar-menu_icon-icons.com_70305.png"));
-		lblNewLabel_3.setBounds(10, 10, 40, 26);
-		panel.add(lblNewLabel_3);
-		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(240, 240, 240));
+//		panel_2.setBackground(new Color(240, 240, 240));
 		panel_2.setBounds(0, 43, 686, 270);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\nhuong-quyen-highland-coffee.png"));
-		lblNewLabel_6.setBounds(0, 5, 686, 303);
+//		lblNewLabel_6.setBackground(new Color(236, 255, 255));
+//		lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\nhuong-quyen-highland-coffee.png"));
+		lblNewLabel_6.setBounds(0, 5, 686, 265);
 		panel_2.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_4 = new JLabel("Highlands Coffee");
+		JLabel lblNewLabel_4 = new JLabel(" Coffee");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_4.setBounds(273, 11, 161, 36);
 		panel.add(lblNewLabel_4);
 		
-	}
-	private void openMenuBar() {
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				for( int i=0;i<width;i++) {
-					panel_1 .setSize(width,height);
-				}
-				
-			}
-		}).start();
-		
+		JLabel coffeeAdmin = new JLabel("");
+		coffeeAdmin.setHorizontalAlignment(SwingConstants.CENTER);
+		coffeeAdmin.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin.png"));
+		coffeeAdmin.setBounds(555, 0, 121, 112);
+		panel.add(coffeeAdmin);
 	}
 	private void closeMenuBar() {
 		new Thread(new Runnable() {
