@@ -7,7 +7,7 @@ public class hangHoa {
 private int maHangHoa ;
 private String tenLoaiHang;
 private String tenHangHoa;
-private double giaHangHoa;
+private float giaHangHoa;
 private int soLuong;
 private loaiHang maLoaiHang;
 private byte[] anhHangHoa;
@@ -17,8 +17,8 @@ public hangHoa() {
 }
 
 
-public hangHoa(int maHangHoa, String tenLoaiHang, String tenHangHoa, double giaHangHoa, int soLuong,
-		loaiHang maLoaiHang,  byte[] anhHangHoa) {
+public hangHoa(int maHangHoa, String tenLoaiHang, String tenHangHoa, float giaHangHoa, int soLuong, loaiHang maLoaiHang,
+		byte[] anhHangHoa) {
 	super();
 	this.maHangHoa = maHangHoa;
 	this.tenLoaiHang = tenLoaiHang;
@@ -26,7 +26,6 @@ public hangHoa(int maHangHoa, String tenLoaiHang, String tenHangHoa, double giaH
 	this.giaHangHoa = giaHangHoa;
 	this.soLuong = soLuong;
 	this.maLoaiHang = maLoaiHang;
-	
 	this.anhHangHoa = anhHangHoa;
 }
 
@@ -60,13 +59,16 @@ public void setTenHangHoa(String tenHangHoa) {
 	this.tenHangHoa = tenHangHoa;
 }
 
-public double getGiaHangHoa() {
+
+public float getGiaHangHoa() {
 	return giaHangHoa;
 }
 
-public void setGiaHangHoa(double giaHangHoa) {
+
+public void setGiaHangHoa(float giaHangHoa) {
 	this.giaHangHoa = giaHangHoa;
 }
+
 
 public int getSoLuong() {
 	return soLuong;

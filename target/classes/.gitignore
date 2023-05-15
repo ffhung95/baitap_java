@@ -1,9 +1,4 @@
-/controller/
-/database/
-/model/
-/repository/
-/test/
-/utils/
 /view/
-/META-INF/
-/window/
+/model/
+/controller/
+/repository/
