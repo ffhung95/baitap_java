@@ -22,6 +22,7 @@ import java.util.logging.Logger;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -33,7 +34,10 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import model.hangHoa;
+import model.table;
 import repository.hangHoaRepository;
+import repository.tableRepository;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
@@ -43,12 +47,15 @@ import java.awt.event.MouseEvent;
 
 public class MenuView extends JFrame {
 	 private JPanel productPanel;
+	 private JPanel deskCfPanel;
 	    private JPanel boxDrink;
+	    private JPanel boxDesk;
 	    private JSpinner spQuantity;
 	    private List<JSpinner> mySpinners = new ArrayList<>();
 	    Map<Integer, Float > menuMap = new HashMap<>(); //Khai báo một map để lưu các món trong bill
 	    private int valuess=0;
 	    private List<hangHoa> drinks;
+	    private List<table> desks;
 	    /**
 	     * Creates new form Menu
 	     */
@@ -134,49 +141,39 @@ public class MenuView extends JFrame {
 	    }
 	    public void banCF() {
 	        try {
-	            pnlProduct.setLayout(new BorderLayout());
-	            productPanel = new JPanel(new GridLayout(0, 6, 10, 10));
-	            DatBanDao dao = new DatBanDao();
-	            desks = dao.findByAll();
-	            for (BanModel desk : desks) {
-	                boxDesk = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	                //boxDesk.setLayout(new BoxLayout(boxDesk, BoxLayout.Y_AXIS));
-
-	                //Button bàn
-	                JButton deskBtn = new JButton("Bàn " + desk.getMaBan());
-	                deskBtn.setBackground(new Color(51, 153, 0));
-	                deskBtn.setPreferredSize(new Dimension(100, 50));
-	                //Gọi vào panel boxDesk
-	                boxDesk.add(deskBtn);
-	                productPanel.add(boxDesk);
+	            pnlBanCF.setLayout(new BorderLayout());
+	            deskCfPanel = new JPanel(new GridLayout(0, 1, 10, 10));
+	            tableRepository dao = new tableRepository();
+	            desks = dao.getAll();
+	            for (table desk : desks) {
+	                boxDesk = new JPanel();
+	                boxDesk.setLayout(new BoxLayout(boxDesk, BoxLayout.Y_AXIS));
+	                JLabel nameLbl = new JLabel("Bàn "+ desk.getName());
+	                JButton oder = new JButton("Gọi món");
+	                oder.addActionListener(new ActionListener() {
+	                @Override
+	                public void actionPerformed(ActionEvent e) {
+	                    // Tạo JFrame mới để hiển thị menu
+	                    thucDon();
+	                }
+	            });
+	                oder.setPreferredSize(new Dimension(100, 50));
+	                JButton pay = new JButton("Thanh toán");
+	                pay.addActionListener(new ActionListener(){
+	                    @Override
+	                public void actionPerformed(ActionEvent e) {
+	                    // Tạo JFrame mới để hiển thị menu
+	                    
+	                }
+	                });
+	                pay.setPreferredSize(new Dimension(100, 50));
+	                boxDesk.add(nameLbl);
+	                boxDesk.add(oder);
+	                boxDesk.add(pay);
+	                deskCfPanel.add(boxDesk);
 	            }
-	            JScrollPane scrollPane = new JScrollPane(productPanel);
-	            JPanel chuThich = new JPanel();
-	            // Tạo JPanel `datBan` sử dụng BoxLayout
-	            JPanel chonBan = new JPanel();
-	            chonBan.setSize(500, 500);
-	            chonBan.setBackground(new Color(51, 153, 0));
-	            chonBan.add(new JLabel("Chọn bàn")); // Thêm label
-	            chonBan.setForeground(new Color(255, 255, 255));
-	            chuThich.add(chonBan);
-
-	            // Tạo JPanel `huyDatBan` sử dụng BoxLayout
-	            JPanel huyChonBan = new JPanel();
-	            huyChonBan.setSize(500, 500);
-	            huyChonBan.setBackground(new Color(255, 102, 102));
-	            huyChonBan.add(new JLabel("Hủy chọn bàn")); // Thêm label
-	            chuThich.add(huyChonBan);
-
-	            JPanel dangPhucVu = new JPanel();
-	            dangPhucVu.setSize(500, 500);
-	            dangPhucVu.setBackground(new Color(102, 153, 255));
-	            dangPhucVu.add(new JLabel("Đang phục vụ")); // Thêm label
-	            chuThich.add(dangPhucVu);
-
-	            pnlProduct.add(scrollPane, BorderLayout.CENTER);// thieets kees layout 
-	            pnlProduct.add(chuThich, BorderLayout.SOUTH);
-	            setTime();
-	            Sunshine();
+	            JScrollPane scrollPane = new JScrollPane(deskCfPanel);
+	            pnlBanCF.add(scrollPane, BorderLayout.CENTER);
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
@@ -412,5 +409,6 @@ public class MenuView extends JFrame {
 	    private javax.swing.JLabel jTxtDate;
 	    public javax.swing.JPanel jpn_Menu;
 	    private javax.swing.JPanel pnlProduct;
+	    private javax.swing.JPanel pnlBanCF;
 	    private javax.swing.JTextArea textBill;
 }
