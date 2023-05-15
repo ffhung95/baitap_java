@@ -63,7 +63,14 @@ public class MenuView extends JFrame {
 	    private int x=0;
 	    private float tax = (float)0.0;
 	    public MenuView() {
-	        try {
+	    	initComponents();
+	    	thucDon();
+	    	banCF();
+	    	setTime();
+            Sunshine();
+	    }
+	    public void thucDon() {
+	    	try {
 	            initComponents();
 	            pnlProduct.setLayout(new BorderLayout());
 	            productPanel = new JPanel(new GridLayout(0,4,10,10));
@@ -133,8 +140,7 @@ public class MenuView extends JFrame {
 	            JScrollPane scrollPane = new JScrollPane(productPanel);
 	            pnlProduct.add(scrollPane, BorderLayout.CENTER);// thieets kees layout 
 	            
-	            setTime();
-	            Sunshine();
+	            
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
