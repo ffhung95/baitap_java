@@ -140,7 +140,6 @@ public class MenuView extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                 	
                     thucDon();
-                  
                     desk.setTrangthai(TableStatus.SERVING);
                     nameLbl.setText("Bàn "+desk.getMaBan()+" "+desk.getTrangthai());
                     try {
@@ -159,7 +158,6 @@ public class MenuView extends javax.swing.JFrame {
                     	
                     	 desk.setTrangthai(TableStatus.FREE);
                     	 nameLbl.setText("Bàn "+desk.getMaBan()+" "+desk.getTrangthai());
-                    	 textBill.setText("");
                     	 try {
      						tableRe.update(desk);
      					} catch (SQLException e1) {

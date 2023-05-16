@@ -76,7 +76,7 @@ public class trangChuAdmin extends JFrame {
 		panel_1.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\hung\\eclipse-workspace\\baitap_java\\src\\main\\resources\\images\\student_work_office_desk_work_space_computer_working_support_icon_191191.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\student_work_office_desk_work_space_computer_working_support_icon_191191.png"));
 		lblNewLabel_1.setBounds(20, 10, 96, 78);
 		panel_1.add(lblNewLabel_1);
 		
