@@ -46,14 +46,11 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-/**
- *
- * @author DIEM QUYNH
- */
 public class MenuView extends javax.swing.JFrame {
 
     private JPanel productPanel;
     private tableRepository tableRe;
+    
     private JPanel deskCfPanel;
     private JPanel boxDesk;
     private JPanel boxDrink;
@@ -136,13 +133,16 @@ public class MenuView extends javax.swing.JFrame {
             for (table desk : desks) {
                 boxDesk = new JPanel();
                 boxDesk.setLayout(new BoxLayout(boxDesk, BoxLayout.Y_AXIS));
-                JLabel nameLbl = new JLabel("Bàn"+ desk.getMaBan());
+                JLabel nameLbl = new JLabel("Bàn"+ desk.getMaBan()+" "+desk.getTrangthai());
                 JButton oder = new JButton("Gọi món");
                 oder.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                	
                     thucDon();
+                  
                     desk.setTrangthai(TableStatus.SERVING);
+                    nameLbl.setText("Bàn "+desk.getMaBan()+" "+desk.getTrangthai());
                     try {
 						tableRe.update(desk);
 					} catch (SQLException e1) {
@@ -156,7 +156,10 @@ public class MenuView extends javax.swing.JFrame {
                 pay.addActionListener(new ActionListener(){
                     @Override
                 public void actionPerformed(ActionEvent e) {
+                    	
                     	 desk.setTrangthai(TableStatus.FREE);
+                    	 nameLbl.setText("Bàn "+desk.getMaBan()+" "+desk.getTrangthai());
+                    	 textBill.setText("");
                     	 try {
      						tableRe.update(desk);
      					} catch (SQLException e1) {
@@ -509,11 +512,11 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-       
-        System.exit(0);
+       dispose();
+      TrangChuNV view = new TrangChuNV();
+      view.setVisible(true);
     }
     private void btnTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalActionPerformed
-
         for (Map.Entry<Integer, Float> entry : menuMap.entrySet()) {
             double prices = entry.getValue();
             total += prices;

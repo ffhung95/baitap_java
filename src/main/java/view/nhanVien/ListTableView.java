@@ -64,8 +64,18 @@ public class ListTableView extends JFrame {
         		tableCon.edit(view, ban);
         	}
         });
-        btnXaBn.setBounds(296, 228, 132, 34);
+        btnXaBn.setBounds(184, 221, 132, 34);
         getContentPane().add(btnXaBn);
+        JButton btnQuayLi = new JButton("Quay lại");
+        btnQuayLi.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		TrangChuNV view = new TrangChuNV();
+        		view.setVisible(true);
+        	}
+        });
+        btnQuayLi.setBounds(344, 221, 132, 34);
+        getContentPane().add(btnQuayLi);
 		loadTable();
 	}
 	private void loadTable() {

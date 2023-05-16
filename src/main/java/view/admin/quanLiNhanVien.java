@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -132,31 +134,41 @@ public class quanLiNhanVien extends JFrame {
 				matkhau=MaHoa.toSHA1(matkhau);
 				nhanVienModel.setMatkhau(matkhau);
 				String sdt = sdt_jtfiel.getText();
-				nhanVienModel.setSdt(sdt);
-				SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
-				String ngay= ngayvaolam_jtfiel.getText();
-				Date ngayvaolam = null;
-				try {
-					ngayvaolam = sdf.parse(ngay);
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				nhanVienModel.setNgayvaolam(ngayvaolam);
-				String chucvu = chucvu_combobox.getSelectedItem().toString();
-				nhanVienModel.setChucvu(chucvu);
-				int luong = Integer.parseInt(luong_jtfiel.getText());
-				nhanVienModel.setLuong(luong);
-				if (nhanVienRepository.kiemTraTenTenNhap(taikhoan) || nhanVienRepository.kiemTraSoDienThoai(sdt)) {
-					JOptionPane.showMessageDialog(null, "Tài khoản hay mật khẩu đã tồn tại");
-					xoaForm();
-				} else {
-					nhanVienRepository.insertUser(nhanVienModel);
-					if (nhanVienModel != null) {
-						JOptionPane.showMessageDialog(null, "Thêm thành công");
-						 loadtabel();
+				String regex= "^0[39]{1}\\d{8}$";
+				Pattern pattern = Pattern.compile(regex);
+				Matcher matcher = pattern.matcher(sdt);
+				if(matcher.find()) {
+					nhanVienModel.setSdt(sdt);
+					SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
+					String ngay= ngayvaolam_jtfiel.getText();
+					Date ngayvaolam = null;
+					try {
+						ngayvaolam = sdf.parse(ngay);
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
+					nhanVienModel.setNgayvaolam(ngayvaolam);
+					String chucvu = chucvu_combobox.getSelectedItem().toString();
+					nhanVienModel.setChucvu(chucvu);
+					int luong = Integer.parseInt(luong_jtfiel.getText());
+					nhanVienModel.setLuong(luong);
+					if (nhanVienRepository.kiemTraTenTenNhap(taikhoan) || nhanVienRepository.kiemTraSoDienThoai(sdt)) {
+						JOptionPane.showMessageDialog(null, "Tài khoản hay mật khẩu đã tồn tại");
+						xoaForm();
+					} else {
+						nhanVienRepository.insertUser(nhanVienModel);
+						if (nhanVienModel != null) {
+							JOptionPane.showMessageDialog(null, "Thêm thành công");
+							 loadtabel();
+						}
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Số điện thoại 10 số theo dạng 03-09 ");
+					
 				}
+				
+				
         	}
 
 			private void xoaForm() {

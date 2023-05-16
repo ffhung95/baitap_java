@@ -8,7 +8,7 @@ public class thihanh  {
 		landing_page page = new landing_page();
 		for (int i = 0; i <= 100; i++) {
 			try {
-				Thread.sleep(20);
+				Thread.sleep(10);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
