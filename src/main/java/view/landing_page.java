@@ -59,7 +59,6 @@ public class landing_page extends JFrame {
 	                e.printStackTrace();
 	            }
 	        });
-
 	        progressThread.start();
 	        
 	        JLabel lblNewLabel_1 = new JLabel("");
