@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import java.awt.Color;
 
 
 
@@ -35,11 +36,15 @@ public class loaiHangView extends javax.swing.JFrame implements cuaSoView{
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel1.setBorder(null);
+        jPanel1.setBackground(new Color(236, 255, 255));
         lbTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel2.setBackground(new Color(236, 255, 255));
         btnOK = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jPanel3.setBackground(new Color(236, 255, 255));
         jLabel2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
 

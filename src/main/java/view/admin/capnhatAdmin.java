@@ -38,8 +38,11 @@ import javax.swing.JSpinner;
 import javax.swing.JEditorPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.border.MatteBorder;
 
 public class capnhatAdmin extends JFrame {
 
@@ -93,51 +96,53 @@ public class capnhatAdmin extends JFrame {
 	}
 
 	private void init() {
-		this.setTitle("ThÃªm nhÃ¢n viÃªn");
+		this.setTitle("Cập nhật ");
 		this.setSize(700, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 
 		panel = new JPanel();
+		panel.setBackground(new Color(236, 255, 255));
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
 		panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBounds(37, 214, 616, 215);
+		panel_1.setBackground(new Color(236, 255, 255));
+		panel_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		panel_1.setBounds(31, 235, 623, 215);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		hoten_jlabel = new JLabel("Họ tên");
-		hoten_jlabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		hoten_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		hoten_jlabel.setBounds(0, 30, 112, 34);
+		hoten_jlabel = new JLabel("Họ tên :");
+		hoten_jlabel.setHorizontalAlignment(SwingConstants.LEFT);
+		hoten_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		hoten_jlabel.setBounds(10, 11, 100, 25);
 		panel_1.add(hoten_jlabel);
 
 		hoten_jtfiel = new JTextField();
-		hoten_jtfiel.setBounds(143, 35, 163, 30);
+		hoten_jtfiel.setBounds(106, 11, 165, 25);
 		panel_1.add(hoten_jtfiel);
 		hoten_jtfiel.setColumns(10);
 
-		sdt_jlabel = new JLabel("Số điện thoại");
-		sdt_jlabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		sdt_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		sdt_jlabel.setBounds(0, 71, 138, 34);
+		sdt_jlabel = new JLabel("Số điện thoại :");
+		sdt_jlabel.setHorizontalAlignment(SwingConstants.LEFT);
+		sdt_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		sdt_jlabel.setBounds(10, 48, 100, 27);
 		panel_1.add(sdt_jlabel);
 
-		ngayvaolam_jlabel = new JLabel("Ngày vào làm");
-		ngayvaolam_jlabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		ngayvaolam_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		ngayvaolam_jlabel.setBounds(0, 115, 138, 34);
+		ngayvaolam_jlabel = new JLabel("Ngày vào làm :");
+		ngayvaolam_jlabel.setHorizontalAlignment(SwingConstants.LEFT);
+		ngayvaolam_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		ngayvaolam_jlabel.setBounds(10, 86, 100, 27);
 		panel_1.add(ngayvaolam_jlabel);
 
 		sdt_jtfiel = new JTextField();
 		sdt_jtfiel.setColumns(10);
-		sdt_jtfiel.setBounds(143, 75, 163, 30);
+		sdt_jtfiel.setBounds(106, 48, 165, 27);
 		panel_1.add(sdt_jtfiel);
 
 		ngayvaolam_jtfiel = new JTextField();
-		ngayvaolam_jtfiel.setBounds(143, 120, 163, 30);
+		ngayvaolam_jtfiel.setBounds(106, 86, 165, 27);
 		panel_1.add(ngayvaolam_jtfiel);
 		ngayvaolam_jtfiel.setColumns(10);
 		hienthi_jbutton = new JButton("Hiển thị thông tin");
@@ -156,8 +161,8 @@ public class capnhatAdmin extends JFrame {
 
 			}
 		});
-		hienthi_jbutton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		hienthi_jbutton.setBounds(70, 160, 148, 34);
+		hienthi_jbutton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		hienthi_jbutton.setBounds(394, 6, 148, 34);
 		panel_1.add(hienthi_jbutton);
 
 		quaylai_jbutton = new JButton("Quay lại");
@@ -169,25 +174,27 @@ public class capnhatAdmin extends JFrame {
 				
 			}
 		});
-		quaylai_jbutton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		quaylai_jbutton.setBounds(451, 160, 144, 34);
+		ImageIcon iconReturn = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\return.png");
+		quaylai_jbutton.setIcon(iconReturn);
+		quaylai_jbutton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		quaylai_jbutton.setBounds(394, 153, 144, 34);
 		panel_1.add(quaylai_jbutton);
 
-		chucvu_jlabel = new JLabel("Chức vụ");
-		chucvu_jlabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		chucvu_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chucvu_jlabel.setBounds(335, 30, 94, 34);
+		chucvu_jlabel = new JLabel("Chức vụ :");
+		chucvu_jlabel.setHorizontalAlignment(SwingConstants.LEFT);
+		chucvu_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		chucvu_jlabel.setBounds(10, 124, 100, 27);
 		panel_1.add(chucvu_jlabel);
 
-		luong_jlabel = new JLabel("Lương");
-		luong_jlabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		luong_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		luong_jlabel.setBounds(366, 71, 51, 34);
+		luong_jlabel = new JLabel("Lương :");
+		luong_jlabel.setHorizontalAlignment(SwingConstants.LEFT);
+		luong_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		luong_jlabel.setBounds(10, 160, 100, 27);
 		panel_1.add(luong_jlabel);
 
 		luong_jtfiel = new JTextField();
 		luong_jtfiel.setColumns(10);
-		luong_jtfiel.setBounds(452, 76, 154, 30);
+		luong_jtfiel.setBounds(106, 160, 165, 27);
 		panel_1.add(luong_jtfiel);
 		
 		JButton capnnhat_jbutton = new JButton("Cập nhật");
@@ -222,13 +229,15 @@ public class capnhatAdmin extends JFrame {
 				}
 			}
 		});
-		capnnhat_jbutton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		capnnhat_jbutton.setBounds(255, 160, 148, 34);
+		ImageIcon iconDone = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\done.png");
+		capnnhat_jbutton.setIcon(iconDone);
+		capnnhat_jbutton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		capnnhat_jbutton.setBounds(394, 57, 148, 34);
 		panel_1.add(capnnhat_jbutton);
 		
 		nhanvien_comboBox = new JComboBox();
 		nhanvien_comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Quản lí", "Nhân viên"}));
-		nhanvien_comboBox.setBounds(451, 34, 112, 30);
+		nhanvien_comboBox.setBounds(106, 124, 115, 27);
 		panel_1.add(nhanvien_comboBox);
 		
 		JPanel panel_2 = new JPanel();
@@ -237,7 +246,7 @@ public class capnhatAdmin extends JFrame {
 		panel_2.setLayout(null);
 
 		nhanVien_jtbale = new JTable();
-		nhanVien_jtbale.setBounds(10, 10, 603, 156);
+		nhanVien_jtbale.setBounds(0, 0, 623, 176);
 		panel_2.add(nhanVien_jtbale);
 		
 	}

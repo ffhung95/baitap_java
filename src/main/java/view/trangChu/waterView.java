@@ -13,6 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import model.loaiHang;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 
 public class waterView extends javax.swing.JFrame implements cuaSoView {
@@ -132,14 +136,21 @@ public class waterView extends javax.swing.JFrame implements cuaSoView {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel1.setBackground(new Color(236, 255, 255));
         lbTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel2.setBackground(new Color(236, 255, 255));
         btnOK = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jPanel3.setBackground(new Color(236, 255, 255));
         jLabel2 = new javax.swing.JLabel();
+        jLabel2.setHorizontalAlignment(SwingConstants.LEFT);
         jLabel3 = new javax.swing.JLabel();
+        jLabel3.setHorizontalAlignment(SwingConstants.LEFT);
         jLabel4 = new javax.swing.JLabel();
+        jLabel4.setBackground(new Color(236, 255, 255));
+        jLabel4.setHorizontalAlignment(SwingConstants.LEFT);
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -183,12 +194,14 @@ public class waterView extends javax.swing.JFrame implements cuaSoView {
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 5, 0, 5));
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        GridBagLayout gbl_jPanel3 = new GridBagLayout();
+        gbl_jPanel3.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0};
+        jPanel3.setLayout(gbl_jPanel3);
 
         jLabel2.setText("Tên món:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jLabel2, gridBagConstraints);
 
@@ -197,7 +210,7 @@ public class waterView extends javax.swing.JFrame implements cuaSoView {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jLabel3, gridBagConstraints);
 
@@ -206,7 +219,7 @@ public class waterView extends javax.swing.JFrame implements cuaSoView {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(jLabel4, gridBagConstraints);
 
@@ -285,14 +298,13 @@ public class waterView extends javax.swing.JFrame implements cuaSoView {
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         jPanel3.add(txtUnitPrice, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        jPanel3.add(cboCategory, gridBagConstraints);
+        gridBagConstraints_1 = new java.awt.GridBagConstraints();
+        gridBagConstraints_1.gridx = 1;
+        gridBagConstraints_1.gridy = 11;
+        gridBagConstraints_1.fill = GridBagConstraints.BOTH;
+        gridBagConstraints_1.weightx = 0.1;
+        gridBagConstraints_1.insets = new java.awt.Insets(5, 5, 5, 5);
+        jPanel3.add(cboCategory, gridBagConstraints_1);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -329,6 +341,7 @@ public class waterView extends javax.swing.JFrame implements cuaSoView {
     private javax.swing.JTextField txtUnitName;
     private javax.swing.JTextField txtUnitPrice;
     private javax.swing.JTextField txtUrlImage;
+    private GridBagConstraints gridBagConstraints_1;
 }
 
 

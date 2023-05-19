@@ -50,7 +50,7 @@ public class loginView extends JFrame {
         getContentPane().add(panel_1);
         panel_1.setLayout(null);
         
-        JLabel lblNewLabel = new JLabel("Login Page");
+        JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setForeground(new Color(255, 255, 255));
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lblNewLabel.setBounds(117, 24, 123, 34);
@@ -148,7 +148,11 @@ public class loginView extends JFrame {
         });
         btnNewButton.setBounds(169, 243, 96, 34);
         panel_1.add(btnNewButton);
+<<<<<<< HEAD
         btnNewButton.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\register_login_signup_icon_219991.png"));
+=======
+//        btnNewButton.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\register_login_signup_icon_219991.png"));
+>>>>>>> 9abdd73e09be36debf1dc34af43afb2be2cedce6
         
         JLabel lblNewLabel_2 = new JLabel("");
         lblNewLabel_2.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\logo.png"));

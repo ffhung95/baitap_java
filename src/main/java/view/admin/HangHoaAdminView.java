@@ -33,6 +33,7 @@ import java.awt.ScrollPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 public class HangHoaAdminView extends JFrame {
 
@@ -63,21 +64,22 @@ public class HangHoaAdminView extends JFrame {
 		getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 676, 453);
+		panel.setBackground(new Color(236, 255, 255));
+		panel.setBounds(0, 0, 676, 461);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		textField_timkiem = new JTextField();
-		textField_timkiem.setBounds(447, 14, 219, 27);
+		textField_timkiem.setBounds(411, 15, 219, 27);
 		panel.add(textField_timkiem);
 		textField_timkiem.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Tìm kiếm");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(348, 11, 89, 30);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(349, 15, 61, 27);
 		panel.add(lblNewLabel);
 
-		JButton btnNewButton = new JButton("tìm kiếm");
+		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String tensanpham = textField_timkiem.getText();
@@ -88,23 +90,32 @@ public class HangHoaAdminView extends JFrame {
 					if (HangHoaRepository.searchByName(tensanpham) != null) {
 						List<hangHoa> list = HangHoaRepository.searchByName(tensanpham);
 						defaultTableModel.setRowCount(0);
-						for (hangHoa hh : list) {
-							defaultTableModel.addRow(new Object[] { hh.getMaHangHoa(), hh.getTenHangHoa(),
-									hh.getGiaHangHoa(), hh.getSoLuong(), hh.getTenLoaiHang(), hh.getAnhHangHoa() });
+						for (hangHoa hanghoa : list) {
+							if(hanghoa.getSoLuong()>0) {
+							defaultTableModel.addRow(new Object[] { hanghoa.getMaHangHoa(), hanghoa.getTenHangHoa(),
+									hanghoa.getGiaHangHoa(), hanghoa.getSoLuong(), hanghoa.getTenLoaiHang(), hanghoa.getAnhHangHoa() });
 							defaultTableModel.fireTableDataChanged();
+							}
 						}
+						
 					}
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnNewButton.setBounds(446, 50, 94, 21);
+		btnNewButton.setContentAreaFilled(false); 
+		ImageIcon iconSearch = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\search.png");
+		btnNewButton.setIcon(iconSearch);
+		btnNewButton.setBounds(633, 15, 33, 27);
 		panel.add(btnNewButton);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 10, 185, 443);
+		panel_1.setBorder(null);
+		panel_1.setBackground(new Color(236, 255, 255));
+		panel_1.setBounds(0, 0, 195, 461);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -115,10 +126,12 @@ public class HangHoaAdminView extends JFrame {
 
 			}
 		});
-		btnThmLoiHng.setBounds(0, 172, 185, 78);
+		ImageIcon iconAdd = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\add.png");
+		btnThmLoiHng.setIcon(iconAdd);
+		btnThmLoiHng.setBounds(10, 210, 175, 39);
 		panel_1.add(btnThmLoiHng);
 
-		JButton btnngXut = new JButton("Thoát");
+		JButton btnngXut = new JButton("");
 		btnngXut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -126,7 +139,10 @@ public class HangHoaAdminView extends JFrame {
 				trangchuview.setVisible(true);
 			}
 		});
-		btnngXut.setBounds(0, 356, 185, 77);
+		btnngXut.setOpaque(false); 
+		btnngXut.setContentAreaFilled(false); 
+		btnngXut.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\return.png"));
+		btnngXut.setBounds(0, 0, 36, 25);
 		panel_1.add(btnngXut);
 
 		JButton btnThmSnPhm = new JButton("Sản phẩm");
@@ -135,22 +151,25 @@ public class HangHoaAdminView extends JFrame {
 				hangHoaCon.add(hangHoaVi);
 			}
 		});
-		btnThmSnPhm.setBounds(0, 251, 185, 78);
+		ImageIcon iconAdd2 = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\add.png");
+		btnThmSnPhm.setIcon(iconAdd2);
+		btnThmSnPhm.setBounds(10, 271, 175, 39);
 		panel_1.add(btnThmSnPhm);
 
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		separator_1.setBounds(0, 339, 185, 2);
-		panel_1.add(separator_1);
+//		JSeparator separator_1 = new JSeparator();
+//		separator_1.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
+//		separator_1.setBounds(0, 339, 185, 2);
+//		panel_1.add(separator_1);
 
-		JSeparator separator_1_1 = new JSeparator();
-		separator_1_1.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		separator_1_1.setBounds(0, 160, 185, 2);
-		panel_1.add(separator_1_1);
+//		JSeparator separator_1_1 = new JSeparator();
+//		separator_1_1.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
+//		separator_1_1.setBounds(0, 160, 185, 2);
+//		panel_1.add(separator_1_1);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\download.jfif"));
-		lblNewLabel_1.setBounds(0, 10, 175, 147);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin128.png"));
+		lblNewLabel_1.setBounds(24, 60, 151, 126);
 		panel_1.add(lblNewLabel_1);
 
 		JButton btnHy = new JButton("Hủy");
@@ -160,16 +179,17 @@ public class HangHoaAdminView extends JFrame {
 				loadtable();
 			}
 		});
-		btnHy.setBounds(572, 51, 94, 21);
+		btnHy.setBounds(562, 50, 68, 27);
 		panel.add(btnHy);
 
 		JLabel lblNewLabel_2 = new JLabel("Thông tin sản phẩm");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(373, 95, 144, 27);
+		lblNewLabel_2.setBounds(379, 108, 144, 27);
 		panel.add(lblNewLabel_2);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(205, 120, 447, 304);
+		scrollPane.getViewport().setBackground(new Color(255, 255, 255));
+		scrollPane.setBounds(219, 146, 447, 304);
 		panel.add(scrollPane);
 
 		table = new JTable();

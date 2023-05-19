@@ -35,6 +35,7 @@ import javax.swing.JLabel;
 
 	import javax.swing.JPasswordField;
 	import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 	public class registerAdmin extends JFrame {
 		public File file;
@@ -81,39 +82,39 @@ import javax.swing.JLabel;
 			setContentPane(contentPane);
 			contentPane.setLayout(null);
 			panel = new JPanel();
-			panel.setBackground(new Color(0, 250, 154));
+			panel.setBackground(new Color(236, 255, 255));
 			panel.setBounds(10, 10, 666, 653);
 			contentPane.add(panel);
 			panel.setLayout(null);
 			
 			panel_1 = new JPanel();
-			panel_1.setBackground(new Color(255, 255, 255));
+			panel_1.setBackground(new Color(236, 255, 255));
 			panel_1.setBorder(new TitledBorder(null, "Th\u00F4ng tin nh\u00E2n vi\u00EAn", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 			panel_1.setBounds(28, 61, 486, 279);
 			panel.add(panel_1);
 			panel_1.setLayout(null);
 			
-			taikhoan_jlabel = new JLabel("Tài khoản");
+			taikhoan_jlabel = new JLabel("Tài khoản :");
 			taikhoan_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			taikhoan_jlabel.setBounds(26, 26, 85, 19);
 			panel_1.add(taikhoan_jlabel);
 			
-			matkhau_jlabel = new JLabel("Mật khẩu");
+			matkhau_jlabel = new JLabel("Mật khẩu :");
 			matkhau_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			matkhau_jlabel.setBounds(26, 67, 73, 19);
 			panel_1.add(matkhau_jlabel);
 			
-			hoten_jlabel = new JLabel("Họ tên");
+			hoten_jlabel = new JLabel("Họ tên :");
 			hoten_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			hoten_jlabel.setBounds(26, 107, 73, 19);
 			panel_1.add(hoten_jlabel);
 			
-			sdt_jlabel = new JLabel("SDT");
+			sdt_jlabel = new JLabel("SĐT :");
 			sdt_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			sdt_jlabel.setBounds(26, 144, 73, 19);
 			panel_1.add(sdt_jlabel);
 			
-			avatar_jlabel = new JLabel("Avatar");
+			avatar_jlabel = new JLabel("Avatar :");
 			avatar_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			avatar_jlabel.setBounds(26, 184, 73, 19);
 			panel_1.add(avatar_jlabel);
@@ -200,13 +201,19 @@ import javax.swing.JLabel;
 			panel_1.add(matkhau_jpfile);
 		
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(0, 0, 0)));
 			scrollPane.setBounds(28, 382, 483, 202);
+			scrollPane.getViewport().setBackground(new Color(255, 255, 255));
 			panel.add(scrollPane);
 			
 			
 			
+			
 			dangnhap_jbutton = new JButton("Đăng nhập");
+			dangnhap_jbutton.setHorizontalAlignment(SwingConstants.LEFT);
+			ImageIcon iconReturn = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\return.png");
+			dangnhap_jbutton.setIcon(iconReturn);
+			dangnhap_jbutton.setBackground(new Color(10, 231, 231));
+			dangnhap_jbutton.setForeground(new Color(255, 255, 255));
 			dangnhap_jbutton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();	
@@ -215,7 +222,7 @@ import javax.swing.JLabel;
 					
 				}
 			});
-			dangnhap_jbutton.setBounds(28, 10, 127, 21);
+			dangnhap_jbutton.setBounds(28, 10, 124, 21);
 			panel.add(dangnhap_jbutton);
 			
 			thongtinadmin_table = new JTable();

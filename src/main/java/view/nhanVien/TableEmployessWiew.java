@@ -68,6 +68,17 @@ public class TableEmployessWiew extends JFrame {
 		});
 		btnNewButton_1.setBounds(159, 197, 85, 21);
 		getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_1_1 = new JButton("Quay lại");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TrangChuNV view = new TrangChuNV();
+				view.setVisible(true);
+			}
+		});
+		btnNewButton_1_1.setBounds(294, 197, 85, 21);
+		getContentPane().add(btnNewButton_1_1);
 		this.init();
 		this.setVisible(true);
 	}

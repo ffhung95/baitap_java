@@ -69,7 +69,7 @@ public class hangHoaRepository extends DAO<hangHoa> {
 			String query = "INSERT INTO hanghoa (tenhanghoa, giahanghoa, soluong, tenloaihang, anhhanghoa) VALUES ( ?, ?, ?, ?, ?)";
 			statement = connection.prepareStatement(query);
 			statement.setNString(1, t.getTenHangHoa());
-			statement.setDouble(2, t.getGiaHangHoa());
+			statement.setFloat(2, t.getGiaHangHoa());
 			statement.setInt(3, t.getSoLuong());
 			statement.setString(4, t.getTenLoaiHang());
 			statement.setBytes(5, t.getAnhHangHoa());
@@ -96,7 +96,7 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		String query = "UPDATE hanghoa SET tenhanghoa = ?, giahanghoa = ?, soluong = ?, tenloaihang = ?, anhhanghoa = ? WHERE mahanghoa = ?";
 		PreparedStatement stmt = conn.prepareStatement(query);
 		stmt.setNString(1, t.getTenHangHoa());
-		stmt.setDouble(2, t.getGiaHangHoa());
+		stmt.setFloat(2, t.getGiaHangHoa());
 		stmt.setInt(3, t.getSoLuong());
 		stmt.setString(4, t.getTenLoaiHang());
 		stmt.setBytes(5, t.getAnhHangHoa());
