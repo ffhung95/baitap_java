@@ -148,7 +148,7 @@ public class loginView extends JFrame {
         });
         btnNewButton.setBounds(169, 243, 96, 34);
         panel_1.add(btnNewButton);
-        btnNewButton.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\register_login_signup_icon_219991.png"));
+        btnNewButton.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\register_login_signup_icon_219991.png"));
         
         JLabel lblNewLabel_2 = new JLabel("");
         lblNewLabel_2.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\logo.png"));

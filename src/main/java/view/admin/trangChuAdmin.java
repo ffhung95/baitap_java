@@ -59,7 +59,7 @@ public class trangChuAdmin extends JFrame {
 		
 		panel_1 = new JPanel();
 		panel_1.setBorder(new EmptyBorder(5, 3, 0, 0));
-		panel_1.setBackground(Color.WHITE);
+		panel_1.setBackground(Color.BLUE);
 		panel_1.setBounds(0, 0, 1, 360);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -71,12 +71,12 @@ public class trangChuAdmin extends JFrame {
 				closeMenuBar();
 			}
 		});
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\hung\\eclipse-workspace\\baitap_java\\src\\main\\resources\\images\\cancel_close_delete_exit_logout_remove_x_icon_123217.png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\cancel_close_delete_exit_logout_remove_x_icon_123217.png"));
 		lblNewLabel.setBounds(116, 10, 32, 23);
 		panel_1.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\hung\\eclipse-workspace\\baitap_java\\src\\main\\resources\\images\\student_work_office_desk_work_space_computer_working_support_icon_191191.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\student_work_office_desk_work_space_computer_working_support_icon_191191.png"));
 		lblNewLabel_1.setBounds(20, 10, 96, 78);
 		panel_1.add(lblNewLabel_1);
 		
@@ -139,7 +139,7 @@ public class trangChuAdmin extends JFrame {
 
 			
 		});
-		lblNewLabel_3.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\bar-menu_icon-icons.com_70305.png"));
+		lblNewLabel_3.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\bar-menu_icon-icons.com_70305.png"));
 		lblNewLabel_3.setBounds(10, 10, 40, 26);
 		panel.add(lblNewLabel_3);
 		
@@ -150,7 +150,7 @@ public class trangChuAdmin extends JFrame {
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\nhuong-quyen-highland-coffee.png"));
+		lblNewLabel_6.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\nhuong-quyen-highland-coffee.png"));
 		lblNewLabel_6.setBounds(0, 5, 686, 303);
 		panel_2.add(lblNewLabel_6);
 		

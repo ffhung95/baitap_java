@@ -42,6 +42,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -154,7 +156,7 @@ public class MenuView extends JFrame {
 	                @Override
 	                public void actionPerformed(ActionEvent e) {
 	                    // Tạo JFrame mới để hiển thị menu
-	                    thucDon();
+//	                    thucDon();
 	                }
 	            });
 	                oder.setPreferredSize(new Dimension(100, 50));
