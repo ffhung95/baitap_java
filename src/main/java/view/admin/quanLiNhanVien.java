@@ -118,7 +118,7 @@ public class quanLiNhanVien extends JFrame {
         
         chucvu_combobox = new JComboBox();
         chucvu_combobox.setModel(new DefaultComboBoxModel(new String[] {"", "Quản Lí", "Nhân Viên phục vụ"}));
-        chucvu_combobox.setBounds(439, 76, 86, 21);
+        chucvu_combobox.setBounds(439, 76, 100, 21);
         panel.add(chucvu_combobox);
         
         luong_jtfiel = new JTextField();
@@ -128,6 +128,7 @@ public class quanLiNhanVien extends JFrame {
         
         JButton btnNewButton = new JButton("Thêm");
         btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
+        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		nhanVienModel nhanVienModel = new nhanVienModel();
@@ -193,6 +194,7 @@ public class quanLiNhanVien extends JFrame {
         panel.add(btnNewButton);
         
         JButton btnXa  = new JButton("Xóa");
+        btnXa.setFont(new Font("Tahoma", Font.PLAIN, 11));
         btnXa.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		NhanVienReposity nhanvienrepository= new NhanVienReposity();
@@ -224,11 +226,12 @@ public class quanLiNhanVien extends JFrame {
         
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(10, 189, 666, 124);
+        scrollPane.getViewport().setBackground(new Color(255, 255, 255));
         getContentPane().add(scrollPane);
         
         table = new JTable();
         table.setEnabled(false);
-        table.setBackground(new Color(236, 255, 255));
+        table.setBackground(new Color(255, 255, 255));
         table.setModel(new DefaultTableModel(
         	new Object[][] {
         	},
@@ -240,6 +243,8 @@ public class quanLiNhanVien extends JFrame {
         
         JButton btnNewButton_1 = new JButton("");
         btnNewButton_1.setBackground(new Color(236, 255, 255));
+        btnNewButton_1.setOpaque(false); 
+        btnNewButton_1.setContentAreaFilled(false); 
         btnNewButton_1.getModel().setRollover(false);
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {

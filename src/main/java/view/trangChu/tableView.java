@@ -13,6 +13,7 @@ import view.nhanVien.TableEmployessWiew;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 
 public class tableView extends javax.swing.JFrame implements cuaSoView {
@@ -57,8 +58,11 @@ public class tableView extends javax.swing.JFrame implements cuaSoView {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel1.setBorder(null);
+        jPanel1.setBackground(new Color(236, 255, 255));
         lbTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel2.setBackground(new Color(236, 255, 255));
         btnOK = new javax.swing.JButton();
         btnOK.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -99,6 +103,7 @@ public class tableView extends javax.swing.JFrame implements cuaSoView {
         	}
         });
         jPanel3 = new javax.swing.JPanel();
+        jPanel3.setBackground(new Color(236, 255, 255));
         txtName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 

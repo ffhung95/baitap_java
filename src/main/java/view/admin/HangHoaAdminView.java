@@ -65,21 +65,21 @@ public class HangHoaAdminView extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(236, 255, 255));
-		panel.setBounds(0, 0, 676, 453);
+		panel.setBounds(0, 0, 676, 461);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		textField_timkiem = new JTextField();
-		textField_timkiem.setBounds(447, 14, 219, 27);
+		textField_timkiem.setBounds(411, 15, 219, 27);
 		panel.add(textField_timkiem);
 		textField_timkiem.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("Tìm kiếm");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(348, 11, 89, 30);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(349, 15, 61, 27);
 		panel.add(lblNewLabel);
 
-		JButton btnNewButton = new JButton("tìm kiếm");
+		JButton btnNewButton = new JButton("");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String tensanpham = textField_timkiem.getText();
@@ -106,13 +106,16 @@ public class HangHoaAdminView extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(446, 50, 94, 34);
+		btnNewButton.setContentAreaFilled(false); 
+		ImageIcon iconSearch = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\search.png");
+		btnNewButton.setIcon(iconSearch);
+		btnNewButton.setBounds(633, 15, 33, 27);
 		panel.add(btnNewButton);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(null);
 		panel_1.setBackground(new Color(236, 255, 255));
-		panel_1.setBounds(10, 10, 185, 443);
+		panel_1.setBounds(0, 0, 195, 461);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -123,10 +126,12 @@ public class HangHoaAdminView extends JFrame {
 
 			}
 		});
-		btnThmLoiHng.setBounds(0, 210, 175, 39);
+		ImageIcon iconAdd = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\add.png");
+		btnThmLoiHng.setIcon(iconAdd);
+		btnThmLoiHng.setBounds(10, 210, 175, 39);
 		panel_1.add(btnThmLoiHng);
 
-		JButton btnngXut = new JButton("Thoát");
+		JButton btnngXut = new JButton("");
 		btnngXut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -134,7 +139,10 @@ public class HangHoaAdminView extends JFrame {
 				trangchuview.setVisible(true);
 			}
 		});
-		btnngXut.setBounds(0, 0, 97, 47);
+		btnngXut.setOpaque(false); 
+		btnngXut.setContentAreaFilled(false); 
+		btnngXut.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\return.png"));
+		btnngXut.setBounds(0, 0, 36, 25);
 		panel_1.add(btnngXut);
 
 		JButton btnThmSnPhm = new JButton("Sản phẩm");
@@ -143,7 +151,9 @@ public class HangHoaAdminView extends JFrame {
 				hangHoaCon.add(hangHoaVi);
 			}
 		});
-		btnThmSnPhm.setBounds(0, 272, 175, 39);
+		ImageIcon iconAdd2 = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\add.png");
+		btnThmSnPhm.setIcon(iconAdd2);
+		btnThmSnPhm.setBounds(10, 271, 175, 39);
 		panel_1.add(btnThmSnPhm);
 
 //		JSeparator separator_1 = new JSeparator();
@@ -169,16 +179,17 @@ public class HangHoaAdminView extends JFrame {
 				loadtable();
 			}
 		});
-		btnHy.setBounds(572, 51, 94, 33);
+		btnHy.setBounds(562, 50, 68, 27);
 		panel.add(btnHy);
 
 		JLabel lblNewLabel_2 = new JLabel("Thông tin sản phẩm");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(373, 95, 144, 27);
+		lblNewLabel_2.setBounds(379, 108, 144, 27);
 		panel.add(lblNewLabel_2);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(205, 120, 447, 304);
+		scrollPane.getViewport().setBackground(new Color(255, 255, 255));
+		scrollPane.setBounds(219, 146, 447, 304);
 		panel.add(scrollPane);
 
 		table = new JTable();

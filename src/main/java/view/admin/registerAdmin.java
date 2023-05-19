@@ -201,8 +201,8 @@ import javax.swing.SwingConstants;
 			panel_1.add(matkhau_jpfile);
 		
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBorder(new MatteBorder(3, 3, 3, 3, (Color) new Color(0, 0, 0)));
 			scrollPane.setBounds(28, 382, 483, 202);
+			scrollPane.getViewport().setBackground(new Color(255, 255, 255));
 			panel.add(scrollPane);
 			
 			

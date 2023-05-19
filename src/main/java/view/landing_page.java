@@ -53,7 +53,7 @@ public class landing_page extends JFrame {
 	                for (int i = 0; i <= 100; i++) {
 	                    final int progressValue = i;
 	                    javax.swing.SwingUtilities.invokeLater(() -> progressBar.setValue(progressValue));
-	                    Thread.sleep(40);
+	                    Thread.sleep(15);
 	                }
 	            } catch (InterruptedException e) {
 	                e.printStackTrace();

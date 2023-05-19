@@ -50,7 +50,7 @@ public class loginView extends JFrame {
         getContentPane().add(panel_1);
         panel_1.setLayout(null);
         
-        JLabel lblNewLabel = new JLabel("Login Page");
+        JLabel lblNewLabel = new JLabel("");
         lblNewLabel.setForeground(new Color(255, 255, 255));
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
         lblNewLabel.setBounds(117, 24, 123, 34);

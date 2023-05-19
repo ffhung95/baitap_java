@@ -150,22 +150,17 @@ public class trangChuAdmin extends JFrame {
 		lblNewLabel_3.setBounds(10, 10, 32, 26);
 		panel.add(lblNewLabel_3);
 		
-		JPanel panel_2 = new JPanel();
-//		panel_2.setBackground(new Color(240, 240, 240));
-		panel_2.setBounds(568, 0, 118, 86);
-		panel.add(panel_2);
-		panel_2.setLayout(null);
-		
 //		JLabel lblNewLabel_6 = new JLabel("");
 //		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
 //		lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\nhuong-quyen-highland-coffee.png"));
 //		lblNewLabel_6.setBounds(0, 5, 686, 303);
 //		panel_2.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_4 = new JLabel("Coffee");
+		JLabel lblNewLabel_4 = new JLabel("");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_4.setBounds(265, 0, 161, 36);
+		lblNewLabel_4.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\logo.png"));
+		lblNewLabel_4.setBounds(168, 0, 518, 363);
 		panel.add(lblNewLabel_4);
 		
 	}
