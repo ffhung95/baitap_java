@@ -19,7 +19,7 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	public ArrayList<hangHoa> getAll() throws SQLException {
 		ArrayList<hangHoa> foodItems = new ArrayList<>();
 		Statement statement = conn.createStatement();
-		String query = "SELECT * FROM hanghoa ORDER BY tenloaihang ASC ";
+		String query = "SELECT * FROM hanghoa ORDER BY maloaihang ASC ,maadmin ASC";
 		ResultSet rs = statement.executeQuery(query);
 		while (rs.next()) {
 			hangHoa foodItem = hangHoa.getFromResultSet(rs);
@@ -31,7 +31,7 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	public ArrayList<hangHoa> getByIdCategory(String tenCategory) throws SQLException {
 		ArrayList<hangHoa> foodItems = new ArrayList<>();
 		Statement statement = conn.createStatement();
-		String query = "SELECT * FROM hanghoa WHERE tenloaihang = " + tenCategory;
+		String query = "SELECT * FROM hanghoa WHERE maloaihang = " + tenCategory;
 		ResultSet rs = statement.executeQuery(query);
 		while (rs.next()) {
 			hangHoa foodItem = hangHoa.getFromResultSet(rs);
@@ -56,33 +56,33 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		PreparedStatement stmt = conn.prepareStatement("DELETE FROM hanghoa WHERE mahanghoa = ?");
 		stmt.setInt(1, id);
 		stmt.executeUpdate();
-
 	}
 
 	@Override
 	public void save(hangHoa t) throws SQLException {
 		if (t == null) {
-			throw new SQLException("Food item rỗng");
+			throw new SQLException("Food item rá»—ng");
 		}
 		try {
 			connection = MySQLConnecttion.getConnection();
-			String query = "INSERT INTO hanghoa (tenhanghoa, giahanghoa, soluong, tenloaihang, anhhanghoa) VALUES ( ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO hanghoa (tenhanghoa, giahanghoa, soluong, maloaihang, maadmin, anhhanghoa) VALUES ( ?, ?, ?, ?, ?,?)";
 			statement = connection.prepareStatement(query);
 			statement.setNString(1, t.getTenHangHoa());
 			statement.setFloat(2, t.getGiaHangHoa());
 			statement.setInt(3, t.getSoLuong());
-			statement.setString(4, t.getTenLoaiHang());
-			statement.setBytes(5, t.getAnhHangHoa());
+			statement.setInt(4, t.getMaloaihang());
+			statement.setInt(5, t.getIdAdmin());
+			statement.setBytes(6, t.getAnhHangHoa());
 			int row = statement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			e.printStackTrace();
 		} finally {
 			try {
 				connection.close();
 				statement.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}
@@ -91,22 +91,23 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	@Override
 	public void update(hangHoa t) throws SQLException {
 		if (t == null) {
-			throw new SQLException("Food item rỗng");
+			throw new SQLException("Food item rá»—ng");
 		}
-		String query = "UPDATE hanghoa SET tenhanghoa = ?, giahanghoa = ?, soluong = ?, tenloaihang = ?, anhhanghoa = ? WHERE mahanghoa = ?";
+		String query = "UPDATE hanghoa SET tenhanghoa = ?, giahanghoa = ?, soluong = ?, maloaihang = ?, maadmin=? , anhhanghoa = ? WHERE mahanghoa = ?";
 		PreparedStatement stmt = conn.prepareStatement(query);
 		stmt.setNString(1, t.getTenHangHoa());
 		stmt.setFloat(2, t.getGiaHangHoa());
 		stmt.setInt(3, t.getSoLuong());
-		stmt.setString(4, t.getTenLoaiHang());
-		stmt.setBytes(5, t.getAnhHangHoa());
-		stmt.setInt(6, t.getMaHangHoa());
+		statement.setInt(4, t.getMaloaihang());
+		stmt.setInt(5, t.getIdAdmin());
+		stmt.setBytes(6, t.getAnhHangHoa());
+		stmt.setInt(7, t.getMaHangHoa());
 		int row = stmt.executeUpdate();
 
 	}
 	public void capNhatSoLuong(hangHoa t) throws SQLException {
 		if (t == null) {
-			throw new SQLException("Food item rỗng");
+			throw new SQLException("Food item rá»—ng");
 		}
 		try {
 		connection = MySQLConnecttion.getConnection();
@@ -116,14 +117,14 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		statement.setInt(2, t.getMaHangHoa());
 		int row = statement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			e.printStackTrace();
 		} finally {
 			try {
 				connection.close();
 				statement.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}

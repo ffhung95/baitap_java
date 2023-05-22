@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-/test/
-/view/
-/META-INF/
-=======
 /META-INF/
 /view/
->>>>>>> 9abdd73e09be36debf1dc34af43afb2be2cedce6
+/controller/
 /model/
 /repository/
-/controller/
-/database/
+/utils/

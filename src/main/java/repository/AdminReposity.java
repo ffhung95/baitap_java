@@ -7,23 +7,22 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import database.MySQLConnecttion;
-import model.admin;
+import model.Admin;
 
 public class AdminReposity {
 	private Connection connection = null;
 	private PreparedStatement statement = null;
 	private ResultSet rs = null;
 
-	public List<admin> getAdmin() {
-
-		List<admin> list = new LinkedList<admin>();
+	public List<Admin> getAdmin() {
+		List<Admin> list = new LinkedList<Admin>();
 		try {
 			connection = MySQLConnecttion.getConnection();
 			String query = "SELECT * FROM btl_qlcf.admin ";
 			statement = connection.prepareStatement(query);
 			rs = statement.executeQuery();
 			while (rs.next()) {
-				admin adminrepository = new admin();
+				Admin adminrepository = new Admin();
 				adminrepository.setMaadmin(rs.getInt("maadmin"));
 				adminrepository.setTaikhoan(rs.getString("taikhoan"));
 				adminrepository.setMatkhau(rs.getString("matkhau"));
@@ -33,7 +32,7 @@ public class AdminReposity {
 				list.add(adminrepository);
 			}
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -41,14 +40,14 @@ public class AdminReposity {
 				statement.close();
 				rs.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}
 		return list;
 	}
 
-	public admin selectById(admin t) {
+	public Admin selectById(Admin t) {
 		try {
 			connection = MySQLConnecttion.getConnection();
 			String query = "SELECT * FROM btl_qlcf.admin WHERE maadmin = ?";
@@ -56,7 +55,7 @@ public class AdminReposity {
 			statement.setInt(1, t.getMaadmin());
 			rs = statement.executeQuery();
 			while (rs.next()) {
-				admin adminrepository = new admin();
+				Admin adminrepository = new Admin();
 				adminrepository.setMaadmin(rs.getInt("maadmin"));
 				adminrepository.setTaikhoan(rs.getString("taikhoan"));
 				adminrepository.setMatkhau(rs.getString("matkhau"));
@@ -66,7 +65,7 @@ public class AdminReposity {
 				return adminrepository;
 			}
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -74,14 +73,45 @@ public class AdminReposity {
 				statement.close();
 				rs.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	public Admin get(int id) {
+		try {
+			connection = MySQLConnecttion.getConnection();
+			String query = "SELECT * FROM btl_qlcf.admin WHERE maadmin = "+id;
+			statement = connection.prepareStatement(query);
+			rs = statement.executeQuery();
+			while (rs.next()) {
+				Admin adminrepository = new Admin();
+				adminrepository.setMaadmin(rs.getInt("maadmin"));
+				adminrepository.setTaikhoan(rs.getString("taikhoan"));
+				adminrepository.setMatkhau(rs.getString("matkhau"));
+				adminrepository.setHoten(rs.getString("hoten"));
+				adminrepository.setSdt(rs.getString("sdt"));
+				adminrepository.setAvatar(rs.getBytes("avatar"));
+				return adminrepository;
+			}
+		} catch (SQLException e) {
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+				statement.close();
+				rs.close();
+			} catch (SQLException e) {
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}
 		return null;
 	}
 
-	public int insertUser(admin kh) {
+	public int insertUser(Admin kh) {
 		int ketqua = 0;
 		try {
 			connection = MySQLConnecttion.getConnection();
@@ -94,14 +124,14 @@ public class AdminReposity {
 			statement.setBytes(5, kh.getAvatar());
 			ketqua = statement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			e.printStackTrace();
 		} finally {
 			try {
 				connection.close();
 				statement.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}
@@ -120,7 +150,7 @@ public class AdminReposity {
 				ketQua = true;
 			}
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -129,7 +159,7 @@ public class AdminReposity {
 				statement.close();
 				rs.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}
@@ -148,7 +178,7 @@ public class AdminReposity {
 				ketQua = true;
 			}
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -157,14 +187,14 @@ public class AdminReposity {
 				statement.close();
 				rs.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}
 		return ketQua;
 	}
 
-	public admin seclectByTenDangNhapVaMatKhau(admin t) {
+	public Admin seclectByTenDangNhapVaMatKhau(Admin t) {
 		try {
 			connection = MySQLConnecttion.getConnection();
 			String sql = "SELECT * FROM btl_qlcf.admin where taikhoan=?  and matkhau=?";
@@ -173,7 +203,7 @@ public class AdminReposity {
 			statement.setString(2, t.getMatkhau());
 			rs = statement.executeQuery();
 			while (rs.next()) {
-				admin adminrepository = new admin();
+				Admin adminrepository = new Admin();
 				adminrepository.setMaadmin(rs.getInt("maadmin"));
 				adminrepository.setTaikhoan(rs.getString("taikhoan"));
 				adminrepository.setMatkhau(rs.getString("matkhau"));
@@ -183,7 +213,7 @@ public class AdminReposity {
 				return adminrepository;
 			}
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -192,14 +222,14 @@ public class AdminReposity {
 				statement.close();
 				rs.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}
 		return null;
 	}
 
-	public boolean changMatKhau(admin userrepository) {
+	public boolean changMatKhau(Admin userrepository) {
 		int ketqua = 0;
 		try {
 			connection = MySQLConnecttion.getConnection();
@@ -210,14 +240,14 @@ public class AdminReposity {
 			ketqua = statement.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			e.printStackTrace();
 		} finally {
 			try {
 				connection.close();
 				statement.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}
@@ -234,14 +264,14 @@ public class AdminReposity {
 //			ketQua = statement.executeUpdate();
 //
 //		} catch (SQLException e) {
-//			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+//			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 //			e.printStackTrace();
 //		} finally {
 //			try {
 //				connection.close();
 //				statement.close();
 //			} catch (SQLException e) {
-//				System.out.println("Lỗi đóng kết nối");
+//				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 //				e.printStackTrace();
 //			}
 //		}
@@ -270,14 +300,14 @@ public class AdminReposity {
 //			ketQua = statement.executeUpdate();
 //
 //		} catch (SQLException e) {
-//			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+//			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 //			e.printStackTrace();
 //		} finally {
 //			try {
 //				connection.close();
 //				statement.close();
 //			} catch (SQLException e) {
-//				System.out.println("Lỗi đóng kết nối");
+//				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 //				e.printStackTrace();
 //			}
 //		}

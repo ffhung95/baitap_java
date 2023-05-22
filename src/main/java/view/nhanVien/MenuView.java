@@ -46,7 +46,6 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-<<<<<<< HEAD
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
@@ -55,9 +54,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-=======
+
 public class MenuView extends javax.swing.JFrame {
->>>>>>> 9abdd73e09be36debf1dc34af43afb2be2cedce6
+
 
     private JPanel productPanel;
     private tableRepository tableRe;
@@ -81,80 +80,6 @@ public class MenuView extends javax.swing.JFrame {
         banCF();
         setSize(1219, 800);
     }
-
-<<<<<<< HEAD
-	  	                productPanel.add(boxDrink);
-	  	                spQuantity.addChangeListener(new ChangeListener() {
-	  	                @Override
-	  	                public void stateChanged(ChangeEvent e) {
-	  	                    JSpinner source = (JSpinner) e.getSource();
-	  	                     valuess = (Integer) source.getModel().getValue();
-	  	                }
-	  	                });
-	            	}
-	              
-	               
-	               
-	            }
-	            JScrollPane scrollPane = new JScrollPane(productPanel);
-	            pnlProduct.add(scrollPane, BorderLayout.CENTER);// thieets kees layout 
-	            
-	            setTime();
-	            Sunshine();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    public void banCF() {
-	        try {
-	            pnlBanCF.setLayout(new BorderLayout());
-	            deskCfPanel = new JPanel(new GridLayout(0, 1, 10, 10));
-	            tableRepository dao = new tableRepository();
-	            desks = dao.getAll();
-	            for (table desk : desks) {
-	                boxDesk = new JPanel();
-	                boxDesk.setLayout(new BoxLayout(boxDesk, BoxLayout.Y_AXIS));
-	                JLabel nameLbl = new JLabel("Bàn "+ desk.getName());
-	                JButton oder = new JButton("Gọi món");
-	                oder.addActionListener(new ActionListener() {
-	                @Override
-	                public void actionPerformed(ActionEvent e) {
-	                    // Tạo JFrame mới để hiển thị menu
-//	                    thucDon();
-	                }
-	            });
-	                oder.setPreferredSize(new Dimension(100, 50));
-	                JButton pay = new JButton("Thanh toán");
-	                pay.addActionListener(new ActionListener(){
-	                    @Override
-	                public void actionPerformed(ActionEvent e) {
-	                    // Tạo JFrame mới để hiển thị menu
-	                    
-	                }
-	                });
-	                pay.setPreferredSize(new Dimension(100, 50));
-	                boxDesk.add(nameLbl);
-	                boxDesk.add(oder);
-	                boxDesk.add(pay);
-	                deskCfPanel.add(boxDesk);
-	            }
-	            JScrollPane scrollPane = new JScrollPane(deskCfPanel);
-	            pnlBanCF.add(scrollPane, BorderLayout.CENTER);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    public boolean qtyIsZero(int qty){
-	        if(qty == 0) {
-	            JOptionPane.showMessageDialog(null, "Please increase the item quantity");
-	            return false;
-	        }
-	        return true;
-	    }
-	    @SuppressWarnings("unchecked")
-	    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-	    private void initComponents() {
-=======
     public void thucDon() {
         try {
             pnlProduct.setLayout(new BorderLayout());
@@ -164,8 +89,8 @@ public class MenuView extends javax.swing.JFrame {
             for (hangHoa drink : drinks) {
                 boxDrink = new JPanel();
                 boxDrink.setLayout(new BoxLayout(boxDrink, BoxLayout.Y_AXIS));
-                JLabel nameLbl = new JLabel("Tên: " + drink.getTenHangHoa());
-                JLabel priceLbl = new JLabel("Giá: " + drink.getGiaHangHoa() + " VND");
+                JLabel nameLbl = new JLabel("TÃªn: " + drink.getTenHangHoa());
+                JLabel priceLbl = new JLabel("GiÃ¡: " + drink.getGiaHangHoa() + " VND");
                 JLabel imageLbl = new JLabel();
                 byte[] bytes = (byte[]) drink.getAnhHangHoa();
                 ImageIcon icon = new ImageIcon(bytes);
@@ -174,7 +99,7 @@ public class MenuView extends javax.swing.JFrame {
                
                 JPanel quantityPnl = new JPanel();
                 quantityPnl.setLayout(new BoxLayout(quantityPnl, BoxLayout.X_AXIS));
-                JLabel quantityLbl = new JLabel("Số lượng: ");
+                JLabel quantityLbl = new JLabel("Sá»‘ lÆ°á»£ng: ");
                 SpinnerNumberModel model = new SpinnerNumberModel(0, 0, 100, 1);
                 spQuantity = new JSpinner(model);
                 spQuantity.setMaximumSize(new Dimension(60, spQuantity.getPreferredSize().height));
@@ -183,7 +108,7 @@ public class MenuView extends javax.swing.JFrame {
                 quantityPnl.add(quantityLbl);
                 quantityPnl.add(spQuantity);
                 quantityPnl.setAlignmentX(LEFT_ALIGNMENT);
-                //Gá»i vÃ o panel boxDrink
+                //GÃ¡Â»Âi vÃƒÂ o panel boxDrink
                 boxDrink.add(imageLbl);
                 boxDrink.add(nameLbl);
                 boxDrink.add(priceLbl);
@@ -207,7 +132,7 @@ public class MenuView extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
->>>>>>> 9abdd73e09be36debf1dc34af43afb2be2cedce6
+
 
     public void banCF() {
         try {
@@ -218,15 +143,15 @@ public class MenuView extends javax.swing.JFrame {
             for (table desk : desks) {
                 boxDesk = new JPanel();
                 boxDesk.setLayout(new BoxLayout(boxDesk, BoxLayout.Y_AXIS));
-                JLabel nameLbl = new JLabel("Bàn"+ desk.getMaBan()+" "+desk.getTrangthai());
-                JButton oder = new JButton("Gọi món");
+                JLabel nameLbl = new JLabel("BÃ n"+ desk.getMaBan()+" "+desk.getTrangthai());
+                JButton oder = new JButton("Gá»i mÃ³n");
                 oder.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                 	
                     thucDon();
                     desk.setTrangthai(TableStatus.SERVING);
-                    nameLbl.setText("Bàn "+desk.getMaBan()+" "+desk.getTrangthai());
+                    nameLbl.setText("BÃ n "+desk.getMaBan()+" "+desk.getTrangthai());
                     try {
 						tableRe.update(desk);
 					} catch (SQLException e1) {
@@ -236,13 +161,13 @@ public class MenuView extends javax.swing.JFrame {
                 }
             });
                 oder.setPreferredSize(new Dimension(100, 50));
-                JButton pay = new JButton("Thanh toán");
+                JButton pay = new JButton("Thanh toÃ¡n");
                 pay.addActionListener(new ActionListener(){
                     @Override
                 public void actionPerformed(ActionEvent e) {
                     	
                     	 desk.setTrangthai(TableStatus.FREE);
-                    	 nameLbl.setText("Bàn "+desk.getMaBan()+" "+desk.getTrangthai());
+                    	 nameLbl.setText("BÃ n "+desk.getMaBan()+" "+desk.getTrangthai());
                     	 try {
      						tableRe.update(desk);
      					} catch (SQLException e1) {
@@ -292,7 +217,7 @@ public class MenuView extends javax.swing.JFrame {
 
     public boolean qtyIsZero(int qty) {
         if (qty == 0) {
-            JOptionPane.showMessageDialog(jpn_Menu, "Vui lòng chọn số lượng");
+            JOptionPane.showMessageDialog(jpn_Menu, "Vui lÃ²ng chá»n sá»‘ lÆ°á»£ng");
             return false;
         }
         return true;
@@ -345,7 +270,7 @@ public class MenuView extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 51));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Thá»±c Ä‘Æ¡n");
+        jLabel2.setText("ThÃ¡Â»Â±c Ã„â€˜Ã†Â¡n");
 
         jTxtDate.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
 
@@ -404,7 +329,7 @@ public class MenuView extends javax.swing.JFrame {
         });
 
         btn_Inhoadon.setBackground(new java.awt.Color(51, 255, 204));
-        btn_Inhoadon.setText("In hÃ³a Ä‘Æ¡n");
+        btn_Inhoadon.setText("In hÃƒÂ³a Ã„â€˜Ã†Â¡n");
         btn_Inhoadon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_InhoadonActionPerformed(evt);
@@ -578,7 +503,7 @@ public class MenuView extends javax.swing.JFrame {
                 menuMap.remove(id);
             } else {
                 menuMap.put(id, prices);
-                // Cáº­p nháº­t sá»‘ lÆ°á»£ng mÃ³n trong bill
+                // CÃ¡ÂºÂ­p nhÃ¡ÂºÂ­t sÃ¡Â»â€˜ lÃ†Â°Ã¡Â»Â£ng mÃƒÂ³n trong bill
                 String newText = textBill.getText().replaceAll(name + "\t\t\t" + oldPrices + "\n", name + "\t\t\t" + prices + "\n");
                 textBill.setText(newText);
             }
@@ -605,7 +530,7 @@ public class MenuView extends javax.swing.JFrame {
             total += prices;
         }
         if (total == 0.0) {
-            JOptionPane.showMessageDialog(jpn_Menu, "Bạn chưa chọn món!");
+            JOptionPane.showMessageDialog(jpn_Menu, "Báº¡n chÆ°a chá»n mÃ³n!");
 
         } else {
             textBill.setText(textBill.getText() + "\n**********************************************\n"
@@ -628,10 +553,10 @@ public class MenuView extends javax.swing.JFrame {
                     Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                JOptionPane.showMessageDialog(jpn_Menu, "Bạn chưa thanh toán");
+                JOptionPane.showMessageDialog(jpn_Menu, "Báº¡n chÆ°a thanh toÃ¡n");
             }
         } else {
-            JOptionPane.showMessageDialog(jpn_Menu, "Bạn chưa mua sản phẩm nào");
+            JOptionPane.showMessageDialog(jpn_Menu, "Báº¡n chÆ°a mua sáº£n pháº©m nÃ o");
         }
     }//GEN-LAST:event_btn_InhoadonActionPerformed
     public void Sunshine() {

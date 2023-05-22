@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import database.MySQLConnecttion;
-import model.admin;
+import model.Admin;
 import model.nhanVienModel;
 
 public class NhanVienReposity {
@@ -59,7 +59,8 @@ public class NhanVienReposity {
 	  public nhanVienModel get(int id) throws SQLException {
 		  	connection = MySQLConnecttion.getConnection();
 	        String query = "SELECT * FROM nhanvien WHERE manv= " + id;
-	        ResultSet rs = statement.executeQuery(query);
+			statement = connection.prepareStatement(query);
+			rs = statement.executeQuery();
 	        if (rs.next()) {
 	        	nhanVienModel nhanienrepository = new  nhanVienModel();
 	        	nhanienrepository.setManv(rs.getInt("manv"));
@@ -77,6 +78,30 @@ public class NhanVienReposity {
 	        }
 	        return null;
 	    }
+	  
+		
+//	  public nhanVienModel getNhanVien(String name) throws SQLException {
+//		  	connection = MySQLConnecttion.getConnection();
+//	        String query = "SELECT * FROM nhanvien WHERE taikhoan= " + name;
+//	        ResultSet rs = statement.executeQuery(query);
+//	        if (rs.next()) {
+//	        	nhanVienModel nhanienrepository = new  nhanVienModel();
+//	        	nhanienrepository.setManv(rs.getInt("manv"));
+//				nhanienrepository.setHoten(rs.getString("hotennv"));
+//				nhanienrepository.setTaikhoan(rs.getString("taikhoan"));
+//				nhanienrepository.setMatkhau(rs.getString("matkhau"));
+//				nhanienrepository.setSdt(rs.getString("sdt"));
+//				java.sql.Date nagyvaolam = rs.getDate("ngayvaolam");
+//				if (nagyvaolam != null) {
+//					nhanienrepository.setNgayvaolam(new Date(nagyvaolam.getTime()));
+//				}
+//				nhanienrepository.setChucvu(rs.getString("chucvu"));
+//				nhanienrepository.setLuong(rs.getInt("luong"));
+//	            return nhanienrepository;
+//	        }
+//	        return null;
+//	    }
+	  
 	public nhanVienModel selectById(nhanVienModel t) {
 		try {
 			connection = MySQLConnecttion.getConnection();
@@ -338,5 +363,27 @@ public class NhanVienReposity {
 		}
 		return ketQua;
 	}
+
+//	public nhanVienModel getNhanVien(String taikhoan) {
+//	 	connection = MySQLConnecttion.getConnection();
+//        String query = "SELECT * FROM nhanvien WHERE taikhoan= " + taikhoan;
+//        ResultSet rs = statement.executeQuery(query);
+//        if (rs.next()) {
+//        	nhanVienModel nhanienrepository = new  nhanVienModel();
+//        	nhanienrepository.setManv(rs.getInt("manv"));
+//			nhanienrepository.setHoten(rs.getString("hotennv"));
+//			nhanienrepository.setTaikhoan(rs.getString("taikhoan"));
+//			nhanienrepository.setMatkhau(rs.getString("matkhau"));
+//			nhanienrepository.setSdt(rs.getString("sdt"));
+//			java.sql.Date nagyvaolam = rs.getDate("ngayvaolam");
+//			if (nagyvaolam != null) {
+//				nhanienrepository.setNgayvaolam(new Date(nagyvaolam.getTime()));
+//			}
+//			nhanienrepository.setChucvu(rs.getString("chucvu"));
+//			nhanienrepository.setLuong(rs.getInt("luong"));
+//            return nhanienrepository;
+//        }
+//        return null;
+//	}
 
 }

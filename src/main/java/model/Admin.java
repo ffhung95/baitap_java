@@ -1,7 +1,7 @@
 package model;
 
 import java.util.Arrays;
-public class admin {
+public class Admin {
 	private int maadmin;
 	private String taikhoan;
 	private String matkhau;
@@ -9,10 +9,10 @@ public class admin {
 	private String sdt;
 	byte[] avatar;
 	
-	public admin() {
+	public Admin() {
 		super();
 	}
-	public admin(int maadmin, String taikhoan, String matkhau, String hoten, String sdt, byte[] avatar) {
+	public Admin(int maadmin, String taikhoan, String matkhau, String hoten, String sdt, byte[] avatar) {
 		super();
 		this.maadmin = maadmin;
 		this.taikhoan = taikhoan;
@@ -59,8 +59,7 @@ public class admin {
 	}
 	@Override
 	public String toString() {
-		return "admin [maadmin=" + maadmin + ", taikhoan=" + taikhoan + ", matkhau=" + matkhau + ", hoten=" + hoten
-				+ ", sdt=" + sdt + ", avatar=" + Arrays.toString(avatar) + "]";
+		return hoten ;
 	}
 	
 	

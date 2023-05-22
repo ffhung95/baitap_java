@@ -5,9 +5,12 @@ import javax.swing.JPanel;
 
 import controller.hangHoaController;
 import controller.loaiHangController;
+import model.Admin;
 import model.hangHoa;
 import model.loaiHang;
+import repository.AdminReposity;
 import repository.hangHoaRepository;
+import repository.loaiHangHoaRepository;
 import view.trangChu.hangHoaView;
 import view.trangChu.loaiHangView;
 import view.trangChu.themDonHangView;
@@ -36,7 +39,8 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 public class HangHoaAdminView extends JFrame {
-
+	private loaiHangHoaRepository loaihangrepository;
+	private AdminReposity adminrepository;
 	private loaiHangController loaiHangCon;
 	private hangHoaController hangHoaCon;
 	private loaiHangView loaiHangview;
@@ -46,7 +50,8 @@ public class HangHoaAdminView extends JFrame {
 	private JTable table;
 
 	public HangHoaAdminView() {
-
+		this.loaihangrepository= new loaiHangHoaRepository();
+		this.adminrepository = new AdminReposity();
 		this.loaiHangCon = new loaiHangController();
 		this.loaiHangview = new loaiHangView();
 		this.hangHoaCon = new hangHoaController();
@@ -57,7 +62,7 @@ public class HangHoaAdminView extends JFrame {
 	}
 
 	private void init() {
-		this.setTitle("Hàng Hóa");
+		this.setTitle("HÃ ng HÃ³a");
 		this.setSize(700, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -65,21 +70,21 @@ public class HangHoaAdminView extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(236, 255, 255));
-		panel.setBounds(0, 0, 676, 461);
+		panel.setBounds(0, 0, 676, 453);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		textField_timkiem = new JTextField();
-		textField_timkiem.setBounds(411, 15, 219, 27);
+		textField_timkiem.setBounds(447, 14, 219, 27);
 		panel.add(textField_timkiem);
 		textField_timkiem.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("Tìm kiếm");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(349, 15, 61, 27);
+		JLabel lblNewLabel = new JLabel("TÃ¬m kiáº¿m");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel.setBounds(348, 11, 89, 30);
 		panel.add(lblNewLabel);
 
-		JButton btnNewButton = new JButton("");
+		JButton btnNewButton = new JButton("tÃ¬m kiáº¿m");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String tensanpham = textField_timkiem.getText();
@@ -91,13 +96,14 @@ public class HangHoaAdminView extends JFrame {
 						List<hangHoa> list = HangHoaRepository.searchByName(tensanpham);
 						defaultTableModel.setRowCount(0);
 						for (hangHoa hanghoa : list) {
+							loaiHang tenloaihang=loaihangrepository.get( HangHoa.getMaloaihang());
+							Admin tenadmin= adminrepository.get(HangHoa.getIdAdmin());
 							if(hanghoa.getSoLuong()>0) {
 							defaultTableModel.addRow(new Object[] { hanghoa.getMaHangHoa(), hanghoa.getTenHangHoa(),
-									hanghoa.getGiaHangHoa(), hanghoa.getSoLuong(), hanghoa.getTenLoaiHang(), hanghoa.getAnhHangHoa() });
+									hanghoa.getGiaHangHoa(), hanghoa.getSoLuong(),tenloaihang.getTenLoaiHang(),tenadmin.getHoten(), hanghoa.getAnhHangHoa() });
 							defaultTableModel.fireTableDataChanged();
 							}
 						}
-						
 					}
 					
 				} catch (SQLException e1) {
@@ -106,32 +112,27 @@ public class HangHoaAdminView extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setContentAreaFilled(false); 
-		ImageIcon iconSearch = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\search.png");
-		btnNewButton.setIcon(iconSearch);
-		btnNewButton.setBounds(633, 15, 33, 27);
+		btnNewButton.setBounds(446, 50, 94, 34);
 		panel.add(btnNewButton);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(null);
 		panel_1.setBackground(new Color(236, 255, 255));
-		panel_1.setBounds(0, 0, 195, 461);
+		panel_1.setBounds(10, 10, 185, 443);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		JButton btnThmLoiHng = new JButton("Thêm loại sản phẩm");
+		JButton btnThmLoiHng = new JButton("ThÃªm loáº¡i sáº£n pháº©m");
 		btnThmLoiHng.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loaiHangCon.add(loaiHangview);
 
 			}
 		});
-		ImageIcon iconAdd = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\add.png");
-		btnThmLoiHng.setIcon(iconAdd);
-		btnThmLoiHng.setBounds(10, 210, 175, 39);
+		btnThmLoiHng.setBounds(0, 210, 175, 39);
 		panel_1.add(btnThmLoiHng);
 
-		JButton btnngXut = new JButton("");
+		JButton btnngXut = new JButton("ThoÃ¡t");
 		btnngXut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -139,21 +140,16 @@ public class HangHoaAdminView extends JFrame {
 				trangchuview.setVisible(true);
 			}
 		});
-		btnngXut.setOpaque(false); 
-		btnngXut.setContentAreaFilled(false); 
-		btnngXut.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\return.png"));
-		btnngXut.setBounds(0, 0, 36, 25);
+		btnngXut.setBounds(0, 0, 97, 47);
 		panel_1.add(btnngXut);
 
-		JButton btnThmSnPhm = new JButton("Sản phẩm");
+		JButton btnThmSnPhm = new JButton("Sáº£n pháº©m");
 		btnThmSnPhm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hangHoaCon.add(hangHoaVi);
 			}
 		});
-		ImageIcon iconAdd2 = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\add.png");
-		btnThmSnPhm.setIcon(iconAdd2);
-		btnThmSnPhm.setBounds(10, 271, 175, 39);
+		btnThmSnPhm.setBounds(0, 272, 175, 39);
 		panel_1.add(btnThmSnPhm);
 
 //		JSeparator separator_1 = new JSeparator();
@@ -172,24 +168,23 @@ public class HangHoaAdminView extends JFrame {
 		lblNewLabel_1.setBounds(24, 60, 151, 126);
 		panel_1.add(lblNewLabel_1);
 
-		JButton btnHy = new JButton("Hủy");
+		JButton btnHy = new JButton("Há»§y");
 		btnHy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textField_timkiem.setText("");
 				loadtable();
 			}
 		});
-		btnHy.setBounds(562, 50, 68, 27);
+		btnHy.setBounds(572, 51, 94, 33);
 		panel.add(btnHy);
 
-		JLabel lblNewLabel_2 = new JLabel("Thông tin sản phẩm");
+		JLabel lblNewLabel_2 = new JLabel("ThÃ´ng tin sáº£n pháº©m");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(379, 108, 144, 27);
+		lblNewLabel_2.setBounds(373, 95, 144, 27);
 		panel.add(lblNewLabel_2);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.getViewport().setBackground(new Color(255, 255, 255));
-		scrollPane.setBounds(219, 146, 447, 304);
+		scrollPane.setBounds(205, 120, 447, 304);
 		panel.add(scrollPane);
 
 		table = new JTable();
@@ -202,17 +197,20 @@ public class HangHoaAdminView extends JFrame {
 		hangHoaRepository HangHoaRepository = new hangHoaRepository();
 		defaultTableModel = new DefaultTableModel();
 		defaultTableModel.addColumn("ID");
-		defaultTableModel.addColumn("Tên sản phẩm");
-		defaultTableModel.addColumn("Giá sản phẩm");
-		defaultTableModel.addColumn("Số lượng");
-		defaultTableModel.addColumn("Loại sản phẩm");
-		defaultTableModel.addColumn("Ảnh sản phẩm");
+		defaultTableModel.addColumn("TÃªn sáº£n pháº©m");
+		defaultTableModel.addColumn("GiÃ¡ sáº£n pháº©m");
+		defaultTableModel.addColumn("Sá»‘ lÆ°á»£ng");
+		defaultTableModel.addColumn("Loáº¡i sáº£n pháº©m");
+		defaultTableModel.addColumn("TÃªn quáº£n lÃ­");
+		defaultTableModel.addColumn("áº¢nh sáº£n pháº©m");
 		try {
 			for (hangHoa HangHoa : HangHoaRepository.getAll()) {
 				if(HangHoa.getSoLuong()>0) {
+					loaiHang tenloaihang=loaihangrepository.get( HangHoa.getMaloaihang());
+					Admin tenadmin= adminrepository.get(HangHoa.getIdAdmin());
 					defaultTableModel
 					.addRow(new Object[] { HangHoa.getMaHangHoa(), HangHoa.getTenHangHoa(), HangHoa.getGiaHangHoa(),
-							HangHoa.getSoLuong(), HangHoa.getTenLoaiHang(), HangHoa.getAnhHangHoa() });
+							HangHoa.getSoLuong(), tenloaihang.getTenLoaiHang(),tenadmin.getHoten(), HangHoa.getAnhHangHoa() });
 			table.setModel(defaultTableModel);
 			table.getTableHeader().setReorderingAllowed(false);
 				}
@@ -224,7 +222,7 @@ public class HangHoaAdminView extends JFrame {
 		}
 		table.setModel(defaultTableModel);
 		table.getTableHeader().setReorderingAllowed(false);
-		table.getColumnModel().getColumn(5).setCellRenderer(new ImageRender());
+		table.getColumnModel().getColumn(6).setCellRenderer(new ImageRender());
 		table.setRowHeight(50);
 	}
 
@@ -239,4 +237,5 @@ public class HangHoaAdminView extends JFrame {
 			return jlable;
 		}
 	}
+
 }

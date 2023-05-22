@@ -11,7 +11,7 @@ import javax.swing.JScrollPane;
 	import javax.swing.table.DefaultTableCellRenderer;
 	import javax.swing.table.DefaultTableModel;
 
-import model.admin;
+import model.Admin;
 import repository.AdminReposity;
 import utils.MaHoa;
 import view.loginView;
@@ -154,7 +154,7 @@ import javax.swing.SwingConstants;
 				public void actionPerformed(ActionEvent e) {
 					
 					try {
-						admin  adminmodel = new admin();
+						Admin  adminmodel = new Admin();
 						AdminReposity adminreposity = new AdminReposity();
 						String taikhoan= taikhoan_jtfile.getText();
 						adminmodel.setTaikhoan(taikhoan);
@@ -244,7 +244,7 @@ import javax.swing.SwingConstants;
 			defaultTableModel.addColumn("Họ tên");
 			defaultTableModel.addColumn("SDT");
 			defaultTableModel.addColumn("Avatar");
-			for (admin adminModel : adminReposity.getAdmin()) {
+			for (Admin adminModel : adminReposity.getAdmin()) {
 				defaultTableModel.addRow(new Object[] {
 						adminModel.getMaadmin(),
 						adminModel.getHoten(),

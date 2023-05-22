@@ -26,7 +26,7 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 	            foodCategories.add(foodCategory);
 	        }
 		 } catch (SQLException e) {
-				System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+				System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 				e.printStackTrace();
 			} finally {
 				try {
@@ -34,7 +34,7 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 					statement.close();
 					rs.close();
 				} catch (SQLException e) {
-					System.out.println("Lỗi đóng kết nối");
+					System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 					e.printStackTrace();
 				}
 			}
@@ -45,15 +45,15 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 	public loaiHang get(int id) throws SQLException {
 		 try {
 			 connection = MySQLConnecttion.getConnection();
-	        String query = "SELECT * FROM loaihang WHERE maloaihang = " + id;
+	        String query = "SELECT * FROM btl_qlcf.loaihang where maloaihang = " + id;
 	        statement = connection.prepareStatement(query);
 			rs = statement.executeQuery();
-	        if (rs.next()) {
+			 while (rs.next()) {
 	        	loaiHang foodCategory = loaiHang.getFromResultSet(rs);
 	            return foodCategory;
 	        }
 		 } catch (SQLException e) {
-				System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+				System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 				e.printStackTrace();
 			} finally {
 				try {
@@ -61,7 +61,7 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 					statement.close();
 					rs.close();
 				} catch (SQLException e) {
-					System.out.println("Lỗi đóng kết nối");
+					System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 					e.printStackTrace();
 				}
 			}
@@ -72,24 +72,23 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 	public void save(loaiHang t) throws SQLException {
 		
 		 if (t == null) {
-	            throw new SQLException("FoodCategory rỗng");
+	            throw new SQLException("FoodCategory rá»—ng");
 	        }
 		 try {
 			 connection = MySQLConnecttion.getConnection();
 	        String query = "INSERT INTO loaihang ( tenloaihang  ) VALUES (?)";
-
 	        statement = connection.prepareStatement(query);
 	        statement.setNString(1, t.getTenLoaiHang());
 	        int row = statement.executeUpdate();
 		 } catch (SQLException e) {
-				System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+				System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 				e.printStackTrace();
 			} finally {
 				try {
 					connection.close();
 					statement.close();
 				} catch (SQLException e) {
-					System.out.println("Lỗi đóng kết nối");
+					System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 					e.printStackTrace();
 				}
 			}
@@ -100,7 +99,7 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 	public void update(loaiHang t) throws SQLException {
 		try {
 		  if (t == null) {
-	            throw new SQLException("FoodCategory rỗng");
+	            throw new SQLException("FoodCategory rá»—ng");
 	        }
 		  	connection = MySQLConnecttion.getConnection();
 	        String query = "UPDATE loaihang SET tenloaihang = ? WHERE maloaihang = ?";
@@ -109,14 +108,14 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 //	        statement.setInt(3, t.getMaLoaiang());
 	     int ketQua = statement.executeUpdate();
 	     } catch (SQLException e) {
-				System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+				System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 				e.printStackTrace();
 			} finally {
 				try {
 					connection.close();
 					statement.close();
 				} catch (SQLException e) {
-					System.out.println("Lỗi đóng kết nối");
+					System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 					e.printStackTrace();
 				}
 			}
@@ -132,14 +131,14 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 //			statement.setInt(1, t.getMaLoaiang());
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			e.printStackTrace();
 		} finally {
 			try {
 				connection.close();
 				statement.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}
@@ -154,14 +153,14 @@ public class loaiHangHoaRepository extends DAO<loaiHang> {
 		statement.setInt(1, id);
 		statement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
 			e.printStackTrace();
 		} finally {
 			try {
 				connection.close();
 				statement.close();
 			} catch (SQLException e) {
-				System.out.println("Lỗi đóng kết nối");
+				System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
 				e.printStackTrace();
 			}
 		}

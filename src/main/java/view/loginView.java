@@ -7,13 +7,18 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
-import model.admin;
+import model.Admin;
+import model.PhienLamViec;
 import model.nhanVienModel;
 import repository.AdminReposity;
 import repository.NhanVienReposity;
+import repository.PhienLamViecRepository;
 import utils.MaHoa;
+import utils.NhanVienStatus;
+import utils.TableStatus;
 import view.admin.registerAdmin;
 import view.admin.trangChuAdmin;
+import view.nhanVien.TaoDonHang;
 import view.nhanVien.TrangChuNV;
 import view.nhanVien.trangChuNhanVien;
 
@@ -21,6 +26,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
@@ -93,7 +99,7 @@ public class loginView extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		if(vaitro_combobox.getSelectedItem().toString().equals("Admin")) {
             		
-            		admin adminModel= new admin();
+            		Admin adminModel= new Admin();
             		AdminReposity adminRepository = new AdminReposity();
         			String taikhoan =username_jtfiel.getText();
         			String matkhau = new String(password_pwfiel.getPassword());
@@ -116,18 +122,28 @@ public class loginView extends JFrame {
             	else {
             		nhanVienModel nhanVienModel= new nhanVienModel();
             		NhanVienReposity nhanVienRepository= new NhanVienReposity();
-            		AdminReposity adminRepository = new AdminReposity();
         			String taikhoan =username_jtfiel.getText();
         			String matkhau = new String(password_pwfiel.getPassword());
         			matkhau =MaHoa.toSHA1(matkhau);
         			nhanVienModel.setTaikhoan(taikhoan);
         			nhanVienModel.setMatkhau(matkhau);
         			nhanVienModel=nhanVienRepository.seclectByTenDangNhapVaMatKhau(nhanVienModel);
+        	
         			if(nhanVienModel!=null) {
+						PhienLamViecRepository phienlamviecRepository = new PhienLamViecRepository();
+						PhienLamViec session= new PhienLamViec();
+						session.setMaNhanVien(nhanVienModel.getManv());
+						session.setTrangThai(NhanVienStatus.SERVING);
+						try {
+							phienlamviecRepository.save(session);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
         				JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
         				dispose();	
-        				TrangChuNV trangchu = new TrangChuNV();
-        				trangchu.setVisible(true);
+        				TaoDonHang view = new TaoDonHang();
+        				view.setVisible(true);
         			}
         			else {
         				JOptionPane.showMessageDialog(null, "Đăng nhập thất bại !");
@@ -148,11 +164,11 @@ public class loginView extends JFrame {
         });
         btnNewButton.setBounds(169, 243, 96, 34);
         panel_1.add(btnNewButton);
-<<<<<<< HEAD
+
         btnNewButton.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\register_login_signup_icon_219991.png"));
-=======
+
 //        btnNewButton.setIcon(new ImageIcon("C:\\Users\\hung\\Downloads\\register_login_signup_icon_219991.png"));
->>>>>>> 9abdd73e09be36debf1dc34af43afb2be2cedce6
+
         
         JLabel lblNewLabel_2 = new JLabel("");
         lblNewLabel_2.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\logo.png"));

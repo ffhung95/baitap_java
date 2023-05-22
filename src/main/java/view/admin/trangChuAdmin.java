@@ -60,11 +60,11 @@ public class trangChuAdmin extends JFrame {
 		panel.setLayout(null);
 		
 		panel_1 = new JPanel();
-<<<<<<< HEAD
+
 		panel_1.setBorder(new EmptyBorder(5, 3, 0, 0));
 		panel_1.setBackground(Color.BLUE);
 		panel_1.setBounds(0, 0, 1, 360);
-=======
+
 		Border borderShadow = BorderFactory.createCompoundBorder(
                  BorderFactory.createLineBorder(Color.BLACK),
                  BorderFactory.createEmptyBorder(5, 5, 5, 5)
@@ -73,7 +73,7 @@ public class trangChuAdmin extends JFrame {
 //		panel_1.setBorder(new EmptyBorder(5, 3, 0, 0));
 		panel_1.setBackground(new Color(236, 255, 255));
 		panel_1.setBounds(-1, -1, 170, 364);
->>>>>>> 9abdd73e09be36debf1dc34af43afb2be2cedce6
+
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -85,22 +85,22 @@ public class trangChuAdmin extends JFrame {
 				closeMenuBar();
 			}
 		});
-<<<<<<< HEAD
+
 		lblNewLabel.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\cancel_close_delete_exit_logout_remove_x_icon_123217.png"));
 		lblNewLabel.setBounds(116, 10, 32, 23);
-=======
+
 		lblNewLabel.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\delete.png"));
 		lblNewLabel.setBounds(139, 11, 21, 23);
->>>>>>> 9abdd73e09be36debf1dc34af43afb2be2cedce6
+
 		panel_1.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\student_work_office_desk_work_space_computer_working_support_icon_191191.png"));
-<<<<<<< HEAD
+
 		lblNewLabel_1.setBounds(20, 10, 96, 78);
-=======
+
 		lblNewLabel_1.setBounds(10, 10, 96, 78);
->>>>>>> 9abdd73e09be36debf1dc34af43afb2be2cedce6
+
 		panel_1.add(lblNewLabel_1);
 		
 		JSeparator separator = new JSeparator();
@@ -161,13 +161,13 @@ public class trangChuAdmin extends JFrame {
 
 			
 		});
-<<<<<<< HEAD
+
 		lblNewLabel_3.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\bar-menu_icon-icons.com_70305.png"));
 		lblNewLabel_3.setBounds(10, 10, 40, 26);
-=======
+
 		lblNewLabel_3.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\navbar.png"));
 		lblNewLabel_3.setBounds(10, 10, 32, 26);
->>>>>>> 9abdd73e09be36debf1dc34af43afb2be2cedce6
+
 		panel.add(lblNewLabel_3);
 		
 //		JLabel lblNewLabel_6 = new JLabel("");
@@ -176,17 +176,17 @@ public class trangChuAdmin extends JFrame {
 //		lblNewLabel_6.setBounds(0, 5, 686, 303);
 //		panel_2.add(lblNewLabel_6);
 		
-<<<<<<< HEAD
+
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\nhuong-quyen-highland-coffee.png"));
 		lblNewLabel_6.setBounds(0, 5, 686, 303);
-		panel_2.add(lblNewLabel_6);
+//		panel_2.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_4 = new JLabel("Highlands Coffee");
-=======
-		JLabel lblNewLabel_4 = new JLabel("");
+
+	
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
->>>>>>> 9abdd73e09be36debf1dc34af43afb2be2cedce6
+
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_4.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\logo.png"));
 		lblNewLabel_4.setBounds(168, 0, 518, 363);

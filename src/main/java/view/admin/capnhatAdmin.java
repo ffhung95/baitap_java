@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import model.admin;
+import model.Admin;
 import model.nhanVienModel;
 import repository.NhanVienReposity;
 

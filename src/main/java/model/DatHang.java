@@ -3,18 +3,18 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-public class datHang extends Model{
+public class DatHang extends Model{
 private int id , idNV ,idBan;
 private Timestamp orderTime ,payTime;
 private int discount , total;
 private nhanVienModel nhanvien;
 private table ban;
 
-public datHang() {
+public DatHang() {
 	super();
 }
 
-public datHang(int id, int idNV, int idBan, Timestamp orderTime, Timestamp payTime, int discount, int total,
+public DatHang(int id, int idNV, int idBan, Timestamp orderTime, Timestamp payTime, int discount, int total,
 		nhanVienModel nhanvien, table ban) {
 	super();
 	this.id = id;
@@ -102,8 +102,8 @@ public void setBan(table ban) {
 public int thanhtoan() {
 	return this.total - this.total*this.discount/100;
 }
-public static datHang getFromResultSet(ResultSet rs) throws SQLException {
-	datHang o = new datHang();
+public static DatHang getFromResultSet(ResultSet rs) throws SQLException {
+	DatHang o = new DatHang();
     o.setId(rs.getInt("id"));
     o.setIdBan(rs.getInt("idban"));
     o.setOrderTime(rs.getTimestamp("orderDate"));

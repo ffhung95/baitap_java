@@ -8,35 +8,35 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import database.MySQLConnecttion;
-import model.datHang;
+import model.DatHang;
 
-public class datHangRepository extends DAO<datHang>{
+public class datHangRepository extends DAO<DatHang>{
 	NhanVienReposity employeeDao = new NhanVienReposity();
     tableRepository tableDao = new tableRepository();
     private Connection connection = null;
     private PreparedStatement statement = null;
     private ResultSet rs = null;
 	@Override
-	public ArrayList<datHang> getAll() throws SQLException {
-		  ArrayList<datHang> orders = new ArrayList<>();
+	public ArrayList<DatHang> getAll() throws SQLException {
+		  ArrayList<DatHang> orders = new ArrayList<>();
 	        Statement statement = conn.createStatement();
 	        String query = "SELECT * FROM dathang ORDER BY orderDate DESC";
 	        ResultSet rs = statement.executeQuery(query);
 	        while (rs.next()) {
-	        	datHang order = datHang.getFromResultSet(rs);
+	        	DatHang order = DatHang.getFromResultSet(rs);
 	            order.setNhanvien(employeeDao.get(order.getIdNV()));
 	            order.setBan(tableDao.get(order.getIdBan()));
 	            orders.add(order);
 	        }
 	        return orders;
 	}
-    public ArrayList<datHang> getAll(int idEmployee) throws SQLException {
-        ArrayList<datHang> orders = new ArrayList<>();
+    public ArrayList<DatHang> getAll(int idEmployee) throws SQLException {
+        ArrayList<DatHang> orders = new ArrayList<>();
         Statement statement = conn.createStatement();
         String query = "SELECT * FROM dathang  WHERE idnv= '" + idEmployee + "' ORDER BY orderDate DESC";
         ResultSet rs = statement.executeQuery(query);
         while (rs.next()) {
-        	datHang order = datHang.getFromResultSet(rs);
+        	DatHang order = DatHang.getFromResultSet(rs);
         	 order.setNhanvien(employeeDao.get(order.getIdNV()));
 	         order.setBan(tableDao.get(order.getIdBan()));
             orders.add(order);
@@ -45,12 +45,12 @@ public class datHangRepository extends DAO<datHang>{
     }
 
 	@Override
-	public datHang get(int id) throws SQLException {
+	public DatHang get(int id) throws SQLException {
 		 Statement statement = conn.createStatement();
 	        String query = "SELECT * FROM dathang WHERE id = " + id;
 	        ResultSet rs = statement.executeQuery(query);
 	        if (rs.next()) {
-	        	datHang order = datHang.getFromResultSet(rs);
+	        	DatHang order = DatHang.getFromResultSet(rs);
 	        	 order.setNhanvien(employeeDao.get(order.getIdNV()));
 		         order.setBan(tableDao.get(order.getIdBan()));
 	            return order;
@@ -59,7 +59,7 @@ public class datHangRepository extends DAO<datHang>{
 	}
 
 	@Override
-	public void save(datHang t) throws SQLException {
+	public void save(DatHang t) throws SQLException {
 		
 		try {
 		   if (t == null) {
@@ -89,7 +89,7 @@ public class datHangRepository extends DAO<datHang>{
 	}
 
 	@Override
-	public void update(datHang t) throws SQLException {
+	public void update(DatHang t) throws SQLException {
 		if (t == null) {
             throw new SQLException("Order rỗng");
         }
@@ -107,7 +107,7 @@ public class datHangRepository extends DAO<datHang>{
 	}
 
 	@Override
-	public void delete(datHang t) throws SQLException {
+	public void delete(DatHang t) throws SQLException {
 		 PreparedStatement stmt = conn.prepareStatement("DELETE FROM dathang WHERE id = ?");
 	        stmt.setInt(1, t.getId());
 	        stmt.executeUpdate();
@@ -119,20 +119,20 @@ public class datHangRepository extends DAO<datHang>{
 	        stmt.setInt(1, id);
 	        stmt.executeUpdate();
 	}
-	public ArrayList<datHang> searchByKey(String key, String word) throws SQLException {
-        ArrayList<datHang> orders = new ArrayList<>();
+	public ArrayList<DatHang> searchByKey(String key, String word) throws SQLException {
+        ArrayList<DatHang> orders = new ArrayList<>();
         Statement statement = conn.createStatement();
         String query = "SELECT * FROM dathang WHERE " + key + " LIKE '%" + word + "%';";
         ResultSet rs = statement.executeQuery(query);
         while (rs.next()) {
-        	datHang order = datHang.getFromResultSet(rs);
+        	DatHang order = DatHang.getFromResultSet(rs);
             order.setNhanvien(employeeDao.get(order.getIdNV()));
             order.setBan(tableDao.get(order.getIdBan()));
             orders.add(order);
         }
         return orders;
     } 
-	public void create(datHang t) throws SQLException {
+	public void create(DatHang t) throws SQLException {
         if (t == null) {
             throw new SQLException("Order rỗng");
         }
@@ -146,15 +146,15 @@ public class datHangRepository extends DAO<datHang>{
         stmt.setInt(9, t.getDiscount());
         int row = stmt.executeUpdate();
     }
-	  public ArrayList<datHang> searchByKey(int idEmployee, String key, String word) throws SQLException {
-	        ArrayList<datHang> orders = new ArrayList<>();
+	  public ArrayList<DatHang> searchByKey(int idEmployee, String key, String word) throws SQLException {
+	        ArrayList<DatHang> orders = new ArrayList<>();
 	        String query = "SELECT * FROM dathang WHERE " + key + " LIKE ? AND id = ?";
 	        PreparedStatement statement = conn.prepareStatement(query);
 	        statement.setNString(1, String.format("%s%s%s", "%", word, "%"));
 	        statement.setInt(2, idEmployee);
 	        ResultSet rs = statement.executeQuery();
 	        while (rs.next()) {
-	        	datHang order = datHang.getFromResultSet(rs);
+	        	DatHang order = DatHang.getFromResultSet(rs);
 	        	 order.setNhanvien(employeeDao.get(order.getIdNV()));
 	             order.setBan(tableDao.get(order.getIdBan()));
 	            orders.add(order);
