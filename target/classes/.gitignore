@@ -3,3 +3,7 @@
 /META-INF/
 /model/
 /repository/
+/controller/
+/database/
+/test/
+/utils/

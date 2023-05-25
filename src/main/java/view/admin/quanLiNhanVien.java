@@ -230,8 +230,10 @@ public class quanLiNhanVien extends JFrame {
         getContentPane().add(scrollPane);
         
         table = new JTable();
-        table.setEnabled(false);
-        table.setBackground(new Color(255, 255, 255));
+        table.setFillsViewportHeight(true);
+        table.setColumnSelectionAllowed(true);
+        table.setCellSelectionEnabled(true);
+//        table.setBackground(new Color(255, 255, 255));
         table.setModel(new DefaultTableModel(
         	new Object[][] {
         	},
@@ -242,7 +244,7 @@ public class quanLiNhanVien extends JFrame {
         scrollPane.setViewportView(table);
         
         JButton btnNewButton_1 = new JButton("");
-        btnNewButton_1.setBackground(new Color(236, 255, 255));
+//        btnNewButton_1.setBackground(new Color(236, 255, 255));
         btnNewButton_1.setOpaque(false); 
         btnNewButton_1.setContentAreaFilled(false); 
         btnNewButton_1.getModel().setRollover(false);

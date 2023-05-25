@@ -12,7 +12,7 @@ import model.DatHang;
 import model.loaiHang;
 
 
-public class DatHangRepository extends DAO<DatHang>{
+public class datHangRepository extends DAO<DatHang>{
 	private Connection connection = null;
 	private PreparedStatement statement = null;
 	private ResultSet rs = null;

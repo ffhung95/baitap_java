@@ -61,7 +61,7 @@ import model.hangHoa;
 import model.nhanVienModel;
 import model.table;
 import repository.ChiTietHoaDonRepository;
-import repository.DatHangRepository;
+import repository.datHangRepository;
 import repository.NhanVienReposity;
 import repository.PhienLamViecRepository;
 import repository.hangHoaRepository;
@@ -506,7 +506,7 @@ public class TaoDonHang extends JFrame {
 				Jlabel_Chon.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						DatHangRepository datHangRepository = new DatHangRepository();
+						datHangRepository datHangRepository = new datHangRepository();
 						DatHang datHang = new DatHang();
 						PhienLamViecRepository phienLamViecRepository = new PhienLamViecRepository();
 						try {
@@ -760,7 +760,7 @@ public class TaoDonHang extends JFrame {
 									}
 									int idban=ban.getMaBan();
 									float tongtien=0;
-									DatHangRepository datHangRepository = new DatHangRepository();
+									datHangRepository datHangRepository = new datHangRepository();
 									try {
 										for (DatHang dathang : datHangRepository.getAll()) {
 											if (dathang.getMaBan() == idban) {
@@ -917,7 +917,7 @@ public class TaoDonHang extends JFrame {
         }).start();
     }
 	private void loadtabel(int idban) {
-		DatHangRepository dathangReposity = new DatHangRepository();
+		datHangRepository dathangReposity = new datHangRepository();
 		DefaultTableModel defaultTableModel = new DefaultTableModel();
 	
 		defaultTableModel.addColumn("ID");
@@ -949,7 +949,7 @@ public class TaoDonHang extends JFrame {
 		}
 	}
 	private void loadthongtin(int idban) {
-		DatHangRepository dathangReposity = new DatHangRepository();
+		datHangRepository dathangReposity = new datHangRepository();
 		DefaultTableModel defaultTableModel = new DefaultTableModel();
 
 		defaultTableModel.addColumn("Tên món");
