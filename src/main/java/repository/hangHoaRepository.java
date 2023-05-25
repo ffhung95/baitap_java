@@ -43,7 +43,7 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	@Override
 	public hangHoa get(int id) throws SQLException {
 		Statement statement = conn.createStatement();
-		String query = "SELECT * FROM food_item WHERE manhanghoa = " + id;
+		String query = "SELECT * FROM hanghoa WHERE mahanghoa = " + id;
 		ResultSet rs = statement.executeQuery(query);
 		if (rs.next()) {
 			hangHoa foodItem = hangHoa.getFromResultSet(rs);

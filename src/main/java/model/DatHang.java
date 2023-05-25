@@ -2,129 +2,116 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-public class DatHang extends Model{
-private int id , idNV ,idBan;
-private Timestamp orderTime ,payTime;
-private int discount , total;
-private nhanVienModel nhanvien;
-private table ban;
 
-public DatHang() {
-	super();
-}
+public class DatHang {
+	private int  maDatHang,maHangHoa,maNhanVien,soLuong,maBan;
+	private float thanhTien;
+	private hangHoa hanghoa;
+	private nhanVienModel nhanvien;
+	private table ban;
+	
+	public DatHang() {
+		super();
+	}
 
-public DatHang(int id, int idNV, int idBan, Timestamp orderTime, Timestamp payTime, int discount, int total,
-		nhanVienModel nhanvien, table ban) {
-	super();
-	this.id = id;
-	this.idNV = idNV;
-	this.idBan = idBan;
-	this.orderTime = orderTime;
-	this.payTime = payTime;
-	this.discount = discount;
-	this.total = total;
-	this.nhanvien = nhanvien;
-	this.ban = ban;
-}
+	public DatHang(int maDatHang, int maHangHoa, int maNhanVien, int soLuong, int maBan, float thanhTien,
+			hangHoa hanghoa, nhanVienModel nhanvien, table ban) {
+		super();
+		this.maDatHang = maDatHang;
+		this.maHangHoa = maHangHoa;
+		this.maNhanVien = maNhanVien;
+		this.soLuong = soLuong;
+		this.maBan = maBan;
+		this.thanhTien = thanhTien;
+		this.hanghoa = hanghoa;
+		this.nhanvien = nhanvien;
+		this.ban = ban;
+	}
 
-public int getId() {
-	return id;
-}
+	public int getMaDatHang() {
+		return maDatHang;
+	}
 
-public void setId(int id) {
-	this.id = id;
-}
+	public void setMaDatHang(int maDatHang) {
+		this.maDatHang = maDatHang;
+	}
 
-public int getIdNV() {
-	return idNV;
-}
+	public int getMaHangHoa() {
+		return maHangHoa;
+	}
 
-public void setIdNV(int idNV) {
-	this.idNV = idNV;
-}
+	public void setMaHangHoa(int maHangHoa) {
+		this.maHangHoa = maHangHoa;
+	}
 
-public int getIdBan() {
-	return idBan;
-}
+	public int getMaNhanVien() {
+		return maNhanVien;
+	}
 
-public void setIdBan(int idBan) {
-	this.idBan = idBan;
-}
+	public void setMaNhanVien(int maNhanVien) {
+		this.maNhanVien = maNhanVien;
+	}
 
-public Timestamp getOrderTime() {
-	return orderTime;
-}
+	public int getSoLuong() {
+		return soLuong;
+	}
 
-public void setOrderTime(Timestamp orderTime) {
-	this.orderTime = orderTime;
-}
+	public void setSoLuong(int soLuong) {
+		this.soLuong = soLuong;
+	}
 
-public Timestamp getPayTime() {
-	return payTime;
-}
+	public int getMaBan() {
+		return maBan;
+	}
 
-public void setPayTime(Timestamp payTime) {
-	this.payTime = payTime;
-}
+	public void setMaBan(int maBan) {
+		this.maBan = maBan;
+	}
 
-public int getDiscount() {
-	return discount;
-}
+	public float getThanhTien() {
+		return thanhTien;
+	}
 
-public void setDiscount(int discount) {
-	this.discount = discount;
-}
+	public void setThanhTien(float thanhTien) {
+		this.thanhTien = thanhTien;
+	}
 
-public int getTotal() {
-	return total;
-}
+	public hangHoa getHanghoa() {
+		return hanghoa;
+	}
 
-public void setTotal(int total) {
-	this.total = total;
-}
+	public void setHanghoa(hangHoa hanghoa) {
+		this.hanghoa = hanghoa;
+		this.maHangHoa=hanghoa.getMaHangHoa();
+	}
 
-public nhanVienModel getNhanvien() {
-	return nhanvien;
-}
+	public nhanVienModel getNhanvien() {
+		return nhanvien;
+	}
 
-public void setNhanvien(nhanVienModel nhanvien) {
-	this.nhanvien = nhanvien;
-}
+	public void setNhanvien(nhanVienModel nhanvien) {
+		this.nhanvien = nhanvien;
+		this.maNhanVien= nhanvien.getManv();
+	}
 
-public table getBan() {
-	return ban;
-}
+	public table getBan() {
+		return ban;
+	}
 
-public void setBan(table ban) {
-	this.ban = ban;
-}
-public int thanhtoan() {
-	return this.total - this.total*this.discount/100;
-}
-public static DatHang getFromResultSet(ResultSet rs) throws SQLException {
-	DatHang o = new DatHang();
-    o.setId(rs.getInt("id"));
-    o.setIdBan(rs.getInt("idban"));
-    o.setOrderTime(rs.getTimestamp("orderDate"));
-    o.setPayTime(rs.getTimestamp("payDate"));
-    o.setTotal(rs.getInt("total"));
-    o.setDiscount(rs.getInt("discount"));
-    return o;
-}
-
-@Override
-public String toString() {
-	return "datHang [id=" + id + ", idNV=" + idNV + ", idBan=" + idBan + ", orderTime=" + orderTime + ", payTime="
-			+ payTime + ", discount=" + discount + ", total=" + total + ", nhanvien=" + nhanvien + ", ban=" + ban + "]";
-}
-
-@Override
-public Object[] toRowTable() {
-	// TODO Auto-generated method stub
-	return new Object[] {
-			
-	};
-}
-
+	public void setBan(table ban) {
+		this.ban = ban;
+		this.maBan=ban.getMaBan();
+	}
+	public static DatHang getFromResultSet(ResultSet rs) throws SQLException {
+		DatHang f = new DatHang();
+	    f.setMaDatHang(rs.getInt("madathang"));
+	    f.setMaBan(rs.getInt("maban"));
+	    f.setMaNhanVien(rs.getInt("manv"));
+	    f.setMaHangHoa(rs.getInt("mahanghoa"));
+	    f.setSoLuong(rs.getInt("soluong"));
+	    f.setThanhTien(rs.getFloat("thanhtien"));
+	    return f;
+	}
+	
+	
 }

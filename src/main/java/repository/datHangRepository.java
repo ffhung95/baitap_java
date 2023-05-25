@@ -9,70 +9,68 @@ import java.util.ArrayList;
 
 import database.MySQLConnecttion;
 import model.DatHang;
+import model.loaiHang;
 
-public class datHangRepository extends DAO<DatHang>{
-	NhanVienReposity employeeDao = new NhanVienReposity();
-    tableRepository tableDao = new tableRepository();
-    private Connection connection = null;
-    private PreparedStatement statement = null;
-    private ResultSet rs = null;
+
+public class DatHangRepository extends DAO<DatHang>{
+	private Connection connection = null;
+	private PreparedStatement statement = null;
+	private ResultSet rs = null;
 	@Override
 	public ArrayList<DatHang> getAll() throws SQLException {
-		  ArrayList<DatHang> orders = new ArrayList<>();
-	        Statement statement = conn.createStatement();
-	        String query = "SELECT * FROM dathang ORDER BY orderDate DESC";
-	        ResultSet rs = statement.executeQuery(query);
+		 ArrayList<DatHang> datHangs = new ArrayList<>();
+		 try {
+		 connection = MySQLConnecttion.getConnection();
+	        String query = "SELECT * FROM dathang";
+	        statement = connection.prepareStatement(query);
+			rs = statement.executeQuery();
 	        while (rs.next()) {
-	        	DatHang order = DatHang.getFromResultSet(rs);
-	            order.setNhanvien(employeeDao.get(order.getIdNV()));
-	            order.setBan(tableDao.get(order.getIdBan()));
-	            orders.add(order);
+	        	DatHang dathang = DatHang.getFromResultSet(rs);
+	        	datHangs.add(dathang);
 	        }
-	        return orders;
+		 } catch (SQLException e) {
+				System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
+				e.printStackTrace();
+			} finally {
+				try {
+					connection.close();
+					statement.close();
+					rs.close();
+				} catch (SQLException e) {
+					System.out.println("Lá»—i Ä‘Ã³ng káº¿t ná»‘i");
+					e.printStackTrace();
+				}
+			}
+			return datHangs;
 	}
-    public ArrayList<DatHang> getAll(int idEmployee) throws SQLException {
-        ArrayList<DatHang> orders = new ArrayList<>();
-        Statement statement = conn.createStatement();
-        String query = "SELECT * FROM dathang  WHERE idnv= '" + idEmployee + "' ORDER BY orderDate DESC";
-        ResultSet rs = statement.executeQuery(query);
-        while (rs.next()) {
-        	DatHang order = DatHang.getFromResultSet(rs);
-        	 order.setNhanvien(employeeDao.get(order.getIdNV()));
-	         order.setBan(tableDao.get(order.getIdBan()));
-            orders.add(order);
-        }
-        return orders;
-    }
 
 	@Override
 	public DatHang get(int id) throws SQLException {
-		 Statement statement = conn.createStatement();
-	        String query = "SELECT * FROM dathang WHERE id = " + id;
-	        ResultSet rs = statement.executeQuery(query);
-	        if (rs.next()) {
-	        	DatHang order = DatHang.getFromResultSet(rs);
-	        	 order.setNhanvien(employeeDao.get(order.getIdNV()));
-		         order.setBan(tableDao.get(order.getIdBan()));
-	            return order;
-	        }
-	        return null;
+		Statement statement = conn.createStatement();
+		String query = "SELECT * FROM dathang WHERE madathang = " + id;
+		ResultSet rs = statement.executeQuery(query);
+		if (rs.next()) {
+			DatHang dathang = DatHang.getFromResultSet(rs);
+			return dathang;
+		}
+		return null;
 	}
 
 	@Override
 	public void save(DatHang t) throws SQLException {
-		
+		if (t == null) {
+			throw new SQLException("đăt hàng rỗng");
+		}
 		try {
-		   if (t == null) {
-	            throw new SQLException("Order rỗng");
-	        }
-		   connection = MySQLConnecttion.getConnection();
-	        String query = "INSERT INTO dathang (idban, orderDate, payDate, total, discount) VALUES (?, current_timestamp(), NULL, ?,?)";
-	        statement = connection.prepareStatement(query);
-	       
-	        statement.setInt(1, t.getIdBan());
-	        statement.setInt(2, t.getTotal());
-	        statement.setInt(3, t.getDiscount());
-	       int ketqua = statement.executeUpdate();
+			connection = MySQLConnecttion.getConnection();
+			String query = "INSERT INTO dathang (maban, manv, mahanghoa, soluong, thanhtien) VALUES ( ?, ?, ?, ?,?)";
+			statement = connection.prepareStatement(query);
+			statement.setInt(1, t.getMaBan());
+			statement.setInt(2, t.getMaNhanVien());
+			statement.setInt(3, t.getMaHangHoa());
+			statement.setInt(4, t.getSoLuong());
+			statement.setFloat(5, t.getThanhTien());
+			int row = statement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
 			e.printStackTrace();
@@ -90,78 +88,38 @@ public class datHangRepository extends DAO<DatHang>{
 
 	@Override
 	public void update(DatHang t) throws SQLException {
-		if (t == null) {
-            throw new SQLException("Order rỗng");
-        }
-        String query = "UPDATE dathang SET idnv = ?, idban = ?, orderDate = ?, payDate = ?, total = ?, discount = ? WHERE id = ?";
-        PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setInt(1, t.getIdNV());
-        stmt.setInt(2, t.getIdBan());
-        stmt.setTimestamp(3, t.getOrderTime());
-        stmt.setTimestamp(4, t.getPayTime());
-        stmt.setInt(5, t.getTotal());
-        stmt.setInt(6, t.getDiscount());
-        stmt.setInt(7, t.getId());
-        int row = stmt.executeUpdate();
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void delete(DatHang t) throws SQLException {
-		 PreparedStatement stmt = conn.prepareStatement("DELETE FROM dathang WHERE id = ?");
-	        stmt.setInt(1, t.getId());
-	        stmt.executeUpdate();
+		try {
+			connection = MySQLConnecttion.getConnection();
+			String sql = "DELETE from btl_qlcf.dathang " + " WHERE madathang=?";
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, t.getMaDatHang());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Không thể kết nối đến cơ sở dữ liệu");
+			e.printStackTrace();
+		} finally {
+			try {
+				connection.close();
+				statement.close();
+			} catch (SQLException e) {
+				System.out.println("Lỗi đóng kết nối");
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	@Override
 	public void deleteById(int id) throws SQLException {
-		  PreparedStatement stmt = conn.prepareStatement("DELETE FROM dathang WHERE id = ?");
-	        stmt.setInt(1, id);
-	        stmt.executeUpdate();
+		// TODO Auto-generated method stub
+		
 	}
-	public ArrayList<DatHang> searchByKey(String key, String word) throws SQLException {
-        ArrayList<DatHang> orders = new ArrayList<>();
-        Statement statement = conn.createStatement();
-        String query = "SELECT * FROM dathang WHERE " + key + " LIKE '%" + word + "%';";
-        ResultSet rs = statement.executeQuery(query);
-        while (rs.next()) {
-        	DatHang order = DatHang.getFromResultSet(rs);
-            order.setNhanvien(employeeDao.get(order.getIdNV()));
-            order.setBan(tableDao.get(order.getIdBan()));
-            orders.add(order);
-        }
-        return orders;
-    } 
-	public void create(DatHang t) throws SQLException {
-        if (t == null) {
-            throw new SQLException("Order rỗng");
-        }
-        String query = "INSERT INTO dathang (idnv, idban, orderDate, payDate, total, discount) VALUES (?, ?, ?, ?, ?, ?)";
-        PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setInt(1, t.getIdNV());
-        stmt.setInt(2, t.getIdBan());
-        stmt.setTimestamp(5, t.getOrderTime());
-        stmt.setTimestamp(6, t.getPayTime());
-        stmt.setInt(8, t.getTotal());
-        stmt.setInt(9, t.getDiscount());
-        int row = stmt.executeUpdate();
-    }
-	  public ArrayList<DatHang> searchByKey(int idEmployee, String key, String word) throws SQLException {
-	        ArrayList<DatHang> orders = new ArrayList<>();
-	        String query = "SELECT * FROM dathang WHERE " + key + " LIKE ? AND id = ?";
-	        PreparedStatement statement = conn.prepareStatement(query);
-	        statement.setNString(1, String.format("%s%s%s", "%", word, "%"));
-	        statement.setInt(2, idEmployee);
-	        ResultSet rs = statement.executeQuery();
-	        while (rs.next()) {
-	        	DatHang order = DatHang.getFromResultSet(rs);
-	        	 order.setNhanvien(employeeDao.get(order.getIdNV()));
-	             order.setBan(tableDao.get(order.getIdBan()));
-	            orders.add(order);
-	        }
-	        return orders;
-	    }
-	  
 	
 
 }

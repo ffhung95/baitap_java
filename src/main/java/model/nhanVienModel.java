@@ -14,11 +14,12 @@ private String sdt;
 private Date ngayvaolam;
 private String chucvu;
 private int luong;
+private byte[] avt;
 public nhanVienModel() {
 	super();
 }
 public nhanVienModel(int manv, String hoten, String taikhoan, String matkhau, String sdt, Date ngayvaolam,
-		String chucvu, int luong) {
+		String chucvu, int luong, byte[] avt) {
 	super();
 	this.manv = manv;
 	this.hoten = hoten;
@@ -28,6 +29,7 @@ public nhanVienModel(int manv, String hoten, String taikhoan, String matkhau, St
 	this.ngayvaolam = ngayvaolam;
 	this.chucvu = chucvu;
 	this.luong = luong;
+	this.avt= avt;
 	
 }
 
@@ -94,12 +96,17 @@ public int getLuong() {
 public void setLuong(int luong) {
 	this.luong = luong;
 }
-
+public void setAvt(byte[] avt) {
+	this.avt=avt;
+}
+public byte[] getAvt() {
+	return avt;
+}
 
 
 @Override
 public int hashCode() {
-	return Objects.hash( hoten, taikhoan,matkhau,sdt, ngayvaolam, chucvu, luong);
+	return Objects.hash( hoten, taikhoan,matkhau,sdt, ngayvaolam, chucvu, luong, avt);
 }
 @Override
 public boolean equals(Object obj) {

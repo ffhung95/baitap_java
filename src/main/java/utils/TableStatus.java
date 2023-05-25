@@ -2,8 +2,7 @@ package utils;
 
 public enum TableStatus {
 	 	FREE("free", "Trống"),
-	    SERVING("serving", "Đang phục vụ"),
-	    RESERVING("reserving", "Đặt trước");
+	    SERVING("serving", "Đang phục vụ");
 	    private String id, name;
 	    TableStatus(String id, String name) {
 	        this.id = id;

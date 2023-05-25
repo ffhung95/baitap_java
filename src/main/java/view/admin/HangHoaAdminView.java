@@ -17,6 +17,7 @@ import view.trangChu.themDonHangView;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -48,6 +49,7 @@ public class HangHoaAdminView extends JFrame {
 	private JTextField textField_timkiem;
 	private DefaultTableModel defaultTableModel;
 	private JTable table;
+	public File file;
 
 	public HangHoaAdminView() {
 		this.loaihangrepository= new loaiHangHoaRepository();
@@ -62,7 +64,7 @@ public class HangHoaAdminView extends JFrame {
 	}
 
 	private void init() {
-		this.setTitle("HÃ ng HÃ³a");
+		this.setTitle("Hàng Hóa");
 		this.setSize(700, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
@@ -79,12 +81,12 @@ public class HangHoaAdminView extends JFrame {
 		panel.add(textField_timkiem);
 		textField_timkiem.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("TÃ¬m kiáº¿m");
+		JLabel lblNewLabel = new JLabel("Tìm kiếm");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNewLabel.setBounds(348, 11, 89, 30);
 		panel.add(lblNewLabel);
 
-		JButton btnNewButton = new JButton("tÃ¬m kiáº¿m");
+		JButton btnNewButton = new JButton("Tìm kiếm");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String tensanpham = textField_timkiem.getText();
@@ -92,17 +94,19 @@ public class HangHoaAdminView extends JFrame {
 				hangHoa HangHoa = new hangHoa();
 				HangHoa.setTenHangHoa(tensanpham);
 				try {
-					if (HangHoaRepository.searchByName(tensanpham) != null) {
 						List<hangHoa> list = HangHoaRepository.searchByName(tensanpham);
-						defaultTableModel.setRowCount(0);
-						for (hangHoa hanghoa : list) {
-							loaiHang tenloaihang=loaihangrepository.get( HangHoa.getMaloaihang());
-							Admin tenadmin= adminrepository.get(HangHoa.getIdAdmin());
-							if(hanghoa.getSoLuong()>0) {
-							defaultTableModel.addRow(new Object[] { hanghoa.getMaHangHoa(), hanghoa.getTenHangHoa(),
-									hanghoa.getGiaHangHoa(), hanghoa.getSoLuong(),tenloaihang.getTenLoaiHang(),tenadmin.getHoten(), hanghoa.getAnhHangHoa() });
-							defaultTableModel.fireTableDataChanged();
-							}
+
+						if (list != null) {
+							defaultTableModel.setRowCount(0);
+						for (hangHoa hanghoa :list ) {
+								loaiHang tenloaihang=loaihangrepository.get( hanghoa.getMaloaihang());
+								Admin tenadmin= adminrepository.get(hanghoa.getIdAdmin());
+								defaultTableModel
+								.addRow(new Object[] { hanghoa.getMaHangHoa(), hanghoa.getTenHangHoa(), hanghoa.getGiaHangHoa(),
+										hanghoa.getSoLuong(), tenloaihang.getTenLoaiHang(),tenadmin.getHoten(), hanghoa.getAnhHangHoa() });
+						table.setModel(defaultTableModel);
+						table.getTableHeader().setReorderingAllowed(false);
+	
 						}
 					}
 					
@@ -122,7 +126,7 @@ public class HangHoaAdminView extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
-		JButton btnThmLoiHng = new JButton("ThÃªm loáº¡i sáº£n pháº©m");
+		JButton btnThmLoiHng = new JButton("Thêm loại sản phẩm");
 		btnThmLoiHng.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loaiHangCon.add(loaiHangview);
@@ -132,7 +136,7 @@ public class HangHoaAdminView extends JFrame {
 		btnThmLoiHng.setBounds(0, 210, 175, 39);
 		panel_1.add(btnThmLoiHng);
 
-		JButton btnngXut = new JButton("ThoÃ¡t");
+		JButton btnngXut = new JButton("Thoát");
 		btnngXut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -143,7 +147,7 @@ public class HangHoaAdminView extends JFrame {
 		btnngXut.setBounds(0, 0, 97, 47);
 		panel_1.add(btnngXut);
 
-		JButton btnThmSnPhm = new JButton("Sáº£n pháº©m");
+		JButton btnThmSnPhm = new JButton("Sản phẩm");
 		btnThmSnPhm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				hangHoaCon.add(hangHoaVi);
@@ -178,7 +182,7 @@ public class HangHoaAdminView extends JFrame {
 		btnHy.setBounds(572, 51, 94, 33);
 		panel.add(btnHy);
 
-		JLabel lblNewLabel_2 = new JLabel("ThÃ´ng tin sáº£n pháº©m");
+		JLabel lblNewLabel_2 = new JLabel("Thông tin sản phẩm");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_2.setBounds(373, 95, 144, 27);
 		panel.add(lblNewLabel_2);
@@ -197,12 +201,12 @@ public class HangHoaAdminView extends JFrame {
 		hangHoaRepository HangHoaRepository = new hangHoaRepository();
 		defaultTableModel = new DefaultTableModel();
 		defaultTableModel.addColumn("ID");
-		defaultTableModel.addColumn("TÃªn sáº£n pháº©m");
-		defaultTableModel.addColumn("GiÃ¡ sáº£n pháº©m");
-		defaultTableModel.addColumn("Sá»‘ lÆ°á»£ng");
-		defaultTableModel.addColumn("Loáº¡i sáº£n pháº©m");
-		defaultTableModel.addColumn("TÃªn quáº£n lÃ­");
-		defaultTableModel.addColumn("áº¢nh sáº£n pháº©m");
+		defaultTableModel.addColumn("Tên sản phẩm");
+		defaultTableModel.addColumn("Giá sản phẩm");
+		defaultTableModel.addColumn("Số lượng");
+		defaultTableModel.addColumn("Loại sản phẩm");
+		defaultTableModel.addColumn("Tên quản lí");
+		defaultTableModel.addColumn("Ảnh sản phẩm");
 		try {
 			for (hangHoa HangHoa : HangHoaRepository.getAll()) {
 				if(HangHoa.getSoLuong()>0) {

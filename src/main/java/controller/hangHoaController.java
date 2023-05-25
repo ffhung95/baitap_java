@@ -14,6 +14,7 @@ import repository.hangHoaRepository;
 import repository.loaiHangHoaRepository;
 
 import view.ChooseImageView;
+import view.admin.HangHoaAdminView;
 import view.trangChu.hangHoaView;
 
 public class hangHoaController {
@@ -63,24 +64,14 @@ public class hangHoaController {
 			try {
 				addFoodItem(view);
 				view.dispose();
-				JOptionPane.showMessageDialog(view, "ThÃªm mÃ³n thÃ nh cÃ´ng");
+				JOptionPane.showMessageDialog(view, "Thêm thành công");
 			} catch (Exception ex) {
 				ex.printStackTrace();
 			}
 		});
 	}
 
-	public boolean isExistsImage(String imagePath) {
-		try {
-			if (imagePath.isEmpty()) {
-				return false;
-			}
-			File f = new File(resourcesPath + imagePath);
-			return f.exists() && !f.isDirectory();
-		} catch (Exception e) {
-			return false;
-		}
-	}
+
 
 	public void edit(hangHoaView view, hangHoa foodItem) {
 		if (previousView != null && previousView.isDisplayable()) {
@@ -147,6 +138,10 @@ public class hangHoaController {
 			foodItem.setMaloaihang(selectCategory.getMaloaihang());
 			foodItem.setIdAdmin(selectAdmin.getMaadmin());
 			HangHoaRepo.save(foodItem);
+			view.showMessage("Thêm thành công");
+			HangHoaAdminView hangHoaAdminview = new HangHoaAdminView();
+			hangHoaAdminview.setVisible(true);
+			
 		} else {
 			view.showMessage("KiÃ¡Â»Æ’m tra sÃ¡Â»â€˜ lÃ†Â°Ã¡Â»Â£ng sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m");
 		}

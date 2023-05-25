@@ -10,6 +10,7 @@ import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
 import view.loginView;
+import view.nhanVien.TableEmployessWiew;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -137,7 +138,7 @@ public class trangChuAdmin extends JFrame {
 		JButton btnThngK = new JButton("Thống kê");
 		btnThngK.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\futures.png"));
 		btnThngK.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnThngK.setBounds(10, 215, 151, 41);
+		btnThngK.setBounds(10, 261, 151, 41);
 		panel_1.add(btnThngK);
 		
 		JButton btnngXut = new JButton("Đăng xuất");
@@ -152,6 +153,18 @@ public class trangChuAdmin extends JFrame {
 		btnngXut.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnngXut.setBounds(10, 312, 150, 41);
 		panel_1.add(btnngXut);
+		
+		JButton btnQunLBn = new JButton("Quản lí bàn");
+		btnQunLBn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TableEmployessWiew view = new TableEmployessWiew();
+				view.setVisible(true);
+			}
+		});
+		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnQunLBn.setBounds(9, 214, 151, 41);
+		panel_1.add(btnQunLBn);
 		
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {

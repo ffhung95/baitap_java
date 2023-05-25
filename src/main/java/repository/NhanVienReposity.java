@@ -38,6 +38,7 @@ public class NhanVienReposity {
 				}
 				nhanienrepository.setChucvu(rs.getString("chucvu"));
 				nhanienrepository.setLuong(rs.getInt("luong"));
+				nhanienrepository.setAvt(rs.getBytes("avt"));
 				list.add(nhanienrepository);
 			}
 		} catch (SQLException e) {
@@ -74,6 +75,7 @@ public class NhanVienReposity {
 				}
 				nhanienrepository.setChucvu(rs.getString("chucvu"));
 				nhanienrepository.setLuong(rs.getInt("luong"));
+				nhanienrepository.setAvt(rs.getBytes("avt"));
 	            return nhanienrepository;
 	        }
 	        return null;

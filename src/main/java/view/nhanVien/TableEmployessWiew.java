@@ -7,6 +7,7 @@ import controller.tableController;
 import repository.NhanVienReposity;
 import repository.tableRepository;
 import model.*;
+import view.admin.trangChuAdmin;
 import view.trangChu.tableView;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -73,8 +74,8 @@ public class TableEmployessWiew extends JFrame {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TrangChuNV view = new TrangChuNV();
-				view.setVisible(true);
+				new trangChuAdmin();
+				//view.setVisible(true);
 			}
 		});
 		btnNewButton_1_1.setBounds(294, 197, 85, 21);
