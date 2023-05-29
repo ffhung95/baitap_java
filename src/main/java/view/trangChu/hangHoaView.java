@@ -30,6 +30,7 @@ import java.nio.file.Files;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.GridBagLayout;
+import java.awt.Font;
 
 public class hangHoaView extends JFrame {
 	public File file;
@@ -150,46 +151,6 @@ public class hangHoaView extends JFrame {
 		lbTitle = new javax.swing.JLabel();
 		jPanel2 = new javax.swing.JPanel();
 		btnOK = new javax.swing.JButton();
-//		btnOK.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//				hangHoa foodItem = new hangHoa();
-//				hangHoaRepository hanghoarepository = new hangHoaRepository();
-//				int soluong = Integer.valueOf(textField_soluong.getText());
-//				loaiHang selectCategory = (loaiHang) foodCategoryComboBoxModel.getSelectedItem();
-//				Admin selectAdmin = (Admin) adminComboBoxModel.getSelectedItem();
-//				String name = txtName.getText(), unitPrice = txtUnitPrice.getText();
-//				if (name.isEmpty() || unitPrice.isEmpty() || selectCategory == null || adminComboBoxModel == null) {
-//
-//					JOptionPane.showMessageDialog(null, "Vui lÃ²ng Ä‘iá»n Ä‘áº§y Ä‘á»§ thÃ´ng tin");
-//				}
-//				if (soluong >= 0) {
-//					foodItem.setTenHangHoa(name);
-//					foodItem.setSoLuong(soluong);
-//					foodItem.setGiaHangHoa(Integer.parseInt(unitPrice));
-//					try {
-//						foodItem.setAnhHangHoa(Files.readAllBytes(file.toPath()));
-//					} catch (IOException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//					foodItem.setIdAdmin(selectAdmin.getMaadmin());
-//					foodItem.setMaloaihang(selectCategory.getMaloaihang());
-//
-//					try {
-//						hanghoarepository.save(foodItem);
-//						JOptionPane.showMessageDialog(null, "Thêm thành công");
-//						dispose();
-//						HangHoaAdminView view = new HangHoaAdminView();
-//						view.setVisible(true);
-//					} catch (SQLException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}
-//				} else {
-//					JOptionPane.showMessageDialog(null, "Kiá»ƒm tra sá»‘ lÆ°á»£ng");
-//				}
-//			}
-//		});
 
 		btnCancel = new javax.swing.JButton();
 		btnCancel.addActionListener(new ActionListener() {
@@ -212,8 +173,8 @@ public class hangHoaView extends JFrame {
 		jPanel1.setPreferredSize(new java.awt.Dimension(500, 50));
 		jPanel1.setLayout(new java.awt.GridBagLayout());
 
-		lbTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-		lbTitle.setText("ThÃªm mÃ³n Äƒn");
+		lbTitle.setFont(new Font("Times New Roman", Font.BOLD, 14)); // NOI18N
+		lbTitle.setText("Thêm Món ăn");
 		jPanel1.add(lbTitle, new java.awt.GridBagConstraints());
 
 		getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);

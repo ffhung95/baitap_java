@@ -578,7 +578,7 @@ public class TaoDonHang extends JFrame {
 			pthongtin.add(lblNewLabel);
 
 			JPanel thongtin = new JPanel();
-			thongtin.setBounds(0, 42, 450, 673);
+			thongtin.setBounds(0, 42, 450, 671);
 			pthongtin.add(thongtin);
 
 			JLabel test = new JLabel("");
