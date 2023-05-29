@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import database.MySQLConnecttion;
 import model.HoaDon;
 import model.hangHoa;
+import model.table;
+import utils.TableStatus;
 
 public class HoaDonRepository extends DAO<HoaDon>{
 	private Connection connection = null;
@@ -20,7 +22,8 @@ public class HoaDonRepository extends DAO<HoaDon>{
 	public ArrayList<HoaDon> getAll() throws SQLException {
 		ArrayList<HoaDon> hoaDon = new ArrayList<>();
 		Statement statement = conn.createStatement();
-		String query = "SELECT * FROM btl_qlcf.hoadon ";
+		String query = "SELECT hoadon.* ,ban.maban,ban.name,ban.status FROM hoadon "+
+				"LEFT JOIN ban on ban.maban=hoadon.maban";
 		ResultSet rs = statement.executeQuery(query);
 		while (rs.next()) {
 			HoaDon hoadon = HoaDon.getFromResultSet(rs);
@@ -51,11 +54,11 @@ public class HoaDonRepository extends DAO<HoaDon>{
 			connection = MySQLConnecttion.getConnection();
 			String query = "INSERT INTO hoadon ( maban, TONGTIEN) VALUES ( ?, ?)";
 			statement = connection.prepareStatement(query);
-			statement.setInt(1, t.getMaBan());
+			statement.setInt(1, t.getBan().getMaBan());
 			statement.setFloat(2, t.getTongTien());
 			int row = statement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
+			System.out.println("Không thể kết nối cơ sỡ dữ liệu");
 			e.printStackTrace();
 		} finally {
 			try {

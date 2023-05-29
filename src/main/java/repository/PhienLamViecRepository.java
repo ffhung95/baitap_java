@@ -20,7 +20,7 @@ public class PhienLamViecRepository extends DAO<PhienLamViec>{
 	public ArrayList<PhienLamViec> getAll() throws SQLException {
 		  ArrayList<PhienLamViec> phienLamViecs = new ArrayList<>();
 	        Statement statement = conn.createStatement();
-	        String query = "SELECT * FROM ban ORDER BY maban ASC , name ASC";
+	        String query = "SELECT phienlamviec.*   FROM ban ORDER BY maban ASC , name ASC";
 	        ResultSet rs = statement.executeQuery(query);
 	        while (rs.next()) {
 	        	PhienLamViec phienLamViec = PhienLamViec.getFromResultSet(rs);
@@ -41,9 +41,13 @@ public class PhienLamViecRepository extends DAO<PhienLamViec>{
 	}
 	@Override
 	public PhienLamViec get(int id) throws SQLException {
-		 Statement statement = conn.createStatement();
-	        String query = "SELECT * FROM phienlamviec WHERE maphienlamviec = " + id;
-	        ResultSet rs = statement.executeQuery(query);
+		connection = MySQLConnecttion.getConnection();
+	        String query = "SELECT phienlamviec.* ,nhanvien.manv,nhanvien.hotennv " +
+					"FROM phienlamviec " +
+					" LEFT JOIN nhanvien on nhanvien.manv=phienlamviec.manv " +
+					" WHERE phienlamviec.maphienlamviec = " + id;
+		statement = connection.prepareStatement(query);
+		rs = statement.executeQuery();
 	        if (rs.next()) {
 	        	PhienLamViec phienLamViec = PhienLamViec.getFromResultSet(rs);
 	            return phienLamViec;
@@ -58,8 +62,7 @@ public class PhienLamViecRepository extends DAO<PhienLamViec>{
 	        }
 	        String query = "INSERT INTO phienlamviec (manv) VALUES (?)";
 	        PreparedStatement stmt = conn.prepareStatement(query);
-	        stmt.setInt(1, t.getMaNhanVien());
-	        
+	        stmt.setInt(1, t.getNhanvien().getManv());
 	        int row = stmt.executeUpdate();
 		
 	}

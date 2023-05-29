@@ -92,7 +92,7 @@ public class hangHoaController {
 
 		view.getTxtUnitPrice().setText(foodItem.getGiaHangHoa() + "");
 		loaiHang fc = new loaiHang();
-		fc.setMaloaihang(foodItem.getMaloaihang());
+		fc.setMaloaihang(foodItem.getLoaiHang().getMaloaihang());
 		view.getCboCategory().setSelectedItem(fc);
 
 		try {
@@ -135,8 +135,8 @@ public class hangHoaController {
 			foodItem.setSoLuong(soluong);
 			foodItem.setGiaHangHoa(Integer.parseInt(unitPrice));
 			foodItem.setAnhHangHoa(Files.readAllBytes(file.toPath()));
-			foodItem.setMaloaihang(selectCategory.getMaloaihang());
-			foodItem.setIdAdmin(selectAdmin.getMaadmin());
+			foodItem.setLoaiHang(selectCategory);
+			foodItem.setDmin(selectAdmin);
 			HangHoaRepo.save(foodItem);
 			view.showMessage("Thêm thành công");
 			HangHoaAdminView hangHoaAdminview = new HangHoaAdminView();
@@ -159,8 +159,8 @@ public class hangHoaController {
 		foodItem.setTenHangHoa(name);
 		foodItem.setGiaHangHoa(Integer.parseInt(unitPrice));
 		foodItem.setAnhHangHoa(Files.readAllBytes(file.toPath()));
-		foodItem.setMaloaihang(selectCategory.getMaloaihang());
-		foodItem.setIdAdmin(selectAdmin.getMaadmin());
+		foodItem.setLoaiHang(selectCategory);
+		foodItem.setDmin(selectAdmin);
 		HangHoaRepo.update(foodItem);
 		return true;
 	}

@@ -43,9 +43,9 @@ public void setTrangthai(TableStatus trangthai) {
 }
 public static table getFromResultSet(ResultSet rs) throws SQLException {
 	table f = new table();
-    f.setMaBan(rs.getInt("maban"));
+	f.setMaBan(rs.getInt("maban"));
     f.setName(rs.getString("name"));
-   f.setTrangthai(TableStatus.getById(rs.getString("status")));
+    f.setTrangthai(TableStatus.getById(rs.getString("status")));
     return f;
 }
 

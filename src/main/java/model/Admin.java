@@ -1,6 +1,10 @@
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Date;
+
 public class Admin {
 	private int maadmin;
 	private String taikhoan;
@@ -61,6 +65,15 @@ public class Admin {
 	public String toString() {
 		return hoten ;
 	}
-	
-	
+
+	public static Admin getFromResultSet(ResultSet rs) throws SQLException {
+		Admin adminrepository = new Admin();
+		adminrepository.setMaadmin(rs.getInt("maadmin"));
+		adminrepository.setTaikhoan(rs.getString("taikhoan"));
+		adminrepository.setMatkhau(rs.getString("matkhau"));
+		adminrepository.setHoten(rs.getString("hoten"));
+		adminrepository.setSdt(rs.getString("sdt"));
+		adminrepository.setAvatar(rs.getBytes("avatar"));
+		return adminrepository;
+	}
 }

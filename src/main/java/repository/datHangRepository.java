@@ -21,7 +21,11 @@ public class datHangRepository extends DAO<DatHang>{
 		 ArrayList<DatHang> datHangs = new ArrayList<>();
 		 try {
 		 connection = MySQLConnecttion.getConnection();
-	        String query = "SELECT * FROM dathang";
+	        String query = "SELECT dathang.*,ban.maban,ban.name,ban.status,nhanvien.manv,nhanvien.hotennv," +
+					" hanghoa.mahanghoa,hanghoa.tenhanghoa FROM dathang "+
+					"LEFT JOIN ban on ban.maban=dathang.maban "+
+					" LEFT JOIN nhanvien on nhanvien.manv=dathang.manv "+
+					" LEFT JOIN hanghoa on hanghoa.mahanghoa=dathang.mahanghoa";
 	        statement = connection.prepareStatement(query);
 			rs = statement.executeQuery();
 	        while (rs.next()) {
@@ -29,7 +33,7 @@ public class datHangRepository extends DAO<DatHang>{
 	        	datHangs.add(dathang);
 	        }
 		 } catch (SQLException e) {
-				System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
+				System.out.println("Không thể kết nối cơ sỡ dữ liệu");
 				e.printStackTrace();
 			} finally {
 				try {
@@ -65,9 +69,9 @@ public class datHangRepository extends DAO<DatHang>{
 			connection = MySQLConnecttion.getConnection();
 			String query = "INSERT INTO dathang (maban, manv, mahanghoa, soluong, thanhtien) VALUES ( ?, ?, ?, ?,?)";
 			statement = connection.prepareStatement(query);
-			statement.setInt(1, t.getMaBan());
-			statement.setInt(2, t.getMaNhanVien());
-			statement.setInt(3, t.getMaHangHoa());
+			statement.setInt(1, t.getBan().getMaBan());
+			statement.setInt(2, t.getNhanvien().getMaPhienLamViec());
+			statement.setInt(3, t.getHanghoa().getMaHangHoa());
 			statement.setInt(4, t.getSoLuong());
 			statement.setFloat(5, t.getThanhTien());
 			int row = statement.executeUpdate();

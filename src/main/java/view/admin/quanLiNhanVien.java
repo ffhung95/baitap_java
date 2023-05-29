@@ -138,7 +138,7 @@ public class quanLiNhanVien extends JFrame {
 				String taikhoan = taikhoan_jtfiel.getText();
 				nhanVienModel.setTaikhoan(taikhoan);
 				String matkhau = new String(matkhau_jpwfiel.getPassword());
-				matkhau=MaHoa.toSHA1(matkhau);
+//				matkhau=MaHoa.toSHA1(matkhau);
 				nhanVienModel.setMatkhau(matkhau);
 				String sdt = sdt_jtfiel.getText();
 				String regex= "^0[39]{1}\\d{8}$";

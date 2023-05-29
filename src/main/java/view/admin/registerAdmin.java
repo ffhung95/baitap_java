@@ -161,7 +161,7 @@ public class registerAdmin extends JFrame {
 					String taikhoan = taikhoan_jtfile.getText();
 					adminmodel.setTaikhoan(taikhoan);
 					String matkhau = new String(matkhau_jpfile.getPassword());
-					matkhau = MaHoa.toSHA1(matkhau);
+//					matkhau = MaHoa.toSHA1(matkhau);
 					adminmodel.setMatkhau(matkhau);
 					String hoten = hoten_jtfile.getText();
 					adminmodel.setHoten(hoten);

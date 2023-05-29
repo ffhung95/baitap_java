@@ -66,16 +66,8 @@ public class NhanVienReposity {
 	        	nhanVienModel nhanienrepository = new  nhanVienModel();
 	        	nhanienrepository.setManv(rs.getInt("manv"));
 				nhanienrepository.setHoten(rs.getString("hotennv"));
-				nhanienrepository.setTaikhoan(rs.getString("taikhoan"));
-				nhanienrepository.setMatkhau(rs.getString("matkhau"));
-				nhanienrepository.setSdt(rs.getString("sdt"));
-				java.sql.Date nagyvaolam = rs.getDate("ngayvaolam");
-				if (nagyvaolam != null) {
-					nhanienrepository.setNgayvaolam(new Date(nagyvaolam.getTime()));
-				}
-				nhanienrepository.setChucvu(rs.getString("chucvu"));
-				nhanienrepository.setLuong(rs.getInt("luong"));
-				nhanienrepository.setAvt(rs.getBytes("avt"));
+
+
 	            return nhanienrepository;
 	        }
 	        return null;

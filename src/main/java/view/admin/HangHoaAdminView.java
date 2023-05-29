@@ -99,11 +99,9 @@ public class HangHoaAdminView extends JFrame {
 						if (list != null) {
 							defaultTableModel.setRowCount(0);
 						for (hangHoa hanghoa :list ) {
-								loaiHang tenloaihang=loaihangrepository.get( hanghoa.getMaloaihang());
-								Admin tenadmin= adminrepository.get(hanghoa.getIdAdmin());
 								defaultTableModel
 								.addRow(new Object[] { hanghoa.getMaHangHoa(), hanghoa.getTenHangHoa(), hanghoa.getGiaHangHoa(),
-										hanghoa.getSoLuong(), tenloaihang.getTenLoaiHang(),tenadmin.getHoten(), hanghoa.getAnhHangHoa() });
+										hanghoa.getSoLuong(), hanghoa.getLoaiHang().getTenLoaiHang(),hanghoa.getDmin().getHoten(), hanghoa.getAnhHangHoa() });
 						table.setModel(defaultTableModel);
 						table.getTableHeader().setReorderingAllowed(false);
 	
@@ -210,11 +208,9 @@ public class HangHoaAdminView extends JFrame {
 		try {
 			for (hangHoa HangHoa : HangHoaRepository.getAll()) {
 				if(HangHoa.getSoLuong()>0) {
-					loaiHang tenloaihang=loaihangrepository.get( HangHoa.getMaloaihang());
-					Admin tenadmin= adminrepository.get(HangHoa.getIdAdmin());
 					defaultTableModel
 					.addRow(new Object[] { HangHoa.getMaHangHoa(), HangHoa.getTenHangHoa(), HangHoa.getGiaHangHoa(),
-							HangHoa.getSoLuong(), tenloaihang.getTenLoaiHang(),tenadmin.getHoten(), HangHoa.getAnhHangHoa() });
+							HangHoa.getSoLuong(), HangHoa.getLoaiHang().getTenLoaiHang(),HangHoa.getDmin().getHoten(), HangHoa.getAnhHangHoa() });
 			table.setModel(defaultTableModel);
 			table.getTableHeader().setReorderingAllowed(false);
 				}

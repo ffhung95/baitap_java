@@ -7,7 +7,7 @@ import utils.NhanVienStatus;
 import utils.TableStatus;
 
 public class PhienLamViec {
-	protected int maPhienLamViec, maNhanVien;
+	protected int maPhienLamViec;
 	protected nhanVienModel nhanvien;
 	protected NhanVienStatus trangThai;
 	
@@ -15,10 +15,10 @@ public class PhienLamViec {
 		super();
 	}
 
-	public PhienLamViec(int maPhienLamViec, int maNhanVien, nhanVienModel nhanvien, NhanVienStatus trangThai) {
+	public PhienLamViec(int maPhienLamViec, nhanVienModel nhanvien, NhanVienStatus trangThai) {
 		super();
 		this.maPhienLamViec = maPhienLamViec;
-		this.maNhanVien = maNhanVien;
+
 		this.nhanvien = nhanvien;
 		this.trangThai = trangThai;
 	}
@@ -29,7 +29,6 @@ public class PhienLamViec {
 
 	public void setNhanvien(nhanVienModel nhanvien) {
 		this.nhanvien = nhanvien;
-		this.maNhanVien=nhanvien.getManv();
 	}
 
 	public int getMaPhienLamViec() {
@@ -38,14 +37,6 @@ public class PhienLamViec {
 
 	public void setMaPhienLamViec(int maPhienLamViec) {
 		this.maPhienLamViec = maPhienLamViec;
-	}
-
-	public int getMaNhanVien() {
-		return maNhanVien;
-	}
-
-	public void setMaNhanVien(int maNhanVien) {
-		this.maNhanVien = maNhanVien;
 	}
 
 	public NhanVienStatus getTrangThai() {
@@ -60,9 +51,12 @@ public class PhienLamViec {
 	
 	public static PhienLamViec getFromResultSet(ResultSet rs) throws SQLException {
 		PhienLamViec f = new PhienLamViec();
+		nhanVienModel nhanienrepository = new nhanVienModel();
+		nhanienrepository.setManv(rs.getInt("manv"));
+		nhanienrepository.setHoten(rs.getString("hotennv"));
 	    f.setMaPhienLamViec(rs.getInt("maphienlamviec"));
-	    f.setMaNhanVien(rs.getInt("manv"));
-	   f.setTrangThai(NhanVienStatus.getById(rs.getString("trangthai")));
+	    f.setNhanvien(nhanienrepository);
+	   	f.setTrangThai(NhanVienStatus.getById(rs.getString("trangthai")));
 	    return f;
 	}
 	

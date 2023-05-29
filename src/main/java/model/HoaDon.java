@@ -1,11 +1,13 @@
 package model;
 
+import utils.TableStatus;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class HoaDon {
 private int maHoaDon;
-private int maBan;
 private table ban;
 private float tongTien;
 
@@ -13,10 +15,9 @@ public HoaDon() {
 	super();
 }
 
-public HoaDon(int maHoaDon, int maBan, table ban, float tongTien) {
+public HoaDon(int maHoaDon, table ban, float tongTien) {
 	super();
 	this.maHoaDon = maHoaDon;
-	this.maBan = maBan;
 	this.ban = ban;
 	this.tongTien = tongTien;
 }
@@ -29,24 +30,15 @@ public void setMaHoaDon(int maHoaDon) {
 	this.maHoaDon = maHoaDon;
 }
 
-public int getMaBan() {
-	return maBan;
-}
+	public table getBan() {
+		return ban;
+	}
 
-public void setMaBan(int maBan) {
-	this.maBan = maBan;
-}
+	public void setBan(table ban) {
+		this.ban = ban;
+	}
 
-public table getBan() {
-	return ban;
-}
-
-public void setBan(table ban) {
-	this.ban = ban;
-	this.maBan=ban.getMaBan();
-}
-
-public float getTongTien() {
+	public float getTongTien() {
 	return tongTien;
 }
 
@@ -54,17 +46,20 @@ public void setTongTien(float tongTien) {
 	this.tongTien = tongTien;
 }
 public static HoaDon getFromResultSet(ResultSet rs) throws SQLException {
+	table bantam= new table();
+	bantam.setMaBan(rs.getInt("ban.maban"));
+	bantam.setName(rs.getString("ban.name"));
+	bantam.setTrangthai(TableStatus.getById(rs.getString("ban.status")));
 	HoaDon f = new HoaDon();
     f.setMaHoaDon(rs.getInt("MAHD"));
-    f.setMaBan(rs.getInt("maban"));
+    f.setBan(bantam);
     f.setTongTien(rs.getFloat("soluong"));
     return f;
 }
 
 @Override
 public String toString() {
-	return "HoaDon [maHoaDon=" + maHoaDon + ", maBan=" + maBan + ", ban=" + ban + ", tongTien=" + tongTien + "]";
+	return "HoaDon [maHoaDon=" + maHoaDon + ", maBan=" + ban.getMaBan() + ", ban=" + ban + ", tongTien=" + tongTien + "]";
 }
-
 
 }

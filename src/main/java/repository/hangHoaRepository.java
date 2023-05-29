@@ -19,7 +19,9 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	public ArrayList<hangHoa> getAll() throws SQLException {
 		ArrayList<hangHoa> foodItems = new ArrayList<>();
 		Statement statement = conn.createStatement();
-		String query = "SELECT * FROM hanghoa ORDER BY maloaihang ASC ,maadmin ASC";
+		String query = "SELECT hanghoa.* , admin.maadmin ,admin.hoten ,loaihang.maloaihang ,loaihang.tenloaihang FROM hanghoa "+
+				"LEFT JOIN admin on admin.maadmin=hanghoa.maadmin "+
+				"LEFT JOIN loaihang on loaihang.maloaihang=hanghoa.maloaihang";
 		ResultSet rs = statement.executeQuery(query);
 		while (rs.next()) {
 			hangHoa foodItem = hangHoa.getFromResultSet(rs);
@@ -70,8 +72,8 @@ public class hangHoaRepository extends DAO<hangHoa> {
 			statement.setNString(1, t.getTenHangHoa());
 			statement.setFloat(2, t.getGiaHangHoa());
 			statement.setInt(3, t.getSoLuong());
-			statement.setInt(4, t.getMaloaihang());
-			statement.setInt(5, t.getIdAdmin());
+			statement.setInt(4, t.getLoaiHang().getMaloaihang());
+			statement.setInt(5, t.getDmin().getMaadmin());
 			statement.setBytes(6, t.getAnhHangHoa());
 			int row = statement.executeUpdate();
 		} catch (SQLException e) {
@@ -98,8 +100,8 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		stmt.setNString(1, t.getTenHangHoa());
 		stmt.setFloat(2, t.getGiaHangHoa());
 		stmt.setInt(3, t.getSoLuong());
-		statement.setInt(4, t.getMaloaihang());
-		stmt.setInt(5, t.getIdAdmin());
+		statement.setInt(4, t.getLoaiHang().getMaloaihang());
+		statement.setInt(5, t.getDmin().getMaadmin());
 		stmt.setBytes(6, t.getAnhHangHoa());
 		stmt.setInt(7, t.getMaHangHoa());
 		int row = stmt.executeUpdate();
@@ -154,7 +156,10 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	public ArrayList<hangHoa> searchByName(String key) throws SQLException {
 		ArrayList<hangHoa> fooditems = new ArrayList<>();
 		Statement statement = conn.createStatement();
-		String query = "SELECT * FROM hanghoa WHERE tenhanghoa LIKE '%" + key + "%';";
+		String query = "SELECT hanghoa.* FROM hanghoa ,admin.maadmin,admin.hoten,loaihang.mahanghoa,loaihang.tenhanghoa"+
+				"LEFT JOIN admin on admin.maadmin=hanghoa.maadmin"+
+				"LEFT JOIN loaihang on loaihang.mahanghoa=hanghoa.mahanghoa"+
+				"WHERE tenhanghoa LIKE '%" + key + "%'";
 		ResultSet rs = statement.executeQuery(query);
 		while (rs.next()) {
 			hangHoa fooditem = hangHoa.getFromResultSet(rs);

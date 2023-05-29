@@ -103,7 +103,7 @@ public class loginView extends JFrame {
             		AdminReposity adminRepository = new AdminReposity();
         			String taikhoan =username_jtfiel.getText();
         			String matkhau = new String(password_pwfiel.getPassword());
-        			matkhau= MaHoa.toSHA1(matkhau);
+//        			matkhau= MaHoa.toSHA1(matkhau);
         			adminModel.setTaikhoan(taikhoan);
         			adminModel.setMatkhau(matkhau);
         			adminModel=adminRepository.seclectByTenDangNhapVaMatKhau(adminModel);
@@ -124,7 +124,7 @@ public class loginView extends JFrame {
             		NhanVienReposity nhanVienRepository= new NhanVienReposity();
         			String taikhoan =username_jtfiel.getText();
         			String matkhau = new String(password_pwfiel.getPassword());
-        			matkhau =MaHoa.toSHA1(matkhau);
+//        			matkhau =MaHoa.toSHA1(matkhau);
         			nhanVienModel.setTaikhoan(taikhoan);
         			nhanVienModel.setMatkhau(matkhau);
         			nhanVienModel=nhanVienRepository.seclectByTenDangNhapVaMatKhau(nhanVienModel);
@@ -132,7 +132,7 @@ public class loginView extends JFrame {
         			if(nhanVienModel!=null) {
 						PhienLamViecRepository phienlamviecRepository = new PhienLamViecRepository();
 						PhienLamViec session= new PhienLamViec();
-						session.setMaNhanVien(nhanVienModel.getManv());
+						session.setNhanvien(nhanVienModel);
 						session.setTrangThai(NhanVienStatus.SERVING);
 						try {
 							phienlamviecRepository.save(session);

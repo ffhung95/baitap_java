@@ -53,14 +53,14 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 
-import model.ChiTietHoaDon;
+//import model.ChiTietHoaDon;
 import model.DatHang;
 import model.HoaDon;
 import model.PhienLamViec;
 import model.hangHoa;
 import model.nhanVienModel;
 import model.table;
-import repository.ChiTietHoaDonRepository;
+//import repository.ChiTietHoaDonRepository;
 import repository.datHangRepository;
 import repository.NhanVienReposity;
 import repository.PhienLamViecRepository;
@@ -263,7 +263,7 @@ public class TaoDonHang extends JFrame {
 		NhanVienReposity nhanvienRe = new NhanVienReposity();
 		try {
 			PhienLamViec session = phienLamViecRepository.get(1);
-			nhanVienModel nhanvien = nhanvienRe.get(session.getMaNhanVien());
+			nhanVienModel nhanvien = nhanvienRe.get(session.getNhanvien().getManv());
 			if(nhanvien.getAvt()==null) {
 				ImageIcon icon = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\non_user.jpg");
 				Image img = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -511,9 +511,11 @@ public class TaoDonHang extends JFrame {
 						PhienLamViecRepository phienLamViecRepository = new PhienLamViecRepository();
 						try {
 							PhienLamViec session = phienLamViecRepository.get(1);
-							datHang.setMaBan(idb);
-							datHang.setMaNhanVien(session.getMaNhanVien());
-							datHang.setMaHangHoa(drink.getMaHangHoa());
+							table bantam= new table();
+							bantam.setMaBan(idb);
+							datHang.setBan(bantam);
+							datHang.setNhanvien(session);
+							datHang.setHanghoa(drink);
 							datHang.setSoLuong(value);
 							float thanhtien = drink.getGiaHangHoa() * value;
 							datHang.setThanhTien(thanhtien);
@@ -763,7 +765,7 @@ public class TaoDonHang extends JFrame {
 									datHangRepository datHangRepository = new datHangRepository();
 									try {
 										for (DatHang dathang : datHangRepository.getAll()) {
-											if (dathang.getMaBan() == idban) {
+											if (dathang.getBan().getMaBan() == idban) {
 												tongtien = tongtien + dathang.getThanhTien();
 												datHangRepository.delete(dathang);
 											}
@@ -773,7 +775,7 @@ public class TaoDonHang extends JFrame {
 										e1.printStackTrace();
 									}
 									HoaDon hoaDon = new HoaDon();
-									hoaDon.setMaBan(idban);
+									hoaDon.getBan().setMaBan(idban);
 									hoaDon.setTongTien(tongtien);
 									
 									try {
@@ -929,15 +931,9 @@ public class TaoDonHang extends JFrame {
 
 		try {
 			for (DatHang dathang : dathangReposity.getAll()) {
-				if(dathang.getMaBan()==idban) {
-					tableRepository tableRe = new tableRepository();
-					table ban = tableRe.get(dathang.getMaBan());
-					NhanVienReposity nhanvienRe = new NhanVienReposity();
-					nhanVienModel nv = nhanvienRe.get(dathang.getMaNhanVien());
-					hangHoaRepository hanghoaRe = new hangHoaRepository();
-					hangHoa hh = hanghoaRe.get(dathang.getMaHangHoa());
-					defaultTableModel.addRow(new Object[] { dathang.getMaDatHang(), ban.getName(), nv.getHoten(),
-							hh.getTenHangHoa(), dathang.getSoLuong(), dathang.getThanhTien(), });
+				if(dathang.getBan().getMaBan()==idban) {
+					defaultTableModel.addRow(new Object[] { dathang.getMaDatHang(), dathang.getBan().getName(), dathang.getNhanvien(),
+							dathang.getHanghoa().getTenHangHoa(), dathang.getSoLuong(), dathang.getThanhTien(), });
 					table_Bill.setModel(defaultTableModel);
 					table_Bill.getTableHeader().setReorderingAllowed(false);
 				}
@@ -957,14 +953,11 @@ public class TaoDonHang extends JFrame {
 
 		try {
 			for (DatHang dathang : dathangReposity.getAll()) {
-				if(dathang.getMaBan()==idban) {
-					hangHoaRepository hanghoaRe = new hangHoaRepository();
-					hangHoa hh = hanghoaRe.get(dathang.getMaHangHoa());
-					defaultTableModel.addRow(new Object[] { hh.getTenHangHoa(), dathang.getSoLuong() });
+				if(dathang.getBan().getMaBan()==idban) {
+					defaultTableModel.addRow(new Object[]{dathang.getHanghoa().getTenHangHoa(), dathang.getSoLuong()});
 					tthientai.setModel(defaultTableModel);
 					tthientai.getTableHeader().setReorderingAllowed(false);
 				}
-				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
