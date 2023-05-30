@@ -921,7 +921,6 @@ public class TaoDonHang extends JFrame {
 	private void loadtabel(int idban) {
 		datHangRepository dathangReposity = new datHangRepository();
 		DefaultTableModel defaultTableModel = new DefaultTableModel();
-	
 		defaultTableModel.addColumn("ID");
 		defaultTableModel.addColumn("Tên bàn");
 		defaultTableModel.addColumn("Tên nhân viên");
@@ -931,13 +930,14 @@ public class TaoDonHang extends JFrame {
 
 		try {
 			for (DatHang dathang : dathangReposity.getAll()) {
+				NhanVienReposity nvRe= new NhanVienReposity();
+				nhanVienModel nhanvien =nvRe.get(1);
 				if(dathang.getBan().getMaBan()==idban) {
-					defaultTableModel.addRow(new Object[] { dathang.getMaDatHang(), dathang.getBan().getName(), dathang.getNhanvien(),
+					defaultTableModel.addRow(new Object[] { dathang.getMaDatHang(), dathang.getBan().getName(), nhanvien.getHoten(),
 							dathang.getHanghoa().getTenHangHoa(), dathang.getSoLuong(), dathang.getThanhTien(), });
 					table_Bill.setModel(defaultTableModel);
 					table_Bill.getTableHeader().setReorderingAllowed(false);
 				}
-				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -9,9 +9,7 @@ import java.util.ArrayList;
 
 import database.MySQLConnecttion;
 import model.HoaDon;
-import model.hangHoa;
-import model.table;
-import utils.TableStatus;
+
 
 public class HoaDonRepository extends DAO<HoaDon>{
 	private Connection connection = null;

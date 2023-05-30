@@ -156,10 +156,11 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	public ArrayList<hangHoa> searchByName(String key) throws SQLException {
 		ArrayList<hangHoa> fooditems = new ArrayList<>();
 		Statement statement = conn.createStatement();
-		String query = "SELECT hanghoa.* FROM hanghoa ,admin.maadmin,admin.hoten,loaihang.mahanghoa,loaihang.tenhanghoa"+
-				"LEFT JOIN admin on admin.maadmin=hanghoa.maadmin"+
-				"LEFT JOIN loaihang on loaihang.mahanghoa=hanghoa.mahanghoa"+
-				"WHERE tenhanghoa LIKE '%" + key + "%'";
+		String query = "SELECT hanghoa.* , admin.maadmin, admin.hoten, loaihang.maloaihang, loaihang.tenloaihang " +
+				" FROM hanghoa " +
+				" LEFT JOIN admin on admin.maadmin=hanghoa.maadmin " +
+				" LEFT JOIN loaihang on loaihang.maloaihang=hanghoa.maloaihang " +
+				" WHERE tenhanghoa LIKE '%" + key + "%'";
 		ResultSet rs = statement.executeQuery(query);
 		while (rs.next()) {
 			hangHoa fooditem = hangHoa.getFromResultSet(rs);
