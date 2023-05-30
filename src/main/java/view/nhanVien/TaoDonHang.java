@@ -775,7 +775,9 @@ public class TaoDonHang extends JFrame {
 										e1.printStackTrace();
 									}
 									HoaDon hoaDon = new HoaDon();
-									hoaDon.getBan().setMaBan(idban);
+									table bantam1= new table();
+									bantam1.setMaBan(idban);
+									hoaDon.setBan(bantam1);
 									hoaDon.setTongTien(tongtien);
 									
 									try {

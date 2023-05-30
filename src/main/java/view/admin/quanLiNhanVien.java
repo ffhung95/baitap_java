@@ -1,9 +1,11 @@
 package view.admin;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -31,8 +33,9 @@ import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 
-public class quanLiNhanVien extends JFrame {
+public class quanLiNhanVien extends JPanel {
 
 	private JPanel contentPane;
 	private JTextField hoten_jtfiel;
@@ -43,89 +46,25 @@ public class quanLiNhanVien extends JFrame {
 	private JTextField luong_jtfiel;
 	private JTable table;
 	private JComboBox chucvu_combobox;
+	private JPanel panel;
 	public quanLiNhanVien() {
-		getContentPane().setBackground(new Color(236, 255, 255));
+//		getContentPane().setBackground(new Color(236, 255, 255));
 		this.initComponents();
         this.setVisible(true);
 	}
 
 	private void initComponents() {
-		setTitle("Nhân Viên");
-    	this.setSize(700, 360);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        this.setResizable(false);
-        getContentPane().setLayout(null);
+		
+    	this.setSize(1099, 655);
+    	panel = new JPanel();
         
-        JPanel panel = new JPanel();
+       
         panel.setBackground(new Color(236, 255, 255));
-        panel.setBounds(10, 25, 666, 144);
-        getContentPane().add(panel);
+        panel.setBounds(0, 0, 1099, 655);
+//        getContentPane().add(panel);
         panel.setLayout(null);
         
-        JLabel lblNewLabel = new JLabel("Tên nhân viên :");
-        lblNewLabel.setBounds(10, 10, 86, 22);
-        panel.add(lblNewLabel);
-        
-        JLabel lblTiKhon = new JLabel("Tài khoản :");
-        lblTiKhon.setBounds(10, 43, 86, 22);
-        panel.add(lblTiKhon);
-        
-        JLabel lblMtKhu = new JLabel("Mật khẩu :");
-        lblMtKhu.setBounds(10, 75, 86, 22);
-        panel.add(lblMtKhu);
-        
-        JLabel lblSdt = new JLabel("SĐT :");
-        lblSdt.setBounds(349, 10, 36, 22);
-        panel.add(lblSdt);
-        
-        JLabel lblNgyVoLm = new JLabel("Ngày vào làm :");
-        lblNgyVoLm.setBounds(349, 43, 86, 22);
-        panel.add(lblNgyVoLm);
-        
-        JLabel lblChcV = new JLabel("Chức vụ :");
-        lblChcV.setBounds(349, 75, 55, 22);
-        panel.add(lblChcV);
-        
-        JLabel lblLng = new JLabel("Lương :");
-        lblLng.setBounds(349, 108, 55, 22);
-        panel.add(lblLng);
-        
-        hoten_jtfiel = new JTextField();
-        hoten_jtfiel.setBounds(106, 12, 182, 19);
-        panel.add(hoten_jtfiel);
-        hoten_jtfiel.setColumns(10);
-        
-        taikhoan_jtfiel = new JTextField();
-        taikhoan_jtfiel.setColumns(10);
-        taikhoan_jtfiel.setBounds(106, 45, 182, 19);
-        panel.add(taikhoan_jtfiel);
-        
-        matkhau_jpwfiel = new JPasswordField();
-        matkhau_jpwfiel.setBounds(106, 77, 182, 19);
-        panel.add(matkhau_jpwfiel);
-        
-        sdt_jtfiel = new JTextField();
-        sdt_jtfiel.setColumns(10);
-        sdt_jtfiel.setBounds(439, 11, 183, 19);
-        panel.add(sdt_jtfiel);
-        
-        ngayvaolam_jtfiel = new JTextField();
-        ngayvaolam_jtfiel.setColumns(10);
-        ngayvaolam_jtfiel.setBounds(439, 44, 183, 19);
-        panel.add(ngayvaolam_jtfiel);
-        
-        chucvu_combobox = new JComboBox();
-        chucvu_combobox.setModel(new DefaultComboBoxModel(new String[] {"", "Quản Lí", "Nhân Viên phục vụ"}));
-        chucvu_combobox.setBounds(439, 76, 100, 21);
-        panel.add(chucvu_combobox);
-        
-        luong_jtfiel = new JTextField();
-        luong_jtfiel.setColumns(10);
-        luong_jtfiel.setBounds(439, 109, 183, 19);
-        panel.add(luong_jtfiel);
-        
+       
         JButton btnNewButton = new JButton("Thêm");
         btnNewButton.setHorizontalAlignment(SwingConstants.LEFT);
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -190,7 +129,7 @@ public class quanLiNhanVien extends JFrame {
         });
         ImageIcon iconAdd = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\add.png");
         btnNewButton.setIcon(iconAdd);
-        btnNewButton.setBounds(10, 107, 85, 21);
+        btnNewButton.setBounds(30, 170, 85, 21);
         panel.add(btnNewButton);
         
         JButton btnXa  = new JButton("Xóa");
@@ -207,7 +146,7 @@ public class quanLiNhanVien extends JFrame {
         });
         ImageIcon iconDelete = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\delete.png");
         btnXa.setIcon(iconDelete);
-        btnXa.setBounds(106, 108, 85, 21);
+        btnXa.setBounds(230, 170, 85, 21);
         panel.add(btnXa);
         
         JButton btnSa = new JButton("Cập nhật");
@@ -221,13 +160,19 @@ public class quanLiNhanVien extends JFrame {
         });
         ImageIcon iconUpdate = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\update.png");
         btnSa.setIcon(iconUpdate);
-        btnSa.setBounds(203, 108, 85, 21);
+        btnSa.setBounds(130, 170, 85, 21);
         panel.add(btnSa);
         
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 189, 666, 124);
-        scrollPane.getViewport().setBackground(new Color(255, 255, 255));
-        getContentPane().add(scrollPane);
+        JPanel TbNv= new JPanel();
+        TbNv.setBounds(30,  200,  1060,  450);
+        JScrollPane scrollPane_1 = new JScrollPane();
+        scrollPane_1.setBounds(0, 0, 1060, 450);
+        TbNv.add(scrollPane_1);
+        panel.add(TbNv);
+//        JScrollPane scrollPane = new JScrollPane();
+//        scrollPane.setBounds(10, 189, 666, 124);
+//        scrollPane.getViewport().setBackground(new Color(255, 255, 255));
+//        getContentPane().add(scrollPane);
         
         table = new JTable();
         table.setFillsViewportHeight(true);
@@ -241,7 +186,7 @@ public class quanLiNhanVien extends JFrame {
         		"Id", "Tên nhân viên", "SDT", "Ngày vào làm", "Chức vụ", "Lương"
         	}
         ));
-        scrollPane.setViewportView(table);
+        scrollPane_1.setViewportView(table);
         
         JButton btnNewButton_1 = new JButton("");
 //        btnNewButton_1.setBackground(new Color(236, 255, 255));
@@ -250,17 +195,45 @@ public class quanLiNhanVien extends JFrame {
         btnNewButton_1.getModel().setRollover(false);
         btnNewButton_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		dispose();
+//        		dispose();
         		trangChuAdmin tranchu = new trangChuAdmin();
         		tranchu.setVisible(true);
         	}
         });
         
         btnNewButton_1.setBounds(0, 0, 34, 21);
-        getContentPane().add(btnNewButton_1);
+//        getContentPane().add(btnNewButton_1);
         btnNewButton_1.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\return.png"));
+        
+        JPanel NumperNum= new JPanel();
+        NumperNum.setBounds(500,  30,  550,  150);
+        NumperNum.setBackground(Color.white);
+        NumperNum.setLayout(null);
+       
+        JPanel QlNpn= new JPanel();
+        //QlNpn.setBorder(new LineBorder(Color.black));
+        	JLabel QuanLyLa= new JLabel("QUẢN LÝ");
+        	JLabel NumQuanLy= new JLabel("?/?");
+        QlNpn.add(QuanLyLa);
+        QlNpn.add(NumQuanLy);
+        JPanel NvNpn= new JPanel();
+        NvNpn.setBorder(new LineBorder(Color.black));
+        	JLabel NhanVienLa= new JLabel("NHÂN VIÊN");
+        	JLabel NumNhanVien= new JLabel("?/?");
+        NvNpn.add(NhanVienLa);
+        NvNpn.add(NumNhanVien);
+        
+        NumperNum.add(QlNpn);
+        NumperNum.add(NvNpn);
+        panel.add(NumperNum);
+        
+        
+        
+        
+        
+        
         loadtabel();
-		
+        this.add(panel);
 	}
 	private void loadtabel() {
 		NhanVienReposity nhanVienReposity= new NhanVienReposity();
@@ -290,6 +263,4 @@ public class quanLiNhanVien extends JFrame {
 		int mannv = Integer.valueOf(model_table.getValueAt(i_row, 0) + "");
 		return mannv;
 	}
-
-
 }
