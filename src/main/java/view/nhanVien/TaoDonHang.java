@@ -171,7 +171,7 @@ public class TaoDonHang extends JFrame {
 			sohang++;
 		}
 		//////////////////////////////////////////////////////
-		banCF();
+		banCF(0);
 //**************************************************************************		
 
 		panel = new JPanel();
@@ -559,7 +559,7 @@ public class TaoDonHang extends JFrame {
 		}
 	}
 
-	public void banCF() {
+	public void banCF(int idb) {
 		try {
 			pban = new JPanel();
 			pban.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -775,9 +775,15 @@ public class TaoDonHang extends JFrame {
 										e1.printStackTrace();
 									}
 									HoaDon hoaDon = new HoaDon();
+<<<<<<< HEAD
+									table bantam= new table();
+									bantam.setMaBan(idban);
+									hoaDon.setBan(bantam);
+=======
 									table bantam1= new table();
 									bantam1.setMaBan(idban);
 									hoaDon.setBan(bantam1);
+>>>>>>> 500b07c00b7ed0eff5b556220282f78b02669795
 									hoaDon.setTongTien(tongtien);
 									
 									try {
