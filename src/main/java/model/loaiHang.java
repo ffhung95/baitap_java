@@ -42,7 +42,7 @@ public class loaiHang extends Model {
 	@Override
 	public Object[] toRowTable() {
 		// TODO Auto-generated method stub
-		return new Object[] { this.getTenLoaiHang() };
+		return new Object[] { this.getMaloaihang(),this.getTenLoaiHang() };
 	}
 
 }

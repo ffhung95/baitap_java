@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
-public class nhanVienModel {
+public class nhanVienModel extends Model {
 private int manv;
 private String hoten;
 private String taikhoan;
@@ -146,5 +146,12 @@ public String toString() {
 			+ ", sdt=" + sdt + ", ngayvaolam=" + sdf.format(ngayvaolam) + ", chucvu=" + chucvu + ", luong=" + luong + ", avatar="
 			 + "]";
 }
+
+	@Override
+	public Object[] toRowTable() {
+		return new Object[]{
+				this.getManv(),this.getHoten(),this.getSdt(),this.getChucvu(),this.getLuong()
+		};
+	}
 
 }

@@ -775,12 +775,24 @@ public class TaoDonHang extends JFrame {
 										e1.printStackTrace();
 									}
 									HoaDon hoaDon = new HoaDon();
+<<<<<<< HEAD
 									table bantam= new table();
 									bantam.setMaBan(idban);
 									hoaDon.setBan(bantam);
 									table bantam1= new table();
 									bantam1.setMaBan(idban);
 									hoaDon.setBan(bantam1);
+=======
+
+									table bantam= new table();
+									bantam.setMaBan(idban);
+									hoaDon.setBan(bantam);
+
+									table bantam1= new table();
+									bantam1.setMaBan(idban);
+									hoaDon.setBan(bantam1);
+
+>>>>>>> 8beb06305789cb1866331b4fed0f8c8adcc981a0
 									hoaDon.setTongTien(tongtien);
 									
 									try {
@@ -938,8 +950,7 @@ public class TaoDonHang extends JFrame {
 				NhanVienReposity nvRe= new NhanVienReposity();
 				nhanVienModel nhanvien =nvRe.get(1);
 				if(dathang.getBan().getMaBan()==idban) {
-					defaultTableModel.addRow(new Object[] { dathang.getMaDatHang(), dathang.getBan().getName(), nhanvien.getHoten(),
-							dathang.getHanghoa().getTenHangHoa(), dathang.getSoLuong(), dathang.getThanhTien(), });
+					defaultTableModel.addRow(nhanvien.toRowTable());
 					table_Bill.setModel(defaultTableModel);
 					table_Bill.getTableHeader().setReorderingAllowed(false);
 				}

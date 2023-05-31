@@ -36,6 +36,7 @@ import java.awt.Component;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import java.awt.Dimension;
 
 public class registerAdmin extends JFrame {
 	public File file;
@@ -55,6 +56,7 @@ public class registerAdmin extends JFrame {
 	public JButton luu_jbutton;
 	private JButton dangnhap_jbutton;
 	private JTable thongtinadmin_table;
+	
 
 	public registerAdmin() {
 		panel = new JPanel();
@@ -73,6 +75,8 @@ public class registerAdmin extends JFrame {
 		thongtinadmin_table = new JTable();
 		this.init();
 		this.setVisible(true);
+		ImageIcon mainIcon = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin.png");
+    	this.setIconImage(mainIcon.getImage());
 	}
 
 	private void init() {
@@ -84,7 +88,7 @@ public class registerAdmin extends JFrame {
 		contentPane.setLayout(null);
 		panel = new JPanel();
 		panel.setBackground(new Color(236, 255, 255));
-		panel.setBounds(10, 10, 666, 653);
+		panel.setBounds(10, 46, 666, 615);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -92,7 +96,7 @@ public class registerAdmin extends JFrame {
 		panel_1.setBackground(new Color(236, 255, 255));
 		panel_1.setBorder(new TitledBorder(null, "Th\u00F4ng tin nh\u00E2n vi\u00EAn", TitledBorder.LEADING,
 				TitledBorder.TOP, null, null));
-		panel_1.setBounds(28, 61, 486, 279);
+		panel_1.setBounds(28, 61, 486, 296);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -136,20 +140,34 @@ public class registerAdmin extends JFrame {
 		sdt_jtfile.setBounds(121, 144, 197, 19);
 		panel_1.add(sdt_jtfile);
 
+		
 		photo_jbutton = new JButton("Browse....");
 		photo_jbutton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		JLabel showImage = new JLabel("");
+		showImage.setBounds(351, 184, 108, 82);
 		photo_jbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jfilechoooser = new JFileChooser();
 				jfilechoooser.setMultiSelectionEnabled(false);
 				if (jfilechoooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 					file = jfilechoooser.getSelectedFile();
+//					
+					ImageIcon imageIcon = new ImageIcon(file.getAbsolutePath());
+					Dimension labelSize = new Dimension(showImage.getWidth(), showImage.getHeight());
+					ImageIcon scaledImageIcon = new ImageIcon(imageIcon.getImage().getScaledInstance(labelSize.width, labelSize.height, java.awt.Image.SCALE_SMOOTH));
+					showImage.setIcon(scaledImageIcon);
+					showImage.setPreferredSize(labelSize);
 				}
 			}
 		});
+
+//		showImage.setHorizontalAlignment(JLabel.CENTER); 
+//		showImage.setVerticalAlignment(JLabel.CENTER);
+		panel_1.add(showImage);
 		photo_jbutton.setBounds(121, 183, 197, 21);
 		panel_1.add(photo_jbutton);
-
+		
+		
 		luu_jbutton = new JButton("Lưu");
 		luu_jbutton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		luu_jbutton.addActionListener(new ActionListener() {
@@ -194,7 +212,7 @@ public class registerAdmin extends JFrame {
 
 			}
 		});
-		luu_jbutton.setBounds(26, 230, 85, 21);
+		luu_jbutton.setBounds(26, 246, 85, 21);
 		panel_1.add(luu_jbutton);
 
 		matkhau_jpfile = new JPasswordField();
@@ -202,7 +220,7 @@ public class registerAdmin extends JFrame {
 		panel_1.add(matkhau_jpfile);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(28, 382, 483, 202);
+		scrollPane.setBounds(28, 404, 446, 180);
 		scrollPane.getViewport().setBackground(new Color(255, 255, 255));
 		panel.add(scrollPane);
 
@@ -238,8 +256,7 @@ public class registerAdmin extends JFrame {
 		defaultTableModel.addColumn("SDT");
 		defaultTableModel.addColumn("Avatar");
 		for (Admin adminModel : adminReposity.getAdmin()) {
-			defaultTableModel.addRow(new Object[] { adminModel.getMaadmin(), adminModel.getHoten(), adminModel.getSdt(),
-					adminModel.getAvatar() });
+			defaultTableModel.addRow(adminModel.toRowTable());
 			thongtinadmin_table.setModel(defaultTableModel);
 			thongtinadmin_table.getTableHeader().setReorderingAllowed(false);
 			thongtinadmin_table.getColumnModel().getColumn(3).setCellRenderer(new ImageRender());

@@ -86,11 +86,7 @@ public class ListTableView extends JFrame {
 		defaultTableModel.addColumn("Trạng thái");
 		try {
 			for (table ban : tableRepo.getAll()) {
-				defaultTableModel.addRow(new Object[] {
-						ban.getMaBan(),
-						ban.getName(),
-						ban.getTrangthai()
-									});
+				defaultTableModel.addRow(ban.toRowTable());
 				table.setModel(defaultTableModel);
 				table.getTableHeader().setReorderingAllowed(false);	
 }

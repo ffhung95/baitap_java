@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Date;
 
-public class Admin {
+public class Admin extends Model {
 	private int maadmin;
 	private String taikhoan;
 	private String matkhau;
@@ -64,6 +64,14 @@ public class Admin {
 	@Override
 	public String toString() {
 		return hoten ;
+	}
+
+	@Override
+	public Object[] toRowTable() {
+		return new Object[]{
+				this.getMaadmin(),this.getTaikhoan(),this.getMatkhau(),this.getHoten(),
+				this.getSdt(),this.getAvatar()
+		};
 	}
 
 	public static Admin getFromResultSet(ResultSet rs) throws SQLException {

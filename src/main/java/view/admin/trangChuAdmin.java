@@ -58,6 +58,8 @@ public class trangChuAdmin extends JFrame {
 		contentPane.setLayout(null);
 		this.initComponents();
         this.setVisible(true);
+        ImageIcon mainIcon = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin.png");
+    	this.setIconImage(mainIcon.getImage());
 	}
 
 	private void initComponents() {
@@ -175,6 +177,7 @@ public class trangChuAdmin extends JFrame {
 		btnngXut.setBounds(0, 302, 254, 71);
 		panel_1.add(btnngXut);
 		
+<<<<<<< HEAD
 //		JButton btnQunLBn = new JButton("Quản lí bàn");
 //		btnQunLBn.setBackground(new Color(255, 255, 255));
 //		btnQunLBn.addActionListener(new ActionListener() {
@@ -190,6 +193,24 @@ public class trangChuAdmin extends JFrame {
 //		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 //		btnQunLBn.setBounds(0, 234, 254, 71);
 //		panel_1.add(btnQunLBn);
+=======
+		JButton btnQunLBn = new JButton("Quản lí bàn");
+		btnQunLBn.setBackground(new Color(255, 255, 255));
+		btnQunLBn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				panel_thongke.removeAll();
+				panel_thongke.repaint();
+				
+				panel_thongke.add(Table_Panel_All);
+				loadTable();
+				//panel_thongke.repaint();
+			}
+		});
+		btnQunLBn.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\table.png"));
+		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnQunLBn.setBounds(0, 234, 254, 71);
+		panel_1.add(btnQunLBn);
+>>>>>>> 8beb06305789cb1866331b4fed0f8c8adcc981a0
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(255, 255, 255));

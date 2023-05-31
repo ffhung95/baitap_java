@@ -2,6 +2,7 @@ package view.admin;
 
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -42,6 +43,8 @@ public class menuView extends JFrame {
 		panel_menu.setBounds(10, 10, 325, 729);
 		background.add(panel_menu);
 		panel_menu.setLayout(null);
+		ImageIcon mainIcon = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin.png");
+    	this.setIconImage(mainIcon.getImage());
 	}
 	
 }

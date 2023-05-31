@@ -49,14 +49,17 @@ public static table getFromResultSet(ResultSet rs) throws SQLException {
     return f;
 }
 
-@Override
-public Object[] toRowTable() {
-	// TODO Auto-generated method stub
-	return null;
-}
+
 @Override
 public String toString() {
 	return "table [maBan=" + maBan + ", name=" + name + ", status=" + trangthai + "]";
 }
+
+	@Override
+	public Object[] toRowTable() {
+		return new Object[]{
+				this.getMaBan(),this.getName(),this.getTrangthai()
+		};
+	}
 
 }

@@ -54,6 +54,7 @@ public class HangHoaAdminView extends JPanel {
 	public HangHoaAdminView() {
 		this.init();
 		this.setVisible(true);
+		
 	}
 
 	private void init() {
@@ -87,8 +88,7 @@ public class HangHoaAdminView extends JPanel {
 							defaultTableModel.setRowCount(0);
 						for (hangHoa hanghoa :list ) {
 								defaultTableModel
-								.addRow(new Object[] { hanghoa.getMaHangHoa(), hanghoa.getTenHangHoa(), hanghoa.getGiaHangHoa(),
-										hanghoa.getSoLuong(), hanghoa.getLoaiHang().getTenLoaiHang(),hanghoa.getDmin().getHoten(), hanghoa.getAnhHangHoa() });
+								.addRow(hanghoa.toRowTable());
 						table.setModel(defaultTableModel);
 						table.getTableHeader().setReorderingAllowed(false);
 	
@@ -195,8 +195,12 @@ public class HangHoaAdminView extends JPanel {
 			for (hangHoa HangHoa : HangHoaRepository.getAll()) {
 				if(HangHoa.getSoLuong()>0) {
 					defaultTableModel
+<<<<<<< HEAD
 					.addRow(new Object[] { HangHoa.getMaHangHoa(), HangHoa.getTenHangHoa(), HangHoa.getGiaHangHoa(),
 							HangHoa.getSoLuong(), HangHoa.getLoaiHang().getTenLoaiHang() });
+=======
+					.addRow(HangHoa.toRowTable());
+>>>>>>> 8beb06305789cb1866331b4fed0f8c8adcc981a0
 			table.setModel(defaultTableModel);
 			table.getTableHeader().setReorderingAllowed(false);
 				}

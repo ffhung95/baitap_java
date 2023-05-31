@@ -329,14 +329,7 @@ public class quanLiNhanVien extends JPanel {
 		defaultTableModel.addColumn("Chức vụ");
 		defaultTableModel.addColumn("Lương");
 		for (nhanVienModel nhanvien : nhanVienReposity.getAdmin()) {
-			defaultTableModel.addRow(new Object[] {
-					nhanvien.getManv(),
-					nhanvien.getHoten(),
-					nhanvien.getSdt(),
-					nhanvien.getNgayvaolam().getDate()+"/"+(nhanvien.getNgayvaolam().getMonth()+1)+"/"+(nhanvien.getNgayvaolam().getYear()+1900),
-					nhanvien.getChucvu(),
-					nhanvien.getLuong(),
-								});
+			defaultTableModel.addRow(nhanvien.toRowTable());
 			table.setModel(defaultTableModel);
 			table.getTableHeader().setReorderingAllowed(false);	
 		}
