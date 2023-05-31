@@ -6,22 +6,33 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 
 import view.loginView;
 import view.nhanVien.TableEmployessWiew;
+import view.trangChu.tableView;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
+
+import controller.tableController;
+import model.table;
+import repository.tableRepository;
+
 import javax.swing.SwingConstants;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
@@ -65,7 +76,7 @@ public class trangChuAdmin extends JFrame {
 		panel_1 = new JPanel();
 
 		panel_thongke = new JPanel();
-		panel_thongke.setBounds(253, 58, 1099, 655);
+		panel_thongke.setBounds(253, 58, 1099, 645);
 		panel.add(panel_thongke);
 		panel_thongke.setLayout(null);
 //		panel_1.setBorder(new EmptyBorder(5, 3, 0, 0));
@@ -163,10 +174,10 @@ public class trangChuAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panel_thongke.removeAll();
 				panel_thongke.repaint();
-				TableEmployessWiew view = new TableEmployessWiew();
-				panel_thongke.add(view);
+				
+				panel_thongke.add(Table_Panel_All);
+				loadTable();
 				//panel_thongke.repaint();
-				//view.setVisible(true);
 			}
 		});
 		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -199,5 +210,67 @@ public class trangChuAdmin extends JFrame {
 		lblNewLabel_6.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\nhuong-quyen-highland-coffee.png"));
 		lblNewLabel_6.setBounds(0, 5, 686, 303);
 		
+		Table_Panel_All= new JPanel();
+		Table_Panel_All.setBounds(0,0, 1062,  645);
+		Table_Panel_All.setLayout(null);
+		
+		JPanel ptableview= new JPanel();
+		ptableview.setBounds(0, 45, 1030, 600);
+		ptableview.setLayout(null);
+		tableView= new JTable();
+		tableView.setSize(1000, 500);
+		tableView.setModel(new DefaultTableModel(
+	        	new Object[][] {
+	        	},
+	        	new String[] {
+	        		"Id", "Tên bàn", "Trạng Thái"
+	        	}
+	        ));
+		JScrollPane scrtable= new JScrollPane(tableView);
+		
+		
+	
+	        
+		scrtable= new JScrollPane(tableView);
+		ptableview.add(scrtable);
+		scrtable.setBounds(0,  0,  1000,  500);
+		ptableview.add(scrtable);
+		Table_Panel_All.add(ptableview);
+		Table_Panel_All.add(ptableview);
+		//panel_thongke.add(Table_Panel_All);
 	}
+	private void loadTable() {
+		tableRepository tableReposity= new tableRepository();
+		DefaultTableModel defaultTableModel= new DefaultTableModel();
+		defaultTableModel.addColumn("ID");
+		defaultTableModel.addColumn("Tên bàn");
+		defaultTableModel.addColumn("Trạng thái");
+		tableView.setModel(defaultTableModel);
+		try {
+			for (table ban : tableReposity.getAll()) {
+				defaultTableModel.addRow(new Object[] {
+						ban.getMaBan(),
+						ban.getName(),
+						ban.getTrangthai(),
+									});
+				
+				tableView.getTableHeader().setReorderingAllowed(false);	
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private int getMaban() {
+		DefaultTableModel model_table = (DefaultTableModel) tableView.getModel();
+		int i_row = tableView.getSelectedRow();
+		int maban = Integer.valueOf(model_table.getValueAt(i_row, 0) + "");
+		return maban;
+	}
+private tableController tablecontroller;
+private tableView view;
+private table tableModel;
+private JTable tableView;
+private tableRepository tablerepository;
+private JPanel Table_Panel_All;
 }
