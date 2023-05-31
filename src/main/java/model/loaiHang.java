@@ -36,10 +36,7 @@ public class loaiHang extends Model {
 
 	@Override
 	public String toString() {
-		return "loaiHang{" +
-				"maloaihang=" + maloaihang +
-				", tenLoaiHang='" + tenLoaiHang + '\'' +
-				'}';
+		return this.tenLoaiHang;
 	}
 
 	@Override

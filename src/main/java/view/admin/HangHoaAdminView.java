@@ -195,7 +195,6 @@ public class HangHoaAdminView extends JFrame {
 	}
 
 	private void loadtable() {
-		
 		hangHoaRepository HangHoaRepository = new hangHoaRepository();
 		defaultTableModel = new DefaultTableModel();
 		defaultTableModel.addColumn("ID");

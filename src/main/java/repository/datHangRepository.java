@@ -21,10 +21,10 @@ public class datHangRepository extends DAO<DatHang>{
 		 ArrayList<DatHang> datHangs = new ArrayList<>();
 		 try {
 		 connection = MySQLConnecttion.getConnection();
-	        String query = "SELECT dathang.*,ban.maban,ban.name,ban.status,nhanvien.manv,nhanvien.hotennv," +
+	        String query = "SELECT dathang.*,ban.maban,ban.name,ban.status,phienlamviec.maphienlamviec," +
 					" hanghoa.mahanghoa,hanghoa.tenhanghoa FROM dathang "+
 					"LEFT JOIN ban on ban.maban=dathang.maban "+
-					" LEFT JOIN nhanvien on nhanvien.manv=dathang.manv "+
+					" LEFT JOIN phienlamviec on phienlamviec.maphienlamviec=dathang.maphienlamviec "+
 					" LEFT JOIN hanghoa on hanghoa.mahanghoa=dathang.mahanghoa";
 	        statement = connection.prepareStatement(query);
 			rs = statement.executeQuery();
@@ -67,7 +67,7 @@ public class datHangRepository extends DAO<DatHang>{
 		}
 		try {
 			connection = MySQLConnecttion.getConnection();
-			String query = "INSERT INTO dathang (maban, manv, mahanghoa, soluong, thanhtien) VALUES ( ?, ?, ?, ?,?)";
+			String query = "INSERT INTO dathang (maban, maphienlamviec, mahanghoa, soluong, thanhtien) VALUES ( ?, ?, ?, ?,?)";
 			statement = connection.prepareStatement(query);
 			statement.setInt(1, t.getBan().getMaBan());
 			statement.setInt(2, t.getNhanvien().getMaPhienLamViec());
