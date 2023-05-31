@@ -52,6 +52,8 @@ public class trangChuAdmin extends JFrame {
 		contentPane.setLayout(null);
 		this.initComponents();
         this.setVisible(true);
+        ImageIcon mainIcon = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin.png");
+    	this.setIconImage(mainIcon.getImage());
 	}
 
 	private void initComponents() {
@@ -180,6 +182,7 @@ public class trangChuAdmin extends JFrame {
 				//panel_thongke.repaint();
 			}
 		});
+		btnQunLBn.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\table.png"));
 		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnQunLBn.setBounds(0, 234, 254, 71);
 		panel_1.add(btnQunLBn);

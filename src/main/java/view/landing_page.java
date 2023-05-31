@@ -29,6 +29,9 @@ public class landing_page extends JFrame {
 		getContentPane().setBackground(new Color(236, 255, 255));
 		this.initComponents();
         this.setVisible(true);
+        ImageIcon mainIcon = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin.png");
+    	this.setIconImage(mainIcon.getImage());
+        
 	}
 
 	private void initComponents() {

@@ -54,6 +54,7 @@ public class HangHoaAdminView extends JPanel {
 	public HangHoaAdminView() {
 		this.init();
 		this.setVisible(true);
+		
 	}
 
 	private void init() {
