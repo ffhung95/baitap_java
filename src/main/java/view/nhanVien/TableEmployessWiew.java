@@ -11,34 +11,43 @@ import view.admin.trangChuAdmin;
 import view.trangChu.tableView;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import org.apache.poi.ss.formula.functions.Mode;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 
-public class TableEmployessWiew extends JFrame {
+public class TableEmployessWiew extends JPanel {
 	
 	private tableController tablecontroller;
 	private tableView view;
 	private table tableModel;
 	private JTable tableView;
 	private tableRepository tablerepository;
-	
+	private JPanel Table_Panel_All;
 	public TableEmployessWiew() {
-		this.tablecontroller = new tableController();
-		this.tablerepository= new tableRepository();
-		this.tableModel = new table();
-		getContentPane().setLayout(null);
+		this.setSize(1062, 703);
+//		this.tablecontroller = new tableController();
+//		this.tablerepository= new tableRepository();
+//		this.tableModel = new table();
+		this.setLayout(null);
+		Table_Panel_All= new JPanel();
+		Table_Panel_All.setBounds(0,  0,  1062,  703);
+		tableView = new JTable();
+		tableView.setPreferredSize(new Dimension(1062, 500));
+		
+		JPanel TBSCR= new JPanel();
+		TBSCR.setBounds(0,  0,  1062,  503);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 10, 666, 177);
-		getContentPane().add(scrollPane);
-		
-		tableView = new JTable();
 		scrollPane.setColumnHeaderView(tableView);
-		
+		TBSCR.add(scrollPane);
+		Table_Panel_All.add(TBSCR);
 		JButton btnNewButton = new JButton("Thêm ");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -47,8 +56,8 @@ public class TableEmployessWiew extends JFrame {
 			}
 		});
 		btnNewButton.setBounds(20, 197, 85, 21);
-		getContentPane().add(btnNewButton);
-		
+		//getContentPane().add(btnNewButton);
+		Table_Panel_All.add(btnNewButton);
 		JButton btnNewButton_1 = new JButton("Xóa");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -57,7 +66,6 @@ public class TableEmployessWiew extends JFrame {
 				try {
 					tablerepository.delete(tableDelete);
 					JOptionPane.showMessageDialog(null, "Xóa thành công");
-					dispose();
 					loadTable();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -68,29 +76,21 @@ public class TableEmployessWiew extends JFrame {
 			}
 		});
 		btnNewButton_1.setBounds(159, 197, 85, 21);
-		getContentPane().add(btnNewButton_1);
-		
-		JButton btnNewButton_1_1 = new JButton("Quay lại");
-		btnNewButton_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				new trangChuAdmin();
-				//view.setVisible(true);
-			}
-		});
-		btnNewButton_1_1.setBounds(294, 197, 85, 21);
-		getContentPane().add(btnNewButton_1_1);
+		//getContentPane().add(btnNewButton_1);
+		Table_Panel_All.add(btnNewButton_1);
 		this.init();
 		this.setVisible(true);
 	}
 
 	private void init() {
-		setTitle("Table");
-    	this.setSize(700, 360);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        this.setResizable(false);
+//		setTitle("Table");
+//    	this.setSize(700, 360);
+//		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		this.setLocationRelativeTo(null);
+//        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+//        this.setResizable(false);
+		this.setSize(1062, 703);
+		this.add(Table_Panel_All);
         loadTable();
 	}
 	private void loadTable() {
@@ -99,6 +99,7 @@ public class TableEmployessWiew extends JFrame {
 		defaultTableModel.addColumn("ID");
 		defaultTableModel.addColumn("Tên bàn");
 		defaultTableModel.addColumn("Trạng thái");
+		tableView.setModel(defaultTableModel);
 		try {
 			for (table ban : tableReposity.getAll()) {
 				defaultTableModel.addRow(new Object[] {
@@ -106,7 +107,7 @@ public class TableEmployessWiew extends JFrame {
 						ban.getName(),
 						ban.getTrangthai(),
 									});
-				tableView.setModel(defaultTableModel);
+				
 				tableView.getTableHeader().setReorderingAllowed(false);	
 			}
 		} catch (SQLException e) {

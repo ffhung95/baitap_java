@@ -39,7 +39,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class HangHoaAdminView extends JFrame {
+public class HangHoaAdminView extends JPanel {
 	private loaiHangHoaRepository loaihangrepository;
 	private AdminReposity adminrepository;
 	private loaiHangController loaiHangCon;
@@ -50,41 +50,28 @@ public class HangHoaAdminView extends JFrame {
 	private DefaultTableModel defaultTableModel;
 	private JTable table;
 	public File file;
-
+	private JPanel panel; 
 	public HangHoaAdminView() {
-		this.loaihangrepository= new loaiHangHoaRepository();
-		this.adminrepository = new AdminReposity();
-		this.loaiHangCon = new loaiHangController();
-		this.loaiHangview = new loaiHangView();
-		this.hangHoaCon = new hangHoaController();
-		this.hangHoaVi = new hangHoaView();
-		defaultTableModel = new DefaultTableModel();
 		this.init();
 		this.setVisible(true);
 	}
 
 	private void init() {
-		this.setTitle("Hàng Hóa");
-		this.setSize(700, 500);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		getContentPane().setLayout(null);
-
-		JPanel panel = new JPanel();
+		this.setSize(1062, 703);
+		panel = new JPanel();
 		panel.setBackground(new Color(236, 255, 255));
-		panel.setBounds(0, 0, 676, 453);
-		getContentPane().add(panel);
+		panel.setBounds(0, 0, 1062, 703);
 		panel.setLayout(null);
-
+		
 		textField_timkiem = new JTextField();
-		textField_timkiem.setBounds(447, 14, 219, 27);
+		textField_timkiem.setBounds(447, 14, 400, 27);
 		panel.add(textField_timkiem);
 		textField_timkiem.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("Tìm kiếm");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNewLabel.setBounds(348, 11, 89, 30);
-		panel.add(lblNewLabel);
+//		JLabel lblNewLabel = new JLabel("Tìm kiếm");
+//		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+//		lblNewLabel.setBounds(860, 14, 89, 27);
+//		panel.add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Tìm kiếm");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -114,45 +101,44 @@ public class HangHoaAdminView extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(446, 50, 94, 34);
+		btnNewButton.setBounds(860, 14, 89, 27);
 		panel.add(btnNewButton);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(null);
-		panel_1.setBackground(new Color(236, 255, 255));
-		panel_1.setBounds(10, 10, 185, 443);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-
-		JButton btnThmLoiHng = new JButton("Thêm loại sản phẩm");
-		btnThmLoiHng.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				loaiHangCon.add(loaiHangview);
-
-			}
-		});
-		btnThmLoiHng.setBounds(0, 210, 175, 39);
-		panel_1.add(btnThmLoiHng);
-
-		JButton btnngXut = new JButton("Thoát");
-		btnngXut.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				trangChuAdmin trangchuview = new trangChuAdmin();
-				trangchuview.setVisible(true);
-			}
-		});
-		btnngXut.setBounds(0, 0, 97, 47);
-		panel_1.add(btnngXut);
-
-		JButton btnThmSnPhm = new JButton("Sản phẩm");
-		btnThmSnPhm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				hangHoaCon.add(hangHoaVi);
-			}
-		});
-		btnThmSnPhm.setBounds(0, 272, 175, 39);
-		panel_1.add(btnThmSnPhm);
+//		JPanel panel_1 = new JPanel();
+//		panel_1.setBorder(null);
+//		panel_1.setBackground(new Color(236, 255, 255));
+//		panel_1.setBounds(10, 10, 185, 443);
+//		panel.add(panel_1);
+//		panel_1.setLayout(null);
+//
+//		JButton btnThmLoiHng = new JButton("Thêm loại sản phẩm");
+//		btnThmLoiHng.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				loaiHangCon.add(loaiHangview);
+//
+//			}
+//		});
+//		btnThmLoiHng.setBounds(0, 210, 175, 39);
+//		panel_1.add(btnThmLoiHng);
+//
+//		JButton btnngXut = new JButton("Thoát");
+//		btnngXut.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				trangChuAdmin trangchuview = new trangChuAdmin();
+//				trangchuview.setVisible(true);
+//			}
+//		});
+//		btnngXut.setBounds(0, 0, 97, 47);
+//		panel_1.add(btnngXut);
+//
+//		JButton btnThmSnPhm = new JButton("Sản phẩm");
+//		btnThmSnPhm.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				hangHoaCon.add(hangHoaVi);
+//			}
+//		});
+//		btnThmSnPhm.setBounds(0, 272, 175, 39);
+//		panel_1.add(btnThmSnPhm);
 
 //		JSeparator separator_1 = new JSeparator();
 //		separator_1.setBorder(new MatteBorder(3, 1, 1, 1, (Color) new Color(0, 0, 0)));
@@ -164,20 +150,20 @@ public class HangHoaAdminView extends JFrame {
 //		separator_1_1.setBounds(0, 160, 185, 2);
 //		panel_1.add(separator_1_1);
 
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin128.png"));
-		lblNewLabel_1.setBounds(24, 60, 151, 126);
-		panel_1.add(lblNewLabel_1);
+//		JLabel lblNewLabel_1 = new JLabel("");
+//		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblNewLabel_1.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin128.png"));
+//		lblNewLabel_1.setBounds(24, 60, 151, 126);
+//		panel_1.add(lblNewLabel_1);
 
-		JButton btnHy = new JButton("Há»§y");
+		JButton btnHy = new JButton("HỦY");
 		btnHy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textField_timkiem.setText("");
 				loadtable();
 			}
 		});
-		btnHy.setBounds(572, 51, 94, 33);
+		btnHy.setBounds(960, 14, 89, 27);
 		panel.add(btnHy);
 
 		JLabel lblNewLabel_2 = new JLabel("Thông tin sản phẩm");
@@ -186,12 +172,13 @@ public class HangHoaAdminView extends JFrame {
 		panel.add(lblNewLabel_2);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(205, 120, 447, 304);
+		scrollPane.setBounds(30, 120, 1030, 550);
 		panel.add(scrollPane);
 
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		loadtable();
+		this.add(panel);
 	}
 
 	private void loadtable() {

@@ -2,6 +2,7 @@ package test;
 
 import view.landing_page;
 import view.loginView;
+import view.admin.trangChuAdmin;
 
 public class thihanh  {
 	public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class thihanh  {
 			page.loading.setText(Integer.toString(i) + "%");
 			page.MyprogressBar.setValue(i);
 		}
-		loginView login = new loginView();
+		trangChuAdmin login = new trangChuAdmin();
 		login.setVisible(true);
 		page.dispose();
 	}
