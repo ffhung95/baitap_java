@@ -17,7 +17,7 @@ public class thihanh  {
 			page.loading.setText(Integer.toString(i) + "%");
 			page.MyprogressBar.setValue(i);
 		}
-		trangChuAdmin login = new trangChuAdmin();
+		loginView login = new loginView();
 		login.setVisible(true);
 		page.dispose();
 	}

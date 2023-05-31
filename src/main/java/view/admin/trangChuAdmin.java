@@ -2,6 +2,7 @@ package view.admin;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Menu;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +26,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
@@ -39,6 +43,9 @@ import javax.swing.border.Border;
 public class trangChuAdmin extends JFrame {
 	private JPanel panel_1;
 	private JPanel panel_thongke;
+	//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	private JLabel ltime;
+	private JLabel ltime2;
 	int width=276;
 	int height= 714;
 	private JPanel contentPane;
@@ -46,8 +53,7 @@ public class trangChuAdmin extends JFrame {
 		contentPane = new JPanel();
 		panel_1 = new JPanel();
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		this.initComponents();
@@ -62,13 +68,15 @@ public class trangChuAdmin extends JFrame {
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         this.setResizable(false);
         getContentPane().setLayout(null);
-        
+        //setTime();
         JPanel panel = new JPanel();
+        HangHoaAdminView hangHoaView = new HangHoaAdminView();
+        quanLiNhanVien quanlinv = new quanLiNhanVien();
         
 		panel.setAlignmentY(Component.TOP_ALIGNMENT);
 		panel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel.setBackground(new Color(236, 255, 255));
+		panel.setBackground(new Color(240, 240, 240));
 		panel.setBounds(0, 0, 1362, 783);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -76,7 +84,7 @@ public class trangChuAdmin extends JFrame {
 		panel_1 = new JPanel();
 
 		panel_thongke = new JPanel();
-		panel_thongke.setBounds(253, 58, 1099, 645);
+		panel_thongke.setBounds(264, 61, 1063, 642);
 		panel.add(panel_thongke);
 		panel_thongke.setLayout(null);
 //		panel_1.setBorder(new EmptyBorder(5, 3, 0, 0));
@@ -115,9 +123,9 @@ public class trangChuAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panel_thongke.removeAll();
 				panel_thongke.repaint();
-				quanLiNhanVien quanlinv = new quanLiNhanVien();
+				
 				panel_thongke.add(quanlinv);
-				//panel_thongke.repaint();
+				panel_thongke.repaint();
 				//quanlinv.setVisible(true);
 			}
 		});
@@ -132,7 +140,6 @@ public class trangChuAdmin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				panel_thongke.removeAll();
 				panel_thongke.repaint();
-				HangHoaAdminView hangHoaView = new HangHoaAdminView();
 				panel_thongke.add(hangHoaView);
 				//panel_thongke.repaint();
 				//hangHoaView.setVisible(true);
@@ -151,7 +158,7 @@ public class trangChuAdmin extends JFrame {
 		});
 		btnThngK.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\futures.png"));
 		btnThngK.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnThngK.setBounds(0, 302, 254, 71);
+		btnThngK.setBounds(0, 234, 254, 71);
 		panel_1.add(btnThngK);
 		
 		JButton btnngXut = new JButton("Đăng xuất");
@@ -165,37 +172,48 @@ public class trangChuAdmin extends JFrame {
 		});
 		btnngXut.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\logout.png"));
 		btnngXut.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnngXut.setBounds(0, 370, 254, 71);
+		btnngXut.setBounds(0, 302, 254, 71);
 		panel_1.add(btnngXut);
 		
-		JButton btnQunLBn = new JButton("Quản lí bàn");
-		btnQunLBn.setBackground(new Color(255, 255, 255));
-		btnQunLBn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panel_thongke.removeAll();
-				panel_thongke.repaint();
-				
-				panel_thongke.add(Table_Panel_All);
-				loadTable();
-				//panel_thongke.repaint();
-			}
-		});
-		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnQunLBn.setBounds(0, 234, 254, 71);
-		panel_1.add(btnQunLBn);
+//		JButton btnQunLBn = new JButton("Quản lí bàn");
+//		btnQunLBn.setBackground(new Color(255, 255, 255));
+//		btnQunLBn.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				panel_thongke.removeAll();
+//				panel_thongke.repaint();
+//				
+//				panel_thongke.add(Table_Panel_All);
+//				loadTable();
+//				//panel_thongke.repaint();
+//			}
+//		});
+//		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 12));
+//		btnQunLBn.setBounds(0, 234, 254, 71);
+//		panel_1.add(btnQunLBn);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(253, 0, 1099, 58);
+		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBounds(264, 10, 1063, 41);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JButton btnNewButton_1 = new JButton("BUT");
-		btnNewButton_1.setBounds(10, 10, 51, 38);
-		panel_2.add(btnNewButton_1);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		ltime = new JLabel("");
+		ltime.setBackground(new Color(255, 255, 128));
+		ltime.setFont(new Font("Century Schoolbook", Font.ITALIC, 16));
+		ltime.setHorizontalAlignment(SwingConstants.CENTER);
+		ltime.setBounds(0, 29, 211, 29);
+		panel_2.add(ltime);
+		
+		ltime2 = new JLabel("");
+		ltime2.setBackground(new Color(255, 255, 128));
+		ltime2.setFont(new Font("Century Schoolbook", Font.ITALIC, 16));
+		ltime2.setHorizontalAlignment(SwingConstants.CENTER);
+		ltime2.setBounds(0, 0, 211, 29);
+		panel_2.add(ltime2);
+		
+		JLabel lblNewLabel_3 = new JLabel("New label");
+		lblNewLabel_3.setBounds(928, 0, 171, 58);
+		panel_2.add(lblNewLabel_3);
 		
 		
 		
@@ -267,6 +285,25 @@ public class trangChuAdmin extends JFrame {
 		int maban = Integer.valueOf(model_table.getValueAt(i_row, 0) + "");
 		return maban;
 	}
+//	public void setTime() {
+//        new Thread(new Runnable() {
+//            public void run() {
+//                while (true) {
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException ex) {
+//                        java.util.logging.Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                    Date date = new Date();
+//                    SimpleDateFormat tf = new SimpleDateFormat("h:mm:ss aa");
+//                    SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MM-yyyy");
+//                    String time = tf.format(date);
+//                    ltime2.setText(time.split(" ")[0] + " " + time.split(" ")[1]);
+//                    ltime.setText(df.format(date));
+//                }
+//            }
+//        }).start();
+ //   }
 private tableController tablecontroller;
 private tableView view;
 private table tableModel;

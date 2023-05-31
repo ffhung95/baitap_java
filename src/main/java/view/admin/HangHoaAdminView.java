@@ -189,14 +189,14 @@ public class HangHoaAdminView extends JPanel {
 		defaultTableModel.addColumn("Giá sản phẩm");
 		defaultTableModel.addColumn("Số lượng");
 		defaultTableModel.addColumn("Loại sản phẩm");
-		defaultTableModel.addColumn("Tên quản lí");
-		defaultTableModel.addColumn("Ảnh sản phẩm");
+		//defaultTableModel.addColumn("Tên quản lí");
+		//defaultTableModel.addColumn("Ảnh sản phẩm");
 		try {
 			for (hangHoa HangHoa : HangHoaRepository.getAll()) {
 				if(HangHoa.getSoLuong()>0) {
 					defaultTableModel
 					.addRow(new Object[] { HangHoa.getMaHangHoa(), HangHoa.getTenHangHoa(), HangHoa.getGiaHangHoa(),
-							HangHoa.getSoLuong(), HangHoa.getLoaiHang().getTenLoaiHang(),HangHoa.getDmin().getHoten(), HangHoa.getAnhHangHoa() });
+							HangHoa.getSoLuong(), HangHoa.getLoaiHang().getTenLoaiHang() });
 			table.setModel(defaultTableModel);
 			table.getTableHeader().setReorderingAllowed(false);
 				}
@@ -208,8 +208,8 @@ public class HangHoaAdminView extends JPanel {
 		}
 		table.setModel(defaultTableModel);
 		table.getTableHeader().setReorderingAllowed(false);
-		table.getColumnModel().getColumn(6).setCellRenderer(new ImageRender());
-		table.setRowHeight(50);
+		//table.getColumnModel().getColumn(6).setCellRenderer(new ImageRender());
+		//table.setRowHeight(50);
 	}
 
 	private class ImageRender extends DefaultTableCellRenderer {
