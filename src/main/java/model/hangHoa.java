@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Objects;
-public class hangHoa {
+public class hangHoa extends Model{
 private int maHangHoa ;
 private String tenHangHoa;
 private float giaHangHoa;
@@ -110,8 +110,13 @@ public String toString() {
 			+ ", LoaiHang=" + LoaiHang + ", anhHangHoa=" + Arrays.toString(anhHangHoa) + "]";
 }
 
-
-
+	@Override
+	public Object[] toRowTable() {
+		return new Object[]{
+				this.getMaHangHoa(),this.getTenHangHoa(),this.getGiaHangHoa(),this.getSoLuong(),this.getDmin().getHoten(),this.getLoaiHang(),
+				this.getAnhHangHoa()
+		};
+	}
 
 
 }

@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class HoaDon {
+public class HoaDon extends Model{
 private int maHoaDon;
 private table ban;
 private float tongTien;
@@ -61,5 +61,12 @@ public static HoaDon getFromResultSet(ResultSet rs) throws SQLException {
 public String toString() {
 	return "HoaDon [maHoaDon=" + maHoaDon + ", maBan=" + ban.getMaBan() + ", ban=" + ban + ", tongTien=" + tongTien + "]";
 }
+
+	@Override
+	public Object[] toRowTable() {
+		return new Object[]{
+				this.getMaHoaDon(),this.getBan().getName(),this.getTongTien()
+		};
+	}
 
 }

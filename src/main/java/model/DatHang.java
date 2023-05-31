@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class DatHang {
+public class DatHang extends Model {
 	private int  maDatHang,soLuong;
 	private float thanhTien;
 	private hangHoa hanghoa;
@@ -98,6 +98,25 @@ public class DatHang {
 	    f.setThanhTien(rs.getFloat("thanhtien"));
 	    return f;
 	}
-	
-	
+
+
+	@Override
+	public String toString() {
+		return "DatHang{" +
+				"maDatHang=" + maDatHang +
+				", soLuong=" + soLuong +
+				", thanhTien=" + thanhTien +
+				", hanghoa=" + hanghoa +
+				", nhanvien=" + nhanvien +
+				", ban=" + ban +
+				'}';
+	}
+
+	@Override
+	public Object[] toRowTable() {
+		return new Object[]{
+				this.getMaDatHang(),this.getBan().getName(),this.getHanghoa().getTenHangHoa(),
+				this.getNhanvien().getNhanvien().getHoten(),this.getSoLuong(),this.getThanhTien()
+		};
+	}
 }

@@ -256,8 +256,7 @@ public class registerAdmin extends JFrame {
 		defaultTableModel.addColumn("SDT");
 		defaultTableModel.addColumn("Avatar");
 		for (Admin adminModel : adminReposity.getAdmin()) {
-			defaultTableModel.addRow(new Object[] { adminModel.getMaadmin(), adminModel.getHoten(), adminModel.getSdt(),
-					adminModel.getAvatar() });
+			defaultTableModel.addRow(adminModel.toRowTable());
 			thongtinadmin_table.setModel(defaultTableModel);
 			thongtinadmin_table.getTableHeader().setReorderingAllowed(false);
 			thongtinadmin_table.getColumnModel().getColumn(3).setCellRenderer(new ImageRender());
