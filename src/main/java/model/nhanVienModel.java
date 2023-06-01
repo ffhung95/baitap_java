@@ -149,8 +149,10 @@ public String toString() {
 
 	@Override
 	public Object[] toRowTable() {
+		SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
 		return new Object[]{
-				this.getManv(),this.getHoten(),this.getSdt(),this.getChucvu(),this.getLuong()
+				
+				this.getManv(),this.getHoten(),this.getSdt(),sdf.format(this.getNgayvaolam()),this.getChucvu(),this.getLuong()
 		};
 	}
 

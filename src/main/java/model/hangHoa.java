@@ -113,8 +113,8 @@ public String toString() {
 	@Override
 	public Object[] toRowTable() {
 		return new Object[]{
-				this.getMaHangHoa(),this.getTenHangHoa(),this.getGiaHangHoa(),this.getSoLuong(),this.getDmin().getHoten(),this.getLoaiHang(),
-				this.getAnhHangHoa()
+				this.getMaHangHoa(),this.getTenHangHoa(),this.getGiaHangHoa(),this.getSoLuong(),this.getLoaiHang()
+			
 		};
 	}
 

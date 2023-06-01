@@ -53,7 +53,7 @@ public class trangChuAdmin extends JFrame {
 		contentPane = new JPanel();
 		panel_1 = new JPanel();
 		contentPane = new JPanel();
-		
+		setTime();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		this.initComponents();
@@ -177,7 +177,7 @@ public class trangChuAdmin extends JFrame {
 		btnngXut.setBounds(0, 302, 254, 71);
 		panel_1.add(btnngXut);
 		
-<<<<<<< HEAD
+
 //		JButton btnQunLBn = new JButton("Quản lí bàn");
 //		btnQunLBn.setBackground(new Color(255, 255, 255));
 //		btnQunLBn.addActionListener(new ActionListener() {
@@ -193,7 +193,7 @@ public class trangChuAdmin extends JFrame {
 //		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 //		btnQunLBn.setBounds(0, 234, 254, 71);
 //		panel_1.add(btnQunLBn);
-=======
+
 		JButton btnQunLBn = new JButton("Quản lí bàn");
 		btnQunLBn.setBackground(new Color(255, 255, 255));
 		btnQunLBn.addActionListener(new ActionListener() {
@@ -210,7 +210,7 @@ public class trangChuAdmin extends JFrame {
 		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnQunLBn.setBounds(0, 234, 254, 71);
 		panel_1.add(btnQunLBn);
->>>>>>> 8beb06305789cb1866331b4fed0f8c8adcc981a0
+
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(255, 255, 255));
@@ -222,7 +222,7 @@ public class trangChuAdmin extends JFrame {
 		ltime.setBackground(new Color(255, 255, 128));
 		ltime.setFont(new Font("Century Schoolbook", Font.ITALIC, 16));
 		ltime.setHorizontalAlignment(SwingConstants.CENTER);
-		ltime.setBounds(0, 29, 211, 29);
+		ltime.setBounds(221, 0, 211, 29);
 		panel_2.add(ltime);
 		
 		ltime2 = new JLabel("");
@@ -306,25 +306,25 @@ public class trangChuAdmin extends JFrame {
 		int maban = Integer.valueOf(model_table.getValueAt(i_row, 0) + "");
 		return maban;
 	}
-//	public void setTime() {
-//        new Thread(new Runnable() {
-//            public void run() {
-//                while (true) {
-//                    try {
-//                        Thread.sleep(1000);
-//                    } catch (InterruptedException ex) {
-//                        java.util.logging.Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                    Date date = new Date();
-//                    SimpleDateFormat tf = new SimpleDateFormat("h:mm:ss aa");
-//                    SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MM-yyyy");
-//                    String time = tf.format(date);
-//                    ltime2.setText(time.split(" ")[0] + " " + time.split(" ")[1]);
-//                    ltime.setText(df.format(date));
-//                }
-//            }
-//        }).start();
- //   }
+	public void setTime() {
+        new Thread(new Runnable() {
+            public void run() {
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        java.util.logging.Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Date date = new Date();
+                    SimpleDateFormat tf = new SimpleDateFormat("h:mm:ss aa");
+                    SimpleDateFormat df = new SimpleDateFormat("EEEE, dd-MM-yyyy");
+                    String time = tf.format(date);
+                    ltime2.setText(time.split(" ")[0] + " " + time.split(" ")[1]);
+                    ltime.setText(df.format(date));
+                }
+            }
+        }).start();
+    }
 private tableController tablecontroller;
 private tableView view;
 private table tableModel;

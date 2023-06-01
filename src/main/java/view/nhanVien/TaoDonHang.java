@@ -775,24 +775,15 @@ public class TaoDonHang extends JFrame {
 										e1.printStackTrace();
 									}
 									HoaDon hoaDon = new HoaDon();
-<<<<<<< HEAD
+
 									table bantam= new table();
 									bantam.setMaBan(idban);
 									hoaDon.setBan(bantam);
 									table bantam1= new table();
 									bantam1.setMaBan(idban);
 									hoaDon.setBan(bantam1);
-=======
 
-									table bantam= new table();
-									bantam.setMaBan(idban);
-									hoaDon.setBan(bantam);
 
-									table bantam1= new table();
-									bantam1.setMaBan(idban);
-									hoaDon.setBan(bantam1);
-
->>>>>>> 8beb06305789cb1866331b4fed0f8c8adcc981a0
 									hoaDon.setTongTien(tongtien);
 									
 									try {
