@@ -97,10 +97,6 @@ public class trangChuAdmin extends JFrame {
 		panel_thongke.setBounds(274, 62, 1053, 650);
 		panel.add(panel_thongke);
 		panel_thongke.setLayout(null);
-		 JLabel imgLogo = new JLabel("");
-		 imgLogo.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\logo.png"));
-		 imgLogo.setBounds(340, 154, 410, 265);
-		 panel_thongke.add(imgLogo);
 		
 
 		panel_thongke.setBounds(264, 71, 1063, 642);
@@ -257,7 +253,7 @@ public class trangChuAdmin extends JFrame {
 		});
 		btnThngK.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\futures.png"));
 		btnThngK.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnThngK.setBounds(5, 380, 254, 71);
+		btnThngK.setBounds(5, 298, 254, 71);
 		panel_1.add(btnThngK);
 
 		JButton btnngXut = new JButton("Đăng xuất");
@@ -273,23 +269,6 @@ public class trangChuAdmin extends JFrame {
 		btnngXut.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnngXut.setBounds(5, 602, 254, 71);
 		panel_1.add(btnngXut);
-
-		JButton btnQunLBn = new JButton("Quản lí bàn");
-		btnQunLBn.setBackground(new Color(255, 255, 255));
-		btnQunLBn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panel_thongke.removeAll();
-				panel_thongke.repaint();
-
-				panel_thongke.add(Table_Panel_All);
-				loadTable();
-				// panel_thongke.repaint();
-			}
-		});
-		btnQunLBn.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\table.png"));
-		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnQunLBn.setBounds(5, 300, 254, 71);
-		panel_1.add(btnQunLBn);
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(225, 255, 255));

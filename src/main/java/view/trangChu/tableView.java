@@ -86,8 +86,8 @@ public class tableView extends javax.swing.JFrame implements cuaSoView {
 					tablerepository.save(t);
 					JOptionPane.showMessageDialog(null, "Thêm thành công");
 					dispose();
-					TableEmployessWiew view = new TableEmployessWiew();
-	        		view.setVisible(true);
+//					TableEmployessWiew view = new TableEmployessWiew();
+//	        		view.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
