@@ -37,6 +37,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
+import javax.swing.border.EtchedBorder;
 
 public class registerAdmin extends JFrame {
 	public File file;
@@ -72,6 +73,7 @@ public class registerAdmin extends JFrame {
 		avatar_jlabel = new JLabel();
 		photo_jbutton = new JButton();
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(139, 236, 236));
 		thongtinadmin_table = new JTable();
 		this.init();
 		this.setVisible(true);
@@ -87,64 +89,64 @@ public class registerAdmin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		panel = new JPanel();
-		panel.setBackground(new Color(236, 255, 255));
-		panel.setBounds(10, 46, 666, 615);
+		panel.setBackground(new Color(139, 236, 236));
+		panel.setBounds(10, 11, 666, 650);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
 		panel_1 = new JPanel();
-		panel_1.setBackground(new Color(236, 255, 255));
-		panel_1.setBorder(new TitledBorder(null, "Th\u00F4ng tin nh\u00E2n vi\u00EAn", TitledBorder.LEADING,
-				TitledBorder.TOP, null, null));
-		panel_1.setBounds(28, 61, 486, 296);
+		panel_1.setBackground(new Color(139, 236, 236));
+		panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Th\u00F4ng tin nh\u00E2n vi\u00EAn", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)) );
+		
+		panel_1.setBounds(28, 61, 608, 578);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
 		taikhoan_jlabel = new JLabel("Tài khoản :");
-		taikhoan_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		taikhoan_jlabel.setBounds(26, 26, 85, 19);
+		taikhoan_jlabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		taikhoan_jlabel.setBounds(26, 30, 85, 30);
 		panel_1.add(taikhoan_jlabel);
 
 		matkhau_jlabel = new JLabel("Mật khẩu :");
-		matkhau_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		matkhau_jlabel.setBounds(26, 67, 73, 19);
+		matkhau_jlabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		matkhau_jlabel.setBounds(26, 90, 73, 30);
 		panel_1.add(matkhau_jlabel);
 
 		hoten_jlabel = new JLabel("Họ tên :");
-		hoten_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		hoten_jlabel.setBounds(26, 107, 73, 19);
+		hoten_jlabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		hoten_jlabel.setBounds(26, 150, 73, 30);
 		panel_1.add(hoten_jlabel);
 
 		sdt_jlabel = new JLabel("SĐT :");
-		sdt_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		sdt_jlabel.setBounds(26, 144, 73, 19);
+		sdt_jlabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		sdt_jlabel.setBounds(26, 210, 73, 30);
 		panel_1.add(sdt_jlabel);
 
 		avatar_jlabel = new JLabel("Avatar :");
-		avatar_jlabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		avatar_jlabel.setBounds(26, 184, 73, 19);
+		avatar_jlabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		avatar_jlabel.setBounds(26, 270, 73, 30);
 		panel_1.add(avatar_jlabel);
 
 		taikhoan_jtfile = new JTextField();
-		taikhoan_jtfile.setBounds(121, 27, 197, 19);
+		taikhoan_jtfile.setBounds(121, 30, 233, 30);
 		panel_1.add(taikhoan_jtfile);
 		taikhoan_jtfile.setColumns(10);
 
 		hoten_jtfile = new JTextField();
 		hoten_jtfile.setColumns(10);
-		hoten_jtfile.setBounds(121, 108, 197, 19);
+		hoten_jtfile.setBounds(121, 150, 233, 30);
 		panel_1.add(hoten_jtfile);
 
 		sdt_jtfile = new JTextField();
 		sdt_jtfile.setColumns(10);
-		sdt_jtfile.setBounds(121, 144, 197, 19);
+		sdt_jtfile.setBounds(121, 210, 233, 30);
 		panel_1.add(sdt_jtfile);
 
 		
 		photo_jbutton = new JButton("Browse....");
-		photo_jbutton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		photo_jbutton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		JLabel showImage = new JLabel("");
-		showImage.setBounds(351, 184, 108, 82);
+		showImage.setBounds(26, 329, 152, 168);
 		photo_jbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jfilechoooser = new JFileChooser();
@@ -164,7 +166,7 @@ public class registerAdmin extends JFrame {
 //		showImage.setHorizontalAlignment(JLabel.CENTER); 
 //		showImage.setVerticalAlignment(JLabel.CENTER);
 		panel_1.add(showImage);
-		photo_jbutton.setBounds(121, 183, 197, 21);
+		photo_jbutton.setBounds(121, 270, 233, 30);
 		panel_1.add(photo_jbutton);
 		
 		
@@ -212,24 +214,25 @@ public class registerAdmin extends JFrame {
 
 			}
 		});
-		luu_jbutton.setBounds(26, 246, 85, 21);
+		ImageIcon iconSave = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\save.png");
+		luu_jbutton.setIcon(iconSave);
+		luu_jbutton.setBounds(26, 523, 108, 30);
 		panel_1.add(luu_jbutton);
 
 		matkhau_jpfile = new JPasswordField();
-		matkhau_jpfile.setBounds(121, 68, 197, 19);
+		matkhau_jpfile.setBounds(121, 90, 233, 30);
 		panel_1.add(matkhau_jpfile);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(28, 404, 446, 180);
-		scrollPane.getViewport().setBackground(new Color(255, 255, 255));
-		panel.add(scrollPane);
+//		JScrollPane scrollPane = new JScrollPane();
+//		scrollPane.setBounds(28, 404, 446, 180);
+//		scrollPane.getViewport().setBackground(new Color(255, 255, 255));
+//		panel.add(scrollPane);
 
 		dangnhap_jbutton = new JButton("Đăng nhập");
-		dangnhap_jbutton.setHorizontalAlignment(SwingConstants.LEFT);
 		ImageIcon iconReturn = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\return.png");
 		dangnhap_jbutton.setIcon(iconReturn);
-		dangnhap_jbutton.setBackground(new Color(10, 231, 231));
-		dangnhap_jbutton.setForeground(new Color(255, 255, 255));
+		dangnhap_jbutton.setBackground(new Color(240, 240, 240));
+		dangnhap_jbutton.setForeground(new Color(0, 0, 0));
 		dangnhap_jbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -238,13 +241,13 @@ public class registerAdmin extends JFrame {
 
 			}
 		});
-		dangnhap_jbutton.setBounds(28, 10, 124, 21);
+		dangnhap_jbutton.setBounds(28, 10, 141, 31);
 		panel.add(dangnhap_jbutton);
 
 		thongtinadmin_table = new JTable();
 		thongtinadmin_table.setModel(
 				new DefaultTableModel(new Object[][] {}, new String[] { "Id", "New Họ tên", "SDT", "Avatar" }));
-		scrollPane.setViewportView(thongtinadmin_table);
+//		scrollPane.setViewportView(thongtinadmin_table);
 
 	}
 
