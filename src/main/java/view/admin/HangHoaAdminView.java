@@ -192,7 +192,7 @@ public class HangHoaAdminView extends JPanel {
 			Tab.setLayout(null);
 			panel.add(Tab);
 	JScrollPane scrollPane = new JScrollPane();
-	scrollPane.setBounds(0, 0, 656, 543);
+	scrollPane.setBounds(-53, 0, 656, 543);
 	Tab.add(scrollPane);
 
 	table = new JTable();
