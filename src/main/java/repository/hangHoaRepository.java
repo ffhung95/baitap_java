@@ -19,8 +19,7 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	public ArrayList<hangHoa> getAll() throws SQLException {
 		ArrayList<hangHoa> foodItems = new ArrayList<>();
 		Statement statement = conn.createStatement();
-		String query = "SELECT hanghoa.* , admin.maadmin ,admin.hoten ,loaihang.maloaihang ,loaihang.tenloaihang FROM hanghoa "+
-				"LEFT JOIN admin on admin.maadmin=hanghoa.maadmin "+
+		String query = "SELECT hanghoa.* ,loaihang.maloaihang ,loaihang.tenloaihang FROM hanghoa "+
 				"LEFT JOIN loaihang on loaihang.maloaihang=hanghoa.maloaihang";
 		ResultSet rs = statement.executeQuery(query);
 		while (rs.next()) {
@@ -67,14 +66,14 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		}
 		try {
 			connection = MySQLConnecttion.getConnection();
-			String query = "INSERT INTO hanghoa (tenhanghoa, giahanghoa, soluong, maloaihang, maadmin, anhhanghoa) VALUES ( ?, ?, ?, ?, ?,?)";
+			String query = "INSERT INTO hanghoa (tenhanghoa, giahanghoa, soluong, maloaihang,  anhhanghoa) VALUES (  ?, ?, ?, ?,?)";
 			statement = connection.prepareStatement(query);
 			statement.setNString(1, t.getTenHangHoa());
 			statement.setFloat(2, t.getGiaHangHoa());
 			statement.setInt(3, t.getSoLuong());
 			statement.setInt(4, t.getLoaiHang().getMaloaihang());
-			statement.setInt(5, t.getDmin().getMaadmin());
-			statement.setBytes(6, t.getAnhHangHoa());
+
+			statement.setBytes(5, t.getAnhHangHoa());
 			int row = statement.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("KhÃ´ng thá»ƒ káº¿t ná»‘i Ä‘áº¿n cÆ¡ sá»Ÿ dá»¯ liá»‡u");
@@ -95,15 +94,14 @@ public class hangHoaRepository extends DAO<hangHoa> {
 		if (t == null) {
 			throw new SQLException("Food item rá»—ng");
 		}
-		String query = "UPDATE hanghoa SET tenhanghoa = ?, giahanghoa = ?, soluong = ?, maloaihang = ?, maadmin=? , anhhanghoa = ? WHERE mahanghoa = ?";
+		String query = "UPDATE hanghoa SET tenhanghoa = ?, giahanghoa = ?, soluong = ?, maloaihang = ?,  anhhanghoa = ? WHERE mahanghoa = ?";
 		PreparedStatement stmt = conn.prepareStatement(query);
 		stmt.setNString(1, t.getTenHangHoa());
 		stmt.setFloat(2, t.getGiaHangHoa());
 		stmt.setInt(3, t.getSoLuong());
 		statement.setInt(4, t.getLoaiHang().getMaloaihang());
-		statement.setInt(5, t.getDmin().getMaadmin());
-		stmt.setBytes(6, t.getAnhHangHoa());
-		stmt.setInt(7, t.getMaHangHoa());
+		stmt.setBytes(5, t.getAnhHangHoa());
+		stmt.setInt(6, t.getMaHangHoa());
 		int row = stmt.executeUpdate();
 
 	}
@@ -156,9 +154,8 @@ public class hangHoaRepository extends DAO<hangHoa> {
 	public ArrayList<hangHoa> searchByName(String key) throws SQLException {
 		ArrayList<hangHoa> fooditems = new ArrayList<>();
 		Statement statement = conn.createStatement();
-		String query = "SELECT hanghoa.* , admin.maadmin, admin.hoten, loaihang.maloaihang, loaihang.tenloaihang " +
+		String query = "SELECT hanghoa.* , loaihang.maloaihang, loaihang.tenloaihang " +
 				" FROM hanghoa " +
-				" LEFT JOIN admin on admin.maadmin=hanghoa.maadmin " +
 				" LEFT JOIN loaihang on loaihang.maloaihang=hanghoa.maloaihang " +
 				" WHERE tenhanghoa LIKE '%" + key + "%'";
 		ResultSet rs = statement.executeQuery(query);

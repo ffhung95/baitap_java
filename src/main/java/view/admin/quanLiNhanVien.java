@@ -175,12 +175,12 @@ public class quanLiNhanVien extends JPanel {
     				nhanVienModel.setNgayvaolam(ngayvaolam);
     				nhanVienModel.setChucvu(chucvu);
     				nhanVienModel.setLuong(luong);
-    				nhanVienRepository.update(nhanVienModel);
     				if(nhanVienModel!=null) {
+    					nhanVienRepository.update(nhanVienModel);
+    					loadtabel();
     					JOptionPane.showMessageDialog(null, "Cập nhật thành công");
     				}else{
     					JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
-    					loadtabel();
     				}
         		}else {
         			nhanVienModel nhanVienModel = new nhanVienModel();

@@ -11,8 +11,10 @@ import model.loaiHang;
 import repository.AdminReposity;
 import repository.hangHoaRepository;
 import repository.loaiHangHoaRepository;
+import repository.tableRepository;
 import view.trangChu.hangHoaView;
 import view.trangChu.loaiHangView;
+import view.trangChu.tableView;
 import view.trangChu.themDonHangView;
 
 import javax.swing.JButton;
@@ -68,6 +70,8 @@ public class HangHoaAdminView extends JPanel {
 	private JTextField giaTF;
 	private JTextField soluongTF;
 	private JPanel picpanel;
+	private JTable table_ban;
+	private DefaultComboBoxModel<loaiHang> foodCategoryComboBoxModel = new DefaultComboBoxModel<>();
 	public HangHoaAdminView() {
 		this.init();
 		this.setVisible(true);
@@ -191,7 +195,7 @@ public class HangHoaAdminView extends JPanel {
 			Tab.setLayout(null);
 			panel.add(Tab);
 	JScrollPane scrollPane = new JScrollPane();
-	scrollPane.setBounds(0, 0, 656, 543);
+	scrollPane.setBounds(0, 0, 656, 533);
 	Tab.add(scrollPane);
 
 	table = new JTable();
@@ -210,6 +214,34 @@ public class HangHoaAdminView extends JPanel {
 	Tab.add(LoaiHangTblAll);
 	LoaiHangTbl.setLayout(null);
 	
+	JPanel BanArea= new JPanel();
+	BanArea.setBounds(657, 0, 378, 533);
+	BanArea.setLayout(null);
+		JPanel bantable= new JPanel();
+		bantable.setLayout(null);
+			bantable.setBounds(10, 5, 378, 400);
+			table_ban= new JTable();
+			JScrollPane scr_ban= new JScrollPane(table_ban);
+			scr_ban.setBounds(0, 0, 356, 390);
+			bantable.add(scr_ban);
+			BanArea.add(bantable);
+			loadtable_ban();
+	//Tab.add(BanArea);
+	
+	JButton btnNewButton_3 = new JButton("Thêm Bàn");
+	btnNewButton_3.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			tableView tbv= new tableView();
+			tbv.setVisible(true);
+		}
+	});
+	btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
+	btnNewButton_3.setBounds(10, 433, 151, 36);
+	BanArea.add(btnNewButton_3);
+	
+	JButton btnNewButton_3_1 = new JButton("Xóa Bàn");
+	btnNewButton_3_1.setBounds(217, 434, 151, 36);
+	BanArea.add(btnNewButton_3_1);
 	JLabel tenmonlbl = new JLabel("Tên Món");
 	tenmonlbl.setHorizontalAlignment(SwingConstants.CENTER);
 	tenmonlbl.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -237,7 +269,7 @@ public class HangHoaAdminView extends JPanel {
 	JLabel loailbl = new JLabel("Loại");
 	loailbl.setHorizontalAlignment(SwingConstants.CENTER);
 	loailbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-	loailbl.setBounds(44, 372, 88, 29);
+	loailbl.setBounds(10, 372, 88, 29);
 	LoaiHangTbl.add(loailbl);
 	
 	tenmonTF = new JTextField();
@@ -269,19 +301,28 @@ public class HangHoaAdminView extends JPanel {
 	picpanel.setBounds(140, 208, 151, 151);
 	LoaiHangTbl.add(picpanel);
 	
+//	private void comboboxloaihang(hangHoaView view) {
+//		try {
+//			for (loaiHang loaihang : LoaiHangRepo.getAll()) {
+//				view.getFoodCategoryComboBoxModel().addElement(loaihang);
+//			}
+//			for(Admin ADMIN :adminrepository.getAdmin()) {
+//				view.getAdminComboBoxModel().addElement(ADMIN);
+//			}
+//		} catch (Exception e) {
+//		}
+//	}
 	JComboBox loaiCB = new JComboBox();
-	loaiCB.setModel(new DefaultComboBoxModel(new String[] {"Trà", "Trà Sữa", "Cafe", "Sinh Tố", "Trái Cây", "Nước Ép"}));
-	//loaiCB.setModel(DefaultComboBoxModel(new String[] {"Trà", "Trà sữa", "Nước ép", "Sinh Tố", "Cafe"}));
-	loaiCB.setBounds(191, 373, 151, 29);
+	loaiCB.setModel(foodCategoryComboBoxModel);
+	loaiCB.setBounds(108, 373, 151, 29);
 	LoaiHangTbl.add(loaiCB);
+	
 	
 	try {
 		for (loaiHang loaihang : LoaiHangRepo.getAll()) {
-			//loaiCB.setModel(new DefaultComboBoxModel<>());
+			foodCategoryComboBoxModel.addElement(loaihang);
 		}
-		for(Admin ADMIN :adminrepository.getAdmin()) {
-			//getAdminComboBoxModel().addElement(ADMIN);
-		}
+		
 	} catch (Exception e) {
 	}
 	
@@ -295,7 +336,22 @@ public class HangHoaAdminView extends JPanel {
 	CancelBut.setBounds(261, 425, 107, 47);
 	LoaiHangTbl.add(CancelBut);
 	
-	JLabel lblNewLabel = new JLabel("Danh Sách Món");
+	JButton btnNewButton_4 = new JButton("Thêm");
+	btnNewButton_4.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			loaiHangView lhv= new loaiHangView();
+			lhv.setVisible(true);
+			
+			LoaiHangTblAll.removeAll();
+			LoaiHangTblAll.add(LoaiHangTbl);
+			
+		}
+	});
+	btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
+	btnNewButton_4.setBounds(269, 377, 85, 21);
+	LoaiHangTbl.add(btnNewButton_4);
+	
+	JLabel lblNewLabel = new JLabel("Thêm Món");
 	lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 	lblNewLabel.setBackground(new Color(240, 240, 240));
@@ -303,6 +359,20 @@ public class HangHoaAdminView extends JPanel {
 	panel.add(lblNewLabel);
 	
 	JButton btnNewButton_1 = new JButton("<");
+	btnNewButton_1.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			lblNewLabel.setText("Thêm Món");
+			//Tab.remove(BanArea);
+			Tab.removeAll();
+			Tab.repaint();
+			Tab.add(scrollPane);
+			Tab.add(LoaiHangTblAll);
+			
+			
+		}
+	});
 	btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	btnNewButton_1.setBounds(575, 49, 30, 30);
 	panel.add(btnNewButton_1);
@@ -310,6 +380,16 @@ public class HangHoaAdminView extends JPanel {
 	JButton btnNewButton_1_1 = new JButton(">");
 	btnNewButton_1_1.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			lblNewLabel.setText("Bàn");
+			//Tab.remove(LoaiHangTbl);
+			Tab.removeAll();
+			Tab.repaint();
+			Tab.add(scrollPane);
+			
+			Tab.add(BanArea);
+			loadtable_ban();
+			//Tab.setVisible(true);
+			
 		}
 	});
 	btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -319,6 +399,9 @@ public class HangHoaAdminView extends JPanel {
 	JPanel panel_1 = new JPanel();
 	panel_1.setBounds(28, 14, 197, 136);
 	panel.add(panel_1);
+	//////////////////////////////////////////////////
+	
+	
 	
 	
 	////////////////////////////////////////////////
@@ -328,10 +411,11 @@ public class HangHoaAdminView extends JPanel {
 			hangHoaRepository HangHoaRepo = new hangHoaRepository();
 			int soluong = Integer.valueOf(soluongTF.getText());
 			loaiHang selectCategory = (loaiHang) loaiCB.getSelectedItem();
+			System.out.print(selectCategory.getMaloaihang());
 			//Admin selectAdmin = (Admin) view.getComboBox_tenquanli().getSelectedItem();
 			String name = tenmonTF.getText(), unitPrice = giaTF.getText();
 			if (name.isEmpty() || unitPrice.isEmpty() || selectCategory == null) {
-				//throw new Exception("Vui lÃƒÂ²ng Ã„â€˜iÃ¡Â»Ân Ã„â€˜Ã¡ÂºÂ§y Ã„â€˜Ã¡Â»Â§ thÃƒÂ´ng tin");
+			
 			}
 			if (soluong >= 0) {
 				foodItem.setTenHangHoa(name);
@@ -343,7 +427,10 @@ public class HangHoaAdminView extends JPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				foodItem.setLoaiHang(selectCategory);
+				loaiHang hangtam = new loaiHang();
+				int mahangtam=selectCategory.getMaloaihang();
+				hangtam.setMaloaihang(mahangtam);
+				foodItem.setLoaiHang(hangtam);
 				//foodItem.setDmin(selectAdmin);
 				try {
 					HangHoaRepo.save(foodItem);
@@ -444,6 +531,27 @@ public class HangHoaAdminView extends JPanel {
 //		}
 //		table.setModel(defaultTableModel);
 //		table.getTableHeader().setReorderingAllowed(false);
+	}
+	private void loadtable_ban() {
+		tableRepository tableRep = new tableRepository();
+		defaultTableModel = new DefaultTableModel();
+		defaultTableModel.addColumn("ID");
+		defaultTableModel.addColumn("Tên Bàn");
+		defaultTableModel.addColumn("Trạng Thái");
+		try {
+			for (model.table bantam : tableRep.getAll()) {
+					defaultTableModel
+					.addRow(bantam.toRowTable());
+					table_ban.setModel(defaultTableModel);
+					table_ban.getTableHeader().setReorderingAllowed(false);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		table_ban.setModel(defaultTableModel);
+		table_ban.getTableHeader().setReorderingAllowed(false);
 	}
 	private class ImageRender extends DefaultTableCellRenderer {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,

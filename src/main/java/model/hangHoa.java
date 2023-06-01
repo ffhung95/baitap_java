@@ -9,7 +9,6 @@ private int maHangHoa ;
 private String tenHangHoa;
 private float giaHangHoa;
 private int soLuong;
-private Admin dmin;
 private loaiHang LoaiHang;
 private byte[] anhHangHoa;
 
@@ -17,14 +16,14 @@ public hangHoa() {
 	super();
 }
 
-public hangHoa(int maHangHoa,  String tenHangHoa, float giaHangHoa, int soLuong, Admin dmin,
+public hangHoa(int maHangHoa,  String tenHangHoa, float giaHangHoa, int soLuong, 
 		loaiHang loaiHang, byte[] anhHangHoa) {
 	super();
 	this.maHangHoa = maHangHoa;
 	this.tenHangHoa = tenHangHoa;
 	this.giaHangHoa = giaHangHoa;
 	this.soLuong = soLuong;
-	this.dmin = dmin;
+	
 	LoaiHang = loaiHang;
 	this.anhHangHoa = anhHangHoa;
 }
@@ -76,29 +75,21 @@ public void setSoLuong(int soLuong) {
 	this.soLuong = soLuong;
 }
 
-public Admin getDmin() {
-	return dmin;
-}
 
-public void setDmin(Admin dmin) {
-	this.dmin = dmin;
-}
 
 public static hangHoa getFromResultSet(ResultSet rs) throws SQLException {
 	loaiHang phanloai = new loaiHang();
 	phanloai.setMaloaihang(rs.getInt("maloaihang"));
 	phanloai.setTenLoaiHang(rs.getNString("tenloaihang"));
 
-	Admin adminrepository = new Admin();
-	adminrepository.setMaadmin(rs.getInt("maadmin"));
-	adminrepository.setHoten(rs.getString("hoten"));
+	
 	hangHoa f = new hangHoa();
     f.setMaHangHoa(rs.getInt("mahanghoa"));
     f.setTenHangHoa(rs.getNString("tenhanghoa"));
     f.setGiaHangHoa(rs.getInt("giahanghoa"));
     f.setSoLuong(rs.getInt("soluong"));
     f.setLoaiHang(phanloai);
-    f.setDmin(adminrepository);
+    
     f.setAnhHangHoa(rs.getBytes("anhhanghoa"));
     return f;
 }
@@ -106,7 +97,7 @@ public static hangHoa getFromResultSet(ResultSet rs) throws SQLException {
 @Override
 public String toString() {
 	return "hangHoa [maHangHoa=" + maHangHoa + ", maloaihang=" +LoaiHang.getMaloaihang()  + ", tenHangHoa=" + tenHangHoa
-			+ ", giaHangHoa=" + giaHangHoa + ", soLuong=" + soLuong + ", dmin=" + dmin + ", IdAdmin=" +dmin.getMaadmin()
+			+ ", giaHangHoa=" + giaHangHoa + ", soLuong=" + soLuong 
 			+ ", LoaiHang=" + LoaiHang + ", anhHangHoa=" + Arrays.toString(anhHangHoa) + "]";
 }
 

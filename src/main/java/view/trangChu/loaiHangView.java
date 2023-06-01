@@ -9,7 +9,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import model.loaiHang;
+import repository.loaiHangHoaRepository;
+
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
 
 
 
@@ -42,6 +49,24 @@ public class loaiHangView extends javax.swing.JFrame implements cuaSoView{
         jPanel2 = new javax.swing.JPanel();
         jPanel2.setBackground(new Color(236, 255, 255));
         btnOK = new javax.swing.JButton();
+        btnOK.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		loaiHang getlh= new loaiHang();
+        		loaiHangHoaRepository savelh= new loaiHangHoaRepository();
+        		String text= txtName.getText();
+        		getlh.setTenLoaiHang(text);
+        		try {
+					savelh.save(getlh);
+					JOptionPane.showMessageDialog(null, "Đã Thêm");
+					dispose();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					
+					e1.printStackTrace();
+				}
+        		
+        	}
+        });
         btnCancel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel3.setBackground(new Color(236, 255, 255));
