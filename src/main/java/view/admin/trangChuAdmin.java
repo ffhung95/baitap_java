@@ -293,7 +293,7 @@ public class trangChuAdmin extends JFrame {
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(225, 255, 255));
-		panel_2.setBounds(273, 10, 1054, 41);
+		panel_2.setBounds(264, 10, 1063, 41);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
 

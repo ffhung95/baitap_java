@@ -48,6 +48,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 public class HangHoaAdminView extends JPanel {
 	private loaiHangHoaRepository loaihangrepository;
@@ -69,6 +70,7 @@ public class HangHoaAdminView extends JPanel {
 	private JTextField soluongTF;
 	private JPanel picpanel;
 	public HangHoaAdminView() {
+		setBackground(new Color(225, 255, 255));
 		this.init();
 		this.setVisible(true);
 		
@@ -78,7 +80,7 @@ public class HangHoaAdminView extends JPanel {
 		this.setSize(1062, 703);
 		panel = new JPanel();
 		panel.setBackground(new Color(225, 255, 255));
-		panel.setBounds(0, 0, 1062, 703);
+		panel.setBounds(10, 0, 1062, 703);
 		panel.setLayout(null);
 		LoaiHangRepo = new loaiHangHoaRepository();
 		textField_timkiem = new JTextField();
@@ -192,7 +194,7 @@ public class HangHoaAdminView extends JPanel {
 			Tab.setLayout(null);
 			panel.add(Tab);
 	JScrollPane scrollPane = new JScrollPane();
-	scrollPane.setBounds(-53, 0, 656, 543);
+	scrollPane.setBounds(0, 0, 640, 532);
 	Tab.add(scrollPane);
 
 	table = new JTable();
@@ -202,12 +204,13 @@ public class HangHoaAdminView extends JPanel {
 	this.add(panel);
 	
 	JPanel LoaiHangTblAll= new JPanel();
+	LoaiHangTblAll.setBackground(new Color(225, 255, 255));
 	LoaiHangTblAll.setBounds(657, 0, 378, 543);
 	LoaiHangTblAll.setLayout(null);
 	JPanel LoaiHangTbl = new JPanel();
-	LoaiHangTbl.setBorder(null);
+	LoaiHangTbl.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 	LoaiHangTbl.setBackground(new Color(225, 255, 255));
-	LoaiHangTbl.setBounds(0, 0, 378, 543);
+	LoaiHangTbl.setBounds(0, 0, 351, 532);
 	LoaiHangTblAll.add(LoaiHangTbl);
 	Tab.add(LoaiHangTblAll);
 	LoaiHangTbl.setLayout(null);
@@ -215,72 +218,72 @@ public class HangHoaAdminView extends JPanel {
 	JLabel tenmonlbl = new JLabel("Tên Món :");
 	tenmonlbl.setHorizontalAlignment(SwingConstants.LEFT);
 	tenmonlbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	tenmonlbl.setBounds(40, 30, 88, 30);
+	tenmonlbl.setBounds(20, 20, 88, 30);
 	LoaiHangTbl.add(tenmonlbl);
 	
 	JLabel gialbl = new JLabel("Giá :");
 	gialbl.setHorizontalAlignment(SwingConstants.LEFT);
 	gialbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	gialbl.setBounds(40, 80, 88, 30);
+	gialbl.setBounds(20, 70, 88, 30);
 	LoaiHangTbl.add(gialbl);
 	
 	JLabel soluonglbl = new JLabel("Số Lượng :");
 	soluonglbl.setHorizontalAlignment(SwingConstants.LEFT);
 	soluonglbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	soluonglbl.setBounds(40, 130, 88, 30);
+	soluonglbl.setBounds(20, 120, 88, 30);
 	LoaiHangTbl.add(soluonglbl);
 	
 	JLabel hinhanhlbl = new JLabel("Hình Ảnh :");
 	hinhanhlbl.setHorizontalAlignment(SwingConstants.LEFT);
 	hinhanhlbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	hinhanhlbl.setBounds(40, 230, 88, 30);
+	hinhanhlbl.setBounds(20, 220, 88, 30);
 	LoaiHangTbl.add(hinhanhlbl);
 	
 	JLabel loailbl = new JLabel("Loại :");
 	loailbl.setHorizontalAlignment(SwingConstants.LEFT);
 	loailbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	loailbl.setBounds(40, 180, 88, 30);
+	loailbl.setBounds(20, 170, 88, 30);
 	LoaiHangTbl.add(loailbl);
 	
 	tenmonTF = new JTextField();
 	tenmonTF.setFont(new Font("Tahoma", Font.PLAIN, 12));
-	tenmonTF.setBounds(125, 30, 170, 30);
+	tenmonTF.setBounds(125, 20, 170, 30);
 	LoaiHangTbl.add(tenmonTF);
 	tenmonTF.setColumns(10);
 	
 	giaTF = new JTextField();
 	giaTF.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	giaTF.setColumns(10);
-	giaTF.setBounds(125, 80, 170, 30);
+	giaTF.setBounds(125, 70, 170, 30);
 	LoaiHangTbl.add(giaTF);
 	
 	soluongTF = new JTextField();
 	soluongTF.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	soluongTF.setColumns(10);
-	soluongTF.setBounds(125, 130, 170, 30);
+	soluongTF.setBounds(125, 120, 170, 30);
 	LoaiHangTbl.add(soluongTF);
 	
 	JLabel lblNewLabel_2 = new JLabel("vnđ");
 	lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 	lblNewLabel_2.setFont(new Font("Tahoma", Font.ITALIC, 13));
-	lblNewLabel_2.setBounds(305, 80, 26, 30);
+	lblNewLabel_2.setBounds(305, 70, 26, 30);
 	LoaiHangTbl.add(lblNewLabel_2);
 	
 	JButton btnNewButton_2 = new JButton("Chọn");
 	btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-	btnNewButton_2.setBounds(125, 230, 85, 30);
+	btnNewButton_2.setBounds(125, 220, 85, 30);
 	LoaiHangTbl.add(btnNewButton_2);
 	
 	picpanel = new JPanel();
 	picpanel.setBackground(new Color(225, 255, 255));
-	picpanel.setBounds(40, 290, 151, 151);
+	picpanel.setBounds(20, 266, 151, 151);
 	LoaiHangTbl.add(picpanel);
 	
 	JComboBox loaiCB = new JComboBox();
 	loaiCB.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	loaiCB.setModel(new DefaultComboBoxModel(new String[] {"Trà", "Trà Sữa", "Cafe", "Sinh Tố", "Trái Cây", "Nước Ép"}));
 	//loaiCB.setModel(DefaultComboBoxModel(new String[] {"Trà", "Trà sữa", "Nước ép", "Sinh Tố", "Cafe"}));
-	loaiCB.setBounds(125, 180, 170, 30);
+	loaiCB.setBounds(125, 170, 170, 30);
 	LoaiHangTbl.add(loaiCB);
 	
 	try {
@@ -295,14 +298,14 @@ public class HangHoaAdminView extends JPanel {
 	
 	JButton ConfirmBut = new JButton("Xác Nhận");
 	ConfirmBut.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	ConfirmBut.setBounds(40, 474, 119, 40);
+	ConfirmBut.setBounds(20, 442, 119, 30);
 	ImageIcon iconConfirm = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\done.png");
 	ConfirmBut.setIcon(iconConfirm);
 	LoaiHangTbl.add(ConfirmBut);
 	
 	JButton CancelBut = new JButton("Hủy Bỏ");
 	CancelBut.setFont(new Font("Tahoma", Font.PLAIN, 14));
-	CancelBut.setBounds(176, 474, 119, 40);
+	CancelBut.setBounds(176, 442, 119, 30);
 	ImageIcon iconCancel = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\delete.png");
 	CancelBut.setIcon(iconCancel);
 	LoaiHangTbl.add(CancelBut);
@@ -315,7 +318,7 @@ public class HangHoaAdminView extends JPanel {
 	panel.add(lblNewLabel);
 	
 	JButton btnNewButton_1 = new JButton("<");
-	btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+	btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 	btnNewButton_1.setBounds(564, 49, 41, 30);
 	panel.add(btnNewButton_1);
 	
@@ -324,7 +327,7 @@ public class HangHoaAdminView extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 		}
 	});
-	btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+	btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 	btnNewButton_1_1.setBounds(719, 51, 41, 30);
 	panel.add(btnNewButton_1_1);
 	
