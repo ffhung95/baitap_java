@@ -1,7 +1,5 @@
 /META-INF/
-/view/
-/test/
-/controller/
 /database/
-/repository/
+/view/
 /model/
+/repository/

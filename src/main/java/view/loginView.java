@@ -37,7 +37,7 @@ public class loginView extends JFrame {
 	private JPasswordField password_pwfiel;
 	private JComboBox vaitro_combobox;
 	public loginView() {
-		getContentPane().setBackground(new Color(236, 255, 255));
+		getContentPane().setBackground(new Color(139, 236, 236));
 		this.initComponents();
         this.setVisible(true);
         ImageIcon mainIcon = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin.png");
@@ -53,7 +53,7 @@ public class loginView extends JFrame {
         getContentPane().setLayout(null);
         
         JPanel panel_1 = new JPanel();
-        panel_1.setBackground(new Color(236, 255, 255));
+        panel_1.setBackground(new Color(139, 236, 236));
         panel_1.setBounds(337, 0, 347, 321);
         getContentPane().add(panel_1);
         panel_1.setLayout(null);

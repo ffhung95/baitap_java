@@ -26,7 +26,7 @@ public class landing_page extends JFrame {
 		lblNewLabel = new JLabel();
 		MyprogressBar = new JProgressBar();
 		getContentPane().setForeground(new Color(230, 230, 250));
-		getContentPane().setBackground(new Color(236, 255, 255));
+		getContentPane().setBackground(new Color(139, 236, 236));
 		this.initComponents();
         this.setVisible(true);
         ImageIcon mainIcon = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin.png");
@@ -47,7 +47,7 @@ public class landing_page extends JFrame {
 	        JProgressBar progressBar = new JProgressBar();
 	        progressBar.setMinimum(0);
 	        progressBar.setMaximum(100);
-	        progressBar.setForeground(new Color(51, 153, 204));
+	        progressBar.setForeground(new Color(0, 168, 255));
 	        progressBar.setBackground(new Color(224, 255, 255));
 	        progressBar.setBounds(0, 315, 687, 16);
 	        getContentPane().add(progressBar);

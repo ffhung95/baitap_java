@@ -84,7 +84,7 @@ public class trangChuAdmin extends JFrame {
 		panel.setAlignmentY(Component.TOP_ALIGNMENT);
 		panel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		panel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		panel.setBackground(new Color(240, 240, 240));
+		panel.setBackground(new Color(139, 236, 236));
 		panel.setBounds(0, 0, 1362, 783);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -92,6 +92,17 @@ public class trangChuAdmin extends JFrame {
 		panel_1 = new JPanel();
 
 		panel_thongke = new JPanel();
+
+		panel_thongke.setBackground(new Color(139, 236, 236));
+		panel_thongke.setBounds(274, 62, 1053, 650);
+		panel.add(panel_thongke);
+		panel_thongke.setLayout(null);
+		 JLabel imgLogo = new JLabel("");
+		 imgLogo.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\logo.png"));
+		 imgLogo.setBounds(340, 154, 410, 265);
+		 panel_thongke.add(imgLogo);
+		
+
 		panel_thongke.setBounds(264, 71, 1063, 642);
 		panel.add(panel_thongke);
 		panel_thongke.setLayout(null);
@@ -172,6 +183,7 @@ public class trangChuAdmin extends JFrame {
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.ITALIC, 14));
 		lblNewLabel_4_1.setBounds(0, 44, 226, 40);
 		panel_3.add(lblNewLabel_4_1);
+
 //		panel_1.setBorder(new EmptyBorder(5, 3, 0, 0));
 //		panel_1.setBackground(Color.BLUE);
 //		panel_1.setBounds(0, 0, 168, 714);
@@ -180,8 +192,8 @@ public class trangChuAdmin extends JFrame {
 				BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		// panel_1.setBorder(borderShadow);
 //		panel_1.setBorder(new EmptyBorder(5, 3, 0, 0));
-		panel_1.setBackground(new Color(236, 255, 255));
-		panel_1.setBounds(0, 0, 254, 703);
+		panel_1.setBackground(new Color(139, 236, 236));
+		panel_1.setBounds(0, 0, 264, 710);
 
 		panel.add(panel_1);
 		panel_1.setLayout(null);
@@ -190,7 +202,7 @@ public class trangChuAdmin extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon(
 				"C:\\btl\\baitap_java\\src\\main\\resources\\images\\student_work_office_desk_work_space_computer_working_support_icon_191191.png"));
 
-		lblNewLabel_1.setBounds(10, 11, 225, 78);
+		lblNewLabel_1.setBounds(10, 10, 106, 78);
 
 		lblNewLabel_1.setBounds(10, 10, 225, 78);
 
@@ -214,8 +226,8 @@ public class trangChuAdmin extends JFrame {
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\user-group.png"));
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton.setBounds(0, 98, 254, 71);
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNewButton.setBounds(5, 140, 254, 71);
 		panel_1.add(btnNewButton);
 
 		JButton btnHngHa = new JButton("Hàng hóa");
@@ -229,9 +241,9 @@ public class trangChuAdmin extends JFrame {
 				// hangHoaView.setVisible(true);
 			}
 		});
-		btnHngHa.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnHngHa.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnHngHa.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\cart.png"));
-		btnHngHa.setBounds(0, 166, 254, 71);
+		btnHngHa.setBounds(5, 220, 254, 71);
 		panel_1.add(btnHngHa);
 
 		JButton btnThngK = new JButton("Thống kê");
@@ -244,8 +256,8 @@ public class trangChuAdmin extends JFrame {
 			}
 		});
 		btnThngK.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\futures.png"));
-		btnThngK.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnThngK.setBounds(0, 234, 254, 71);
+		btnThngK.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnThngK.setBounds(5, 380, 254, 71);
 		panel_1.add(btnThngK);
 
 		JButton btnngXut = new JButton("Đăng xuất");
@@ -258,8 +270,8 @@ public class trangChuAdmin extends JFrame {
 			}
 		});
 		btnngXut.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\logout.png"));
-		btnngXut.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnngXut.setBounds(0, 302, 254, 71);
+		btnngXut.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnngXut.setBounds(5, 602, 254, 71);
 		panel_1.add(btnngXut);
 
 		JButton btnQunLBn = new JButton("Quản lí bàn");
@@ -275,12 +287,12 @@ public class trangChuAdmin extends JFrame {
 			}
 		});
 		btnQunLBn.setIcon(new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\table.png"));
-		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnQunLBn.setBounds(0, 234, 254, 71);
+		btnQunLBn.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnQunLBn.setBounds(5, 300, 254, 71);
 		panel_1.add(btnQunLBn);
 
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBackground(new Color(225, 255, 255));
 		panel_2.setBounds(264, 10, 1063, 41);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
@@ -289,14 +301,14 @@ public class trangChuAdmin extends JFrame {
 		ltime.setBackground(new Color(255, 255, 128));
 		ltime.setFont(new Font("Century Schoolbook", Font.ITALIC, 16));
 		ltime.setHorizontalAlignment(SwingConstants.CENTER);
-		ltime.setBounds(221, 0, 211, 29);
+		ltime.setBounds(221, 0, 211, 41);
 		panel_2.add(ltime);
 
 		ltime2 = new JLabel("");
 		ltime2.setBackground(new Color(255, 255, 128));
 		ltime2.setFont(new Font("Century Schoolbook", Font.ITALIC, 16));
 		ltime2.setHorizontalAlignment(SwingConstants.CENTER);
-		ltime2.setBounds(0, 0, 211, 29);
+		ltime2.setBounds(0, 0, 211, 41);
 		panel_2.add(ltime2);
 
 		JLabel lblNewLabel_3 = new JLabel("New label");
