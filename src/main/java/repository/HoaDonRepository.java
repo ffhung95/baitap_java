@@ -30,6 +30,58 @@ public class HoaDonRepository extends DAO<HoaDon>{
 		return hoaDon;
 		
 	}
+	
+	public ArrayList<HoaDon> getDanhThu() throws SQLException {
+		ArrayList<HoaDon> hoaDon = new ArrayList<>();
+		Statement statement = conn.createStatement();
+		String query = "SELECT DATE(NGAYINHD) AS NGAY, SUM(TONGTIEN) AS TONG_DOANH_THU "
+				+ " FROM hoadon "
+				+ " GROUP BY DATE(NGAYINHD)";
+		ResultSet rs = statement.executeQuery(query);
+		while (rs.next()) {
+			HoaDon hoadon = new HoaDon();
+			hoadon.setNgayInHoaDon(rs.getTimestamp(1));
+			hoadon.setTongTien(rs.getFloat(2));
+			hoaDon.add(hoadon);
+		}
+		return hoaDon;
+		
+	}
+	public ArrayList<HoaDon> getDanhThuThang() throws SQLException {
+		ArrayList<HoaDon> hoaDon = new ArrayList<>();
+		Statement statement = conn.createStatement();
+		String query = "SELECT YEAR(NGAYINHD) AS NAM, MONTH(NGAYINHD) "
+				+ " AS THANG, SUM(TONGTIEN) AS TONG_DOANH_THU  "
+				+ "  FROM hoadon "
+				+ " GROUP BY YEAR(NGAYINHD), MONTH(NGAYINHD)";
+		ResultSet rs = statement.executeQuery(query);
+		while (rs.next()) {
+			HoaDon hoadon = new HoaDon();
+			hoadon.setNam(rs.getInt(1));
+			hoadon.setThang(rs.getInt(2));
+			hoadon.setTongTien(rs.getFloat(3));
+			hoaDon.add(hoadon);
+		}
+		return hoaDon;
+		
+	}
+	public ArrayList<HoaDon> getDanhThuhomnay() throws SQLException {
+		ArrayList<HoaDon> hoaDon = new ArrayList<>();
+		Statement statement = conn.createStatement();
+		String query = "SELECT DATE(NGAYINHD) AS NGAY, SUM(TONGTIEN) AS TONG_DOANH_THU "
+				+ " FROM hoadon "
+				+ " where DATE(NGAYINHD) =CURDATE() "
+				+ " GROUP BY DATE(NGAYINHD)";
+		ResultSet rs = statement.executeQuery(query);
+		while (rs.next()) {
+			HoaDon hoadon = new HoaDon();
+			hoadon.setNgay(rs.getDate(1));
+			hoadon.setTongTien(rs.getFloat(2));
+			hoaDon.add(hoadon);
+		}
+		return hoaDon;
+		
+	}
 
 	@Override
 	public HoaDon get(int id) throws SQLException {

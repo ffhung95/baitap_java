@@ -941,7 +941,10 @@ public class TaoDonHang extends JFrame {
 				NhanVienReposity nvRe= new NhanVienReposity();
 				nhanVienModel nhanvien =nvRe.get(1);
 				if(dathang.getBan().getMaBan()==idban) {
-					defaultTableModel.addRow(nhanvien.toRowTable());
+					defaultTableModel.addRow(new Object[] {
+							 dathang.getMaDatHang(),dathang.getBan().getName(),dathang.getHanghoa().getTenHangHoa()
+								,dathang.getNhanvien().getNhanvien().getHoten(),dathang.getSoLuong(),dathang.getThanhTien()
+					});
 					table_Bill.setModel(defaultTableModel);
 					table_Bill.getTableHeader().setReorderingAllowed(false);
 				}
