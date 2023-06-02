@@ -177,6 +177,7 @@ public class trangChuAdmin extends JFrame {
 				lblNewLabel_4_1.setText(""+hoadon.getNgay());
 				float tongtienhomnay=hoadon.getTongTien();
 				doanhthu_label.setText(tongtienhomnay+"");
+				System.out.println(tongtienhomnay);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

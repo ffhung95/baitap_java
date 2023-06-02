@@ -3,9 +3,7 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import controller.hangHoaController;
 import controller.loaiHangController;
-import model.Admin;
 import model.hangHoa;
 import model.loaiHang;
 import repository.AdminReposity;
@@ -15,24 +13,19 @@ import repository.tableRepository;
 import view.trangChu.hangHoaView;
 import view.trangChu.loaiHangView;
 import view.trangChu.tableView;
-import view.trangChu.themDonHangView;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
-import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -42,7 +35,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.ScrollPane;
 
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -50,7 +42,6 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 public class HangHoaAdminView extends JPanel {
@@ -58,7 +49,6 @@ public class HangHoaAdminView extends JPanel {
 	loaiHangHoaRepository LoaiHangRepo;
 	private AdminReposity adminrepository;
 	private loaiHangController loaiHangCon;
-	private hangHoaController hangHoaCon;
 	private loaiHangView loaiHangview;
 	private hangHoaView hangHoaVi;
 	private JTextField textField_timkiem;
@@ -544,13 +534,17 @@ public class HangHoaAdminView extends JPanel {
 		defaultTableModel.addColumn("Giá sản phẩm");
 		defaultTableModel.addColumn("Số lượng");
 		defaultTableModel.addColumn("Loại sản phẩm");
+		defaultTableModel.addColumn("Anh sản phẩm");
 		//defaultTableModel.addColumn("Tên quản lí");
 		//defaultTableModel.addColumn("Ảnh sản phẩm");
 		try {
 			for (hangHoa HangHoa : HangHoaRepository.getAll()) {
 				if(HangHoa.getSoLuong()>0) {
 					defaultTableModel
-					.addRow(HangHoa.toRowTable());
+					.addRow(new Object[]{
+							HangHoa.getMaHangHoa(),HangHoa.getTenHangHoa(),HangHoa.getGiaHangHoa(),HangHoa.getSoLuong()
+							,HangHoa.getLoaiHang().getTenLoaiHang(),HangHoa.getAnhHangHoa()
+					});
 			table.setModel(defaultTableModel);
 			table.getTableHeader().setReorderingAllowed(false);
 				}
@@ -562,8 +556,8 @@ public class HangHoaAdminView extends JPanel {
 		}
 		table.setModel(defaultTableModel);
 		table.getTableHeader().setReorderingAllowed(false);
-		//table.getColumnModel().getColumn(6).setCellRenderer(new ImageRender());
-		//table.setRowHeight(50);
+		table.getColumnModel().getColumn(5).setCellRenderer(new ImageRender());
+		table.setRowHeight(50);
 	}
 	private void loadTableLoai() {
 //		loaihangrepository loaihangre= new loaiHangHoaRepository();
