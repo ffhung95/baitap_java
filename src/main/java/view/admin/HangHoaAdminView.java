@@ -35,6 +35,7 @@ import javax.swing.JTable;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -70,9 +71,9 @@ public class HangHoaAdminView extends JPanel {
 	private JTextField tenmonTF;
 	private JTextField giaTF;
 	private JTextField soluongTF;
-	private JPanel picpanel;
 	private JTable table_ban;
 	private DefaultComboBoxModel<loaiHang> foodCategoryComboBoxModel = new DefaultComboBoxModel<>();
+	private JComboBox loaiCB;
 	public HangHoaAdminView() {
 		setBackground(new Color(225, 255, 255));
 		this.init();
@@ -88,7 +89,7 @@ public class HangHoaAdminView extends JPanel {
 		panel.setLayout(null);
 		LoaiHangRepo = new loaiHangHoaRepository();
 		textField_timkiem = new JTextField();
-		textField_timkiem.setBounds(447, 14, 400, 27);
+		textField_timkiem.setBounds(28, 14, 531, 30);
 		panel.add(textField_timkiem);
 		textField_timkiem.setColumns(10);
 
@@ -124,7 +125,7 @@ public class HangHoaAdminView extends JPanel {
 				}
 			}
 		});
-		btnNewButton.setBounds(860, 14, 89, 27);
+		btnNewButton.setBounds(578, 14, 89, 30);
 		panel.add(btnNewButton);
 //*****Button*********************************************************
 //		JPanel panel_1 = new JPanel();
@@ -186,7 +187,7 @@ public class HangHoaAdminView extends JPanel {
 				loadtable();
 			}
 		});
-		btnHy.setBounds(960, 14, 89, 27);
+		btnHy.setBounds(685, 14, 89, 30);
 		panel.add(btnHy);
 
 		
@@ -200,8 +201,7 @@ public class HangHoaAdminView extends JPanel {
 	JScrollPane scrollPane = new JScrollPane();
 
 	scrollPane.setBounds(0, 0, 656, 533);
-
-	scrollPane.setBounds(0, 0, 640, 532);
+	scrollPane.setBackground(new Color(255,255,255));
 
 	Tab.add(scrollPane);
 
@@ -213,7 +213,7 @@ public class HangHoaAdminView extends JPanel {
 	
 	JPanel LoaiHangTblAll= new JPanel();
 	LoaiHangTblAll.setBackground(new Color(225, 255, 255));
-	LoaiHangTblAll.setBounds(657, 0, 378, 543);
+	LoaiHangTblAll.setBounds(657, 0, 365, 543);
 	LoaiHangTblAll.setLayout(null);
 	JPanel LoaiHangTbl = new JPanel();
 	LoaiHangTbl.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -253,10 +253,11 @@ public class HangHoaAdminView extends JPanel {
 	JButton btnNewButton_3_1 = new JButton("Xóa Bàn");
 	btnNewButton_3_1.setBounds(217, 434, 151, 36);
 	BanArea.add(btnNewButton_3_1);
-	JLabel tenmonlbl = new JLabel("Tên Món");
-	tenmonlbl.setHorizontalAlignment(SwingConstants.CENTER);
-	tenmonlbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-	tenmonlbl.setBounds(44, 22, 88, 29);
+	JLabel tenmonlbl = new JLabel("Tên Món :");
+	tenmonlbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	tenmonlbl.setHorizontalAlignment(SwingConstants.LEFT);
+	
+	tenmonlbl.setBounds(20, 20, 88, 30);
 
 //	JLabel tenmonlbl = new JLabel("Tên Món :");
 //	tenmonlbl.setHorizontalAlignment(SwingConstants.LEFT);
@@ -284,10 +285,10 @@ public class HangHoaAdminView extends JPanel {
 	LoaiHangTbl.add(hinhanhlbl);
 	
 
-	JLabel loailbl = new JLabel("Loại");
-	loailbl.setHorizontalAlignment(SwingConstants.CENTER);
-	loailbl.setFont(new Font("Tahoma", Font.BOLD, 13));
-	loailbl.setBounds(10, 372, 88, 29);
+	JLabel loailbl = new JLabel("Loại :");
+	loailbl.setHorizontalAlignment(SwingConstants.LEFT);
+	loailbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	loailbl.setBounds(20, 170, 88, 30);
 
 //	JLabel loailbl = new JLabel("Loại :");
 //	loailbl.setHorizontalAlignment(SwingConstants.LEFT);
@@ -325,11 +326,6 @@ public class HangHoaAdminView extends JPanel {
 	btnNewButton_2.setBounds(125, 220, 85, 30);
 	LoaiHangTbl.add(btnNewButton_2);
 	
-	picpanel = new JPanel();
-	picpanel.setBackground(new Color(225, 255, 255));
-	picpanel.setBounds(20, 266, 151, 151);
-	LoaiHangTbl.add(picpanel);
-	
 //	private void comboboxloaihang(hangHoaView view) {
 //		try {
 //			for (loaiHang loaihang : LoaiHangRepo.getAll()) {
@@ -341,14 +337,24 @@ public class HangHoaAdminView extends JPanel {
 //		} catch (Exception e) {
 //		}
 //	}
-	JComboBox loaiCB = new JComboBox();
-
-	loaiCB.setModel(foodCategoryComboBoxModel);
-	loaiCB.setBounds(108, 373, 151, 29);
+	 loaiCB = new JComboBox();
 	loaiCB.setFont(new Font("Tahoma", Font.PLAIN, 12));
-	loaiCB.setModel(new DefaultComboBoxModel(new String[] {"Trà", "Trà Sữa", "Cafe", "Sinh Tố", "Trái Cây", "Nước Ép"}));
-	//loaiCB.setModel(DefaultComboBoxModel(new String[] {"Trà", "Trà sữa", "Nước ép", "Sinh Tố", "Cafe"}));
 	loaiCB.setBounds(125, 170, 170, 30);
+	LoaiHangTbl.add(loaiCB);
+	
+	
+	try {
+		for (loaiHang loaihang : LoaiHangRepo.getAll()) {
+			foodCategoryComboBoxModel.addElement(loaihang);
+		}
+		
+	} catch (Exception e) {
+	}
+	LoaiHangTbl.remove(loaiCB);
+	loaiCB.setModel(foodCategoryComboBoxModel);
+	LoaiHangTbl.add(loaiCB);
+
+
 	LoaiHangTbl.add(loaiCB);
 	
 	
@@ -374,7 +380,7 @@ public class HangHoaAdminView extends JPanel {
 	CancelBut.setIcon(iconCancel);
 	LoaiHangTbl.add(CancelBut);
 	
-	JButton btnNewButton_4 = new JButton("Thêm");
+	JButton btnNewButton_4 = new JButton("");
 	btnNewButton_4.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			loaiHangView lhv= new loaiHangView();
@@ -385,15 +391,19 @@ public class HangHoaAdminView extends JPanel {
 			
 		}
 	});
+	ImageIcon iconAdd = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\add.png");
+	btnNewButton_4.setIcon(iconAdd);
 	btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 12));
-	btnNewButton_4.setBounds(269, 377, 85, 21);
+	btnNewButton_4.setBounds(258, 170, 37, 30);
 	LoaiHangTbl.add(btnNewButton_4);
+	
+	
 	
 	JLabel lblNewLabel = new JLabel("Thêm Món");
 	lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 	lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
 	lblNewLabel.setBackground(new Color(240, 240, 240));
-	lblNewLabel.setBounds(606, 51, 113, 27);
+	lblNewLabel.setBounds(796, 78, 113, 30);
 	panel.add(lblNewLabel);
 	
 	JButton btnNewButton_1 = new JButton("<");
@@ -413,10 +423,9 @@ public class HangHoaAdminView extends JPanel {
 		}
 	});
 	btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-	btnNewButton_1.setBounds(575, 49, 30, 30);
+	btnNewButton_1.setBounds(741, 78, 45, 30);
 
-	btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-	btnNewButton_1.setBounds(564, 49, 41, 30);
+	
 
 	panel.add(btnNewButton_1);
 	
@@ -436,12 +445,10 @@ public class HangHoaAdminView extends JPanel {
 		}
 	});
 	btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-	btnNewButton_1_1.setBounds(719, 51, 41, 30);
+	btnNewButton_1_1.setBounds(919, 79, 45, 30);
 	panel.add(btnNewButton_1_1);
 	
-	JPanel panel_1 = new JPanel();
-	panel_1.setBounds(28, 14, 197, 136);
-	panel.add(panel_1);
+	
 	//////////////////////////////////////////////////
 	
 	
@@ -465,7 +472,7 @@ public class HangHoaAdminView extends JPanel {
 				foodItem.setSoLuong(soluong);
 				foodItem.setGiaHangHoa(Integer.parseInt(unitPrice));
 				try {
-					foodItem.setAnhHangHoa(Files.readAllBytes(filepic.toPath()));
+					foodItem.setAnhHangHoa(Files.readAllBytes(file.toPath()));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -501,26 +508,28 @@ public class HangHoaAdminView extends JPanel {
 			
 		}
 	});
+	JLabel showImage = new JLabel("");
+	showImage.setBounds(10, 261, 175, 170);
+	
 	btnNewButton_2.addActionListener(new ActionListener() {
-		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			JFileChooser jfilechoooser = new JFileChooser();
 			jfilechoooser.setMultiSelectionEnabled(false);
 			if (jfilechoooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-				filepic = jfilechoooser.getSelectedFile();
+				file = jfilechoooser.getSelectedFile();				
+				ImageIcon imageIcon = new ImageIcon(file.getAbsolutePath());
+				Dimension labelSize = new Dimension(showImage.getWidth(), showImage.getHeight());
+				ImageIcon scaledImageIcon = new ImageIcon(imageIcon.getImage().getScaledInstance(labelSize.width, labelSize.height, java.awt.Image.SCALE_SMOOTH));
+				showImage.setIcon(scaledImageIcon);
+				showImage.setPreferredSize(labelSize);
+
 			}
-//			byte[] bytes = Files.readAllBytes(Paths.get(filepic));
-//			ImageIcon icon = new ImageIcon(bytes);
-//			System.out.println(""+filepic);
-//			Image img = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-			JLabel pic= new JLabel("");
-			//pic.setIcon(new ImageIcon(img));
-			picpanel.add(pic);
-			pic.setIcon(null);
+			
 			
 		}
 	});
+	LoaiHangTbl.add(showImage);
 }	
 	private ComboBoxModel DefaultComboBoxModel(String[] strings) {
 		// TODO Auto-generated method stub

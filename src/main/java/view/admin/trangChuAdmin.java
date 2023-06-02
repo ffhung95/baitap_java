@@ -34,8 +34,10 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.tableController;
+import model.Admin;
 import model.HoaDon;
 import model.table;
+import repository.AdminReposity;
 import repository.HoaDonRepository;
 import repository.tableRepository;
 
@@ -104,20 +106,24 @@ public class trangChuAdmin extends JFrame {
 		panel_thongke.setLayout(null);
 
 		p_thongke= new JPanel();
+		p_thongke.setBackground(new Color(225, 255, 255));
 		p_thongke.setBounds(0, 0, 1063, 642);
 		panel_thongke.add(p_thongke);
 		p_thongke.setLayout(null);
 		JPanel p_day= new JPanel();
+		p_day.setBackground(new Color(225, 255, 255));
 		p_day.setBounds(523, 233, 510, 397);
 		p_day.setLayout(null);
 		table_ngay = new JTable();
 		table_ngay.setBounds(0, 0, 506, 390);
 		JScrollPane scrday= new JScrollPane(table_ngay);
+		scrday.setBackground(new Color(255,255,255));
 		scrday.setBounds(10, 10, 490, 347);
 		p_day.add(scrday);
 		p_thongke.add(p_day);
 
 		JPanel p_month= new JPanel();
+		p_month.setBackground(new Color(225, 255, 255));
 		p_month.setBounds(10, 233, 510, 397);
 		p_month.setLayout(null);
 		
@@ -126,18 +132,19 @@ public class trangChuAdmin extends JFrame {
 		table_thang.setBounds(0,  0,  517,  390);
 		JScrollPane src_month= new JScrollPane(table_thang);
 		src_month.setBounds(10, 10, 490, 342);
+		src_month.setBackground(new Color(255,255,255));
 		p_month.add(src_month);
 		//table_thang.setBounds(536, 199, 517, 402);
 		p_thongke.add(p_month);
 		
-		JLabel lblNewLabel = new JLabel("Bảng doanh thu theo tháng");
+		JLabel lblNewLabel = new JLabel("Bảng doanh thu theo ngày");
 		lblNewLabel.setBounds(169, 206, 198, 17);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		p_thongke.add(lblNewLabel);
 		
-		JLabel lblNewLabel_2 = new JLabel("Bảng doanh thu theo ngày");
-		lblNewLabel_2.setBounds(680, 206, 191, 17);
+		JLabel lblNewLabel_2 = new JLabel("Bảng doanh thu theo tháng");
+		lblNewLabel_2.setBounds(680, 206, 211, 17);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
 		p_thongke.add(lblNewLabel_2);
@@ -145,8 +152,8 @@ public class trangChuAdmin extends JFrame {
 		
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(104, 10, 222, 163);
-		panel_3.setBackground(new Color(128, 255, 255));
+		panel_3.setBounds(10, 10, 322, 163);
+		panel_3.setBackground(new Color(255, 234, 167));
 		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
 		p_thongke.add(panel_3);
 		panel_3.setLayout(null);
@@ -154,14 +161,14 @@ public class trangChuAdmin extends JFrame {
 		JLabel lblNewLabel_4 = new JLabel("Doanh Thu Hôm Nay");
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.ITALIC, 14));
-		lblNewLabel_4.setBounds(0, 0, 226, 40);
+		lblNewLabel_4.setBounds(0, 0, 322, 40);
 		panel_3.add(lblNewLabel_4);
 		
 		JLabel doanhthu_label = new JLabel("");
 		doanhthu_label.setBackground(new Color(255, 0, 0));
 		doanhthu_label.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		doanhthu_label.setHorizontalAlignment(SwingConstants.CENTER);
-		doanhthu_label.setBounds(0, 86, 226, 39);
+		doanhthu_label.setBounds(0, 86, 322, 39);
 		panel_3.add(doanhthu_label);
 		
 		JLabel lblNewLabel_4_1 = new JLabel("");
@@ -177,7 +184,7 @@ public class trangChuAdmin extends JFrame {
 		}
 		lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.ITALIC, 14));
-		lblNewLabel_4_1.setBounds(0, 44, 226, 40);
+		lblNewLabel_4_1.setBounds(0, 44, 322, 40);
 		panel_3.add(lblNewLabel_4_1);
 
 //		panel_1.setBorder(new EmptyBorder(5, 3, 0, 0));
@@ -289,10 +296,18 @@ public class trangChuAdmin extends JFrame {
 		ltime2.setHorizontalAlignment(SwingConstants.CENTER);
 		ltime2.setBounds(0, 0, 211, 41);
 		panel_2.add(ltime2);
-
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(928, 0, 171, 58);
+		AdminReposity adminRe= new AdminReposity();
+	
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_3.setBounds(892, 0, 171, 41);
+		Admin ten= adminRe.get(1);
+		lblNewLabel_3.setText(ten.getHoten());
+		ImageIcon iconAdmin = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\icons\\admin.png");
+		lblNewLabel_3.setIcon(iconAdmin);
 		panel_2.add(lblNewLabel_3);
+		
 
 //		JLabel lblNewLabel_6 = new JLabel("");
 //		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);

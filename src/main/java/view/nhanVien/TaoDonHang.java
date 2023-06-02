@@ -140,6 +140,9 @@ public class TaoDonHang extends JFrame {
 	}
 
 	public void init() {
+		ImageIcon mainIcon = new ImageIcon("C:\\btl\\baitap_java\\src\\main\\resources\\images\\coffeeAdmin.png");
+    	this.setIconImage(mainIcon.getImage());
+		int idb=0;
 		tableRe = new tableRepository();
 		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -339,13 +342,14 @@ public class TaoDonHang extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				if (checkclick == 1) {
-					pmenu.setVisible(false);
-					pban.setVisible(true);
+				
+//					pban.setVisible(true);
 					Jbutton_Ban.setBackground(new Color(255, 0, 128));
 					Jbutton_Ban.setForeground(Color.YELLOW);
 					Jbutton_menu.setBackground(new Color(128, 0, 255));
 					Jbutton_menu.setForeground(new Color(255, 255, 128));
-
+					pmenu.setVisible(false);
+					banCF(0);
 				}
 				checkclick = 0;
 			}
@@ -361,7 +365,7 @@ public class TaoDonHang extends JFrame {
 					Jbutton_menu.setBackground(new Color(255, 0, 128));
 					
 					pban.setVisible(false);
-					thucdon(0);
+					thucdon(idb);
 				}
 				checkclick = 1;
 
@@ -444,13 +448,13 @@ public class TaoDonHang extends JFrame {
 			l_sotien.setHorizontalAlignment(SwingConstants.LEFT);
 			l_sotien.setFont(new Font("ARIA", Font.ITALIC, 20));
 			l_sotien.setForeground(Color.red);
-			JButton l_thanhtoan= new JButton("Thanh Toán");
+			
 			
 			gbct.gridwidth=2;
 			panel_Total.add(l_soban, gbct); gbct.gridy++; gbct.gridwidth=1;
 			panel_Total.add(l_tongtien, gbct); gbct.gridx++;
 			panel_Total.add(l_sotien, gbct); gbct.gridy++; gbct.gridx=0; gbct.gridwidth=2;
-			panel_Total.add(l_thanhtoan, gbct);
+			//panel_Total.add(l_thanhtoan, gbct);
 			pBill.add(panel_Total);
 			//////////////////////////////////////////////////////////////////
 			JPanel menuarea = new JPanel(new BorderLayout());
@@ -675,14 +679,29 @@ public class TaoDonHang extends JFrame {
 										thucdon(maban);
 									}
 									checkclick = 1;
-
+									Jbutton_Ban.setBackground(new Color(128, 0, 255));
+									Jbutton_menu.setBackground(new Color(255, 0, 128));
 								}
 							});
 							// ordermon.setBounds(200, 200, 60, 20);
 							ordermon.setFont(new Font("ARIA", Font.BOLD, 16));
 							ordermon.setBackground(new Color(0, 255, 255));
+							
 							thongtin.add(ordermon, gbco);
 						} else {
+							float tongtien=0;
+							datHangRepository dth= new datHangRepository();
+							try {
+								for(DatHang DH: dth.getAll()) {
+									if(DH.getBan().getMaBan()==getIdTbl(Jlbel_ban.getText())) {
+										tongtien= tongtien+ DH.getThanhTien();
+									}
+									
+								}
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 							thongtin.setLayout(new BorderLayout());
 							thongtin.add(test, BorderLayout.NORTH);
 							//test.setText(Jlbel_ban.getText());
@@ -710,7 +729,15 @@ public class TaoDonHang extends JFrame {
 							payment.setFont(new Font("ARIA", Font.BOLD, 16));
 							payment.setBackground(new Color(0, 255, 255));
 							button_order.add(payment);
-
+							JLabel money= new JLabel("");
+							money.setSize(getPreferredSize());
+							money.setOpaque(true);
+							money.setBorder(new LineBorder(Color.black));
+							money.setBackground(Color.white);
+							money.setFont(new Font("ARRIA",  Font.BOLD, 20));
+							money.setHorizontalAlignment(SwingConstants.CENTER);
+							money.setText("      "+tongtien+"      ");
+							button_order.add(money);
 							thongtin.add(button_order, BorderLayout.SOUTH);
 							
 							ordermon.addActionListener(new ActionListener() {
@@ -737,6 +764,8 @@ public class TaoDonHang extends JFrame {
 										thucdon(idban);
 									}
 									checkclick = 1;
+									Jbutton_Ban.setBackground(new Color(128, 0, 255));
+									Jbutton_menu.setBackground(new Color(255, 0, 128));
 								}
 							});
 							
@@ -938,12 +967,14 @@ public class TaoDonHang extends JFrame {
 
 		try {
 			for (DatHang dathang : dathangReposity.getAll()) {
-				NhanVienReposity nvRe= new NhanVienReposity();
-				nhanVienModel nhanvien =nvRe.get(1);
+				PhienLamViecRepository nvRe= new PhienLamViecRepository();
+			//PHIEN
+				PhienLamViec nhanvien =nvRe.get(1);
+				
 				if(dathang.getBan().getMaBan()==idban) {
 					defaultTableModel.addRow(new Object[] {
 							 dathang.getMaDatHang(),dathang.getBan().getName(),dathang.getHanghoa().getTenHangHoa()
-								,dathang.getNhanvien().getNhanvien().getHoten(),dathang.getSoLuong(),dathang.getThanhTien()
+								,nhanvien.getNhanvien().getHoten(),dathang.getSoLuong(),dathang.getThanhTien()
 					});
 					table_Bill.setModel(defaultTableModel);
 					table_Bill.getTableHeader().setReorderingAllowed(false);
@@ -960,11 +991,13 @@ public class TaoDonHang extends JFrame {
 
 		defaultTableModel.addColumn("Tên món");
 		defaultTableModel.addColumn("Số lượng");
+		defaultTableModel.addColumn("Thành Tiền");
+		
 
 		try {
 			for (DatHang dathang : dathangReposity.getAll()) {
 				if(dathang.getBan().getMaBan()==idban) {
-					defaultTableModel.addRow(new Object[]{dathang.getHanghoa().getTenHangHoa(), dathang.getSoLuong()});
+					defaultTableModel.addRow(new Object[]{dathang.getHanghoa().getTenHangHoa(), dathang.getSoLuong(), dathang.getThanhTien()});
 					tthientai.setModel(defaultTableModel);
 					tthientai.getTableHeader().setReorderingAllowed(false);
 				}

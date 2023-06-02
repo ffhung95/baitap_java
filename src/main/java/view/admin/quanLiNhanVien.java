@@ -190,7 +190,7 @@ public class quanLiNhanVien extends JPanel {
     				nhanVienModel.setHoten(hoten);
     				String taikhoan = taikhoanTF.getText();
     				nhanVienModel.setTaikhoan(taikhoan);
-    				String matkhau = taikhoanTF.getText();
+    				String matkhau = matkhauTF.getText();
     				nhanVienModel.setMatkhau(matkhau);
     				String sdt = sdtTF.getText();
     				String regex= "^0[39]{1}\\d{8}$";

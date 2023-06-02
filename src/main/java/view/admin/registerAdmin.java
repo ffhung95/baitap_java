@@ -146,7 +146,7 @@ public class registerAdmin extends JFrame {
 		photo_jbutton = new JButton("Browse....");
 		photo_jbutton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		JLabel showImage = new JLabel("");
-		showImage.setBounds(26, 329, 152, 168);
+		showImage.setBounds(10, 326, 152, 168);
 		photo_jbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser jfilechoooser = new JFileChooser();
